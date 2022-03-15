@@ -9,7 +9,7 @@
 ![ReSharper](https://img.shields.io/badge/ReSharper-2021.3.2-yellow)
 ![Rider](https://img.shields.io/badge/Rider-2021.3.2-yellow)
 ![Visual Studio 2022](https://img.shields.io/badge/Visual_Studio_2022_Preview_2.0-17.1.0-yellow)
-![.NET Framework](https://img.shields.io/badge/.NET_6.0-yellow)
+![.NET Framework](https://img.shields.io/badge/.NET_4.8-yellow)
 
 ## Introduction
 
