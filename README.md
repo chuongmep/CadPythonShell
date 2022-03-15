@@ -41,7 +41,7 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 
 - Open Python Console from command line.
 
-![](images/pythoncmd.png)
+![](Images/pythoncmd.png)
 
 - Write Console
 
@@ -49,7 +49,7 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 ed = doc.Editor
 ed.WriteMessage("Hello")
 ```
-![](images/console.gif)
+![](Images/console.gif)
 
 Note : you can see more example in folder `Script Examples`
 
