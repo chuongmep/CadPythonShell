@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32210.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PythonConsoleControl", "PythonConsoleControl\PythonConsoleControl.csproj", "{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BC2717A-3441-4FA5-801E-380AD1AC36B9}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+		RPS LICENSE.txt = RPS LICENSE.txt
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADPythonShell", "CADPythonShell\CADPythonShell.csproj", "{7E37F14E-D840-42F8-8CA6-90FFC5497972}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADRuntime", "CADRuntime\CADRuntime.csproj", "{C8446636-C663-409F-82D0-72C0D55BBA1C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B297B8C-D49D-42A2-BD5A-6B7C9A3ECAF4}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal
