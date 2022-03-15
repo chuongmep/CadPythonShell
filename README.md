@@ -40,7 +40,9 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 ## How to use
 
 - Open Python Console from command line.
+
 ![](images/pythoncmd.png)
+
 - Write Console
 
 ``` py
@@ -48,6 +50,7 @@ ed = doc.Editor
 ed.WriteMessage("Hello")
 ```
 ![](images/console.gif)
+
 Note : you can see more example in folder `Script Examples`
 
 ## Contribute
