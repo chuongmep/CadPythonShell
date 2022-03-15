@@ -35,7 +35,7 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 - Reference the version of "acdbmgd.dll" and "accoremgd.dll" that you'd like to target.
 - Compile the solution.
 - Command netload and load CADPythonShell.dll
-- Use command "PythonConsole" to open Console or use command "PythonShellSetting" to open form setting
+- Use command `PythonConsole` to open Console or use command `PythonShellSetting` to open form setting
 
 ## How to use
 
