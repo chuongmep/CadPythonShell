@@ -51,7 +51,7 @@
             this.Controls.Add(this.txtStdOut);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "ScriptOutput";
-            this.Text = "NavisPythonShell - Output";
+            this.Text = "CADPythonShell - Output";
             this.ResumeLayout(false);
             this.PerformLayout();
 

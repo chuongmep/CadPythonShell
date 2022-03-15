@@ -211,7 +211,7 @@ namespace CADPythonShell
 
 
         /// <summary>
-        /// Save changes to NavisPythonShell.xml and close Dialog.
+        /// Save changes to CADPythonShell.xml and close Dialog.
         /// </summary>
         private void btnCommandSave_Click(object sender, EventArgs e)
         {
