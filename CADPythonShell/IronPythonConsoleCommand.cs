@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
 using Autodesk.AutoCAD.ApplicationServices;
@@ -86,6 +87,7 @@ namespace CADPythonShell
                     }
                 });
             });
+            gui.WindowStartupLocation = WindowStartupLocation.CenterScreen;
             WindowInteropHelper helper = new WindowInteropHelper(gui);
             IntPtr hander = Application.MainWindow.Handle;
             helper.Owner = hander;
