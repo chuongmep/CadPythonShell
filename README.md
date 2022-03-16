@@ -19,6 +19,9 @@ and it would not be possible without the great work of everyone involved with th
 The CADPythonShell (CPS) ,lets you to write plugins for Autocad in Python, provides you with an interactive shell that lets you see the results of your code *as you type it*. This is great for exploring the Autocad API.
 
 The biggest limitation is that you can't deploy DLLs with custom scripts at this time and you can't subscribe to events at startup time.
+
+![](Images/Ribbon.png)
+
 ## Features
 
 - Interactive IronPython interpreter for exploring the API

@@ -68,7 +68,7 @@ namespace CADPythonShell
             return source.Frames[0];
         }
 
-        private static ImageSource GetEmbeddedPng(System.Reflection.Assembly app, string imageName)
+        public static ImageSource GetEmbeddedPng(System.Reflection.Assembly app, string imageName)
         {
             var file = app.GetManifestResourceStream(imageName);
             var source = PngBitmapDecoder.Create(file, BitmapCreateOptions.None, BitmapCacheOption.None);

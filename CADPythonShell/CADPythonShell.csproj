@@ -94,6 +94,9 @@
     <Reference Include="acdbmgd">
       <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\acdbmgd.dll</HintPath>
     </Reference>
+    <Reference Include="AdWindows">
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\AdWindows.dll</HintPath>
+    </Reference>
     <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RefrencedAssemblies\ICSharpCode.AvalonEdit.dll</HintPath>
@@ -168,6 +171,7 @@
     <Compile Include="IronPythonConsole.xaml.cs">
       <DependentUpon>IronPythonConsole.xaml</DependentUpon>
     </Compile>
+    <Compile Include="IronPythonConsoleApp.cs" />
     <Compile Include="IronPythonConsoleCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -176,6 +180,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="CADPythonShellApplication.cs" />
+    <Compile Include="RelayCommand.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ConfigureCommandsForm.resx">
