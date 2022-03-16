@@ -1,21 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{7E37F14E-D840-42F8-8CA6-90FFC5497972}</ProjectGuid>
+    <TargetFramework>net48</TargetFramework>
     <OutputType>Library</OutputType>
-    <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CADPythonShell</RootNamespace>
-    <AssemblyName>CADPythonShell</AssemblyName>
-    <FileAlignment>512</FileAlignment>
-    <FileUpgradeFlags>
-    </FileUpgradeFlags>
-    <UpgradeBackupLocation>
-    </UpgradeBackupLocation>
-    <OldToolsVersion>3.5</OldToolsVersion>
     <PublishUrl>publish\</PublishUrl>
     <Install>true</Install>
     <InstallFrom>Disk</InstallFrom>
@@ -31,61 +17,35 @@
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
-    <TargetFrameworkProfile />
-    <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
-    <AllowUnsafeBlocks>False</AllowUnsafeBlocks>
     <NoStdLib>False</NoStdLib>
-    <TreatWarningsAsErrors>False</TreatWarningsAsErrors>
     <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <WarningLevel>4</WarningLevel>
     <NoWin32Manifest>False</NoWin32Manifest>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <OutputPath>bin\$(Configuration)\</OutputPath>
     <LangVersion>latest</LangVersion>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWindowsForms>true</UseWindowsForms>
+    <UseWPF>true</UseWPF>
+    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
   </PropertyGroup>
   <PropertyGroup>
-    <!-- see: http://thebuildingcoder.typepad.com/blog/2013/06/processor-architecture-mismatch-warning.html -->
     <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
       None
     </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
   </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
-    <DefineConstants>DEBUG;TRACE</DefineConstants>
-    <DebugType>Full</DebugType>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-    <Optimize>False</Optimize>
-    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
     <BaseAddress>4194304</BaseAddress>
     <RegisterForComInterop>False</RegisterForComInterop>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-    <Prefer32Bit />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <TargetFrameworkVersion>v4.7</TargetFrameworkVersion>
-    <DefineConstants>TRACE</DefineConstants>
     <DebugType>None</DebugType>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
-    <PlatformTarget>AnyCPU</PlatformTarget>
-    <ErrorReport>prompt</ErrorReport>
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <Optimize>True</Optimize>
-    <CheckForOverflowUnderflow>False</CheckForOverflowUnderflow>
-    <BaseIntermediateOutputPath>obj\</BaseIntermediateOutputPath>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="accoremgd">
@@ -117,7 +77,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RefrencedAssemblies\IronPython.Wpf.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RefrencedAssemblies\Microsoft.Dynamic.dll</HintPath>
@@ -130,66 +89,20 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RefrencedAssemblies\Microsoft.Scripting.Metadata.dll</HintPath>
     </Reference>
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
-    <Reference Include="System" />
-    <Reference Include="System.Core">
+    <Reference Update="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Controls.WpfPropertyGrid, Version=2010.11.10.0, Culture=neutral, PublicKeyToken=be4b71144cd8a3e5, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RefrencedAssemblies\System.Windows.Controls.WpfPropertyGrid.dll</HintPath>
     </Reference>
-    <Reference Include="System.Windows.Forms" />
-    <Reference Include="System.Xaml" />
-    <Reference Include="System.Xml.Linq">
+    <Reference Update="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Data.DataSetExtensions">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Data" />
-    <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
     <Reference Include="WPG, Version=2.0.3997.38860, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\RefrencedAssemblies\WPG.dll</HintPath>
     </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="CommandLoaderBase.cs" />
-    <Compile Include="CompletionToolTip.cs" />
-    <Compile Include="ConfigureCommand.cs" />
-    <Compile Include="ConfigureCommandsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="ConfigureCommandsForm.Designer.cs">
-      <DependentUpon>ConfigureCommandsForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="ConsoleOptions.cs" />
-    <Compile Include="IronPythonConsole.xaml.cs">
-      <DependentUpon>IronPythonConsole.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="IronPythonConsoleApp.cs" />
-    <Compile Include="IronPythonConsoleCommand.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="CADPythonShellApplication.cs" />
-    <Compile Include="RelayCommand.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="ConfigureCommandsForm.resx">
-      <DependentUpon>ConfigureCommandsForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\Number.png" />
@@ -208,19 +121,18 @@
     <Content Include="init.py">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Icons\Python-16.ico">
+    <None Update="Icons\Python-16.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Icons\Python-32.ico">
+    <None Update="Icons\Python-32.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Icons\Settings-16.ico">
+    <None Update="Icons\Settings-16.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Icons\Settings-32.ico">
+    <None Update="Icons\Settings-32.ico">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </None>
-    <None Include="Resources\ipy.ico" />
     <Resource Include="Images\Copy.png" />
     <Resource Include="Images\Cut.png" />
     <Resource Include="Images\Delete.png" />
@@ -262,38 +174,21 @@
     </BootstrapperPackage>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="IronPythonConsole.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
+    <ProjectReference Include="..\CADRuntime\CADRuntime.csproj" />
+    <ProjectReference Include="..\PythonConsoleControl\PythonConsoleControl.csproj" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\CADRuntime\CADRuntime.csproj">
-      <Project>{c8446636-c663-409f-82d0-72c0d55bba1c}</Project>
-      <Name>CADRuntime</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\PythonConsoleControl\PythonConsoleControl.csproj">
-      <Project>{f1152d68-346b-4f48-8db7-be67b5cb1f49}</Project>
-      <Name>PythonConsoleControl</Name>
-    </ProjectReference>
+    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
+    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.310801">
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
   </ItemGroup>
-  <ItemGroup />
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PreBuildEvent>
-    </PreBuildEvent>
-  </PropertyGroup>
+  <PropertyGroup />
   <PropertyGroup>
     <PostBuildEvent>set bundle="C:\ProgramData\Autodesk\ApplicationPlugins\CADPythonShell.bundle\"
 if not exist "%25bundle%25" mkdir "%25bundle%25"
 xcopy "$(TargetDir)*.*" "%25bundle%25" /Y /I /E /R
 xcopy "$(SolutionDir)PackageContents.xml" "%25bundle%25" /Y /R</PostBuildEvent>
   </PropertyGroup>
-  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
-       Other similar extension points exist, see Microsoft.Common.targets.
-  <Target Name="BeforeBuild">
-  </Target>
-  <Target Name="AfterBuild">
-  </Target>
-  -->
 </Project>
