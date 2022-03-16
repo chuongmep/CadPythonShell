@@ -66,7 +66,9 @@ namespace CADPythonShell
             if (currentFileName == null)
             {
                 SaveFileDialog dlg = new SaveFileDialog();
-                dlg.DefaultExt = ".txt";
+                dlg.Filter = "Save Files (*.py)|*.py";
+                dlg.DefaultExt = "py";
+                dlg.AddExtension = true;
                 if (dlg.ShowDialog() ?? false)
                 {
                     currentFileName = dlg.FileName;
