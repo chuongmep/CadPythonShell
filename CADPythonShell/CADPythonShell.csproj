@@ -279,8 +279,10 @@
     </PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>set bundle="C:\ProgramData\Autodesk\ApplicationPlugins\CADPythonShell.bundle\"
+if not exist "%25bundle%25" mkdir "%25bundle%25"
+xcopy "$(TargetDir)*.*" "%25bundle%25" /Y /I /E /R
+xcopy "$(SolutionDir)PackageContents.xml" "%25bundle%25" /Y /R</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -11,6 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitignore = .gitignore
 		README.md = README.md
 		RPS LICENSE.txt = RPS LICENSE.txt
+		PackageContents.xml = PackageContents.xml
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADPythonShell", "CADPythonShell\CADPythonShell.csproj", "{7E37F14E-D840-42F8-8CA6-90FFC5497972}"
