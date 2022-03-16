@@ -51,7 +51,7 @@ ed.WriteMessage("Hello")
 ```
 ![](Images/console.gif)
 
-Note : you can see more example in folder `Script Examples`
+Note : you can see more example in folder [Script Examples](https://github.com/chuongmep/CadPythonShell/tree/dev/Script%20Examples)
 
 ## Contribute
 
