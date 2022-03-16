@@ -44,7 +44,7 @@ namespace CADPythonShell
         {
             //https://forums.autodesk.com/t5/net/create-custom-ribbon-tab-and-buttons-for-autocad-mechanical-2011/td-p/2834343
             RibbonPanelSource rps = new RibbonPanelSource();
-            rps.Title = "Autocad Python Shell";
+            rps.Title = "Cad Python Shell";
             RibbonPanel rp = new RibbonPanel();
             rp.Source = rps;
             //Create a Command Item that the Dialog Launcher can use,
@@ -57,9 +57,9 @@ namespace CADPythonShell
             rb.Orientation = Orientation.Vertical;
             rb.AllowInStatusBar = true;
             rb.Size = RibbonItemSize.Large;
-            rb.Name = "Run APS";
+            rb.Name = "Run CPS";
             rb.ShowText = true;
-            rb.Text = "Run APS";
+            rb.Text = "Run CPS";
             var addinAssembly = typeof(IronPythonConsoleApp).Assembly;
             rb.Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Python-16.png");
             rb.LargeImage = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Python-32.png");
@@ -70,9 +70,9 @@ namespace CADPythonShell
             rb2.Orientation = Orientation.Vertical;
             rb2.AllowInStatusBar = true;
             rb2.Size = RibbonItemSize.Large;
-            rb2.Name = "Configure APS";
+            rb2.Name = "Configure CPS";
             rb2.ShowText = true;
-            rb2.Text = "Configure APS";
+            rb2.Text = "Configure CPS";
             rb2.Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-16.png");
             rb2.LargeImage = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-32.png");
             
