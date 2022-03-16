@@ -35,9 +35,8 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 
 ## Installation
 
-- Reference the version of "acdbmgd.dll" and "accoremgd.dll" that you'd like to target.
-- Compile the solution.
-- Command netload and load CADPythonShell.dll
+- Download file zip from section [Release](https://github.com/chuongmep/CADPythonShell/releases/latest)
+- Extract file to folder `C:\ProgramData\Autodesk\ApplicationPlugins`
 - Use command `PythonConsole` to open Console or use command `PythonShellSetting` to open form setting
 
 ## How to use
