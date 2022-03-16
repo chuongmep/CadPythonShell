@@ -15,6 +15,7 @@
                     LoadOnCommandInvocation="True" LoadOnRequest="True">
       <Commands>
         <Command Local="PythonConsole" Global="PythonConsole" />
+        <Command Local="PythonShellSetting" Global="PythonShellSetting" />
       </Commands>
     </ComponentEntry>
   </Components>
