@@ -42,7 +42,7 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 
 ## How to use
 
-- Open Python Console from command line.
+- Open Python Console from Command Line or button APS in Ribbon.
 
 ![](Images/pythoncmd.png)
 
