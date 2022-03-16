@@ -4,7 +4,8 @@
         xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
         xmlns:console="clr-namespace:PythonConsoleControl;assembly=PythonConsoleControl"
         xmlns:wpg="clr-namespace:WPG;assembly=WPG"
-        xmlns:pg="http://schemas.denisvuyka.wordpress.com/wpfpropertygrid"
+        MinWidth="500"
+        MinHeight="350"
         Title="IronPython Console" Height="600" Width="850">
     <!-- 
 	Copyright (c) 2010 Joe Moorhouse
