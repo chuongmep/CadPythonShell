@@ -1,6 +1,4 @@
 ﻿using System.IO;
-using System.Reflection;
-using System.Reflection.Emit;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
@@ -72,44 +70,6 @@ namespace CADPythonShell
             return source.Frames[0];
         }
 
-
-        /// <summary>
-        /// Creates a dynamic assembly that contains types for starting the canned commands.
-        /// </summary>
-        private static void CreateCommandLoaderAssembly(XDocument repository, string dllfolder, string dllname)
-        {
-            var assemblyName = new AssemblyName { Name = dllname + ".dll", Version = new Version(1, 0, 0, 0) };
-            var assemblyBuilder = AppDomain.CurrentDomain.DefineDynamicAssembly(assemblyName, AssemblyBuilderAccess.RunAndSave, dllfolder);
-            var moduleBuilder = assemblyBuilder.DefineDynamicModule("CommandLoaderModule", dllname + ".dll");
-
-            foreach (var command in GetCommands(repository))
-            {
-                var typebuilder = moduleBuilder.DefineType("Command" + command.Index,
-                                                        TypeAttributes.Class | TypeAttributes.Public,
-                                                        typeof(CommandLoaderBase));
-
-                // call base constructor with script path
-                var ci = typeof(CommandLoaderBase).GetConstructor(new[] { typeof(string) });
-
-                var constructorBuilder = typebuilder.DefineConstructor(MethodAttributes.Public, CallingConventions.Standard, new Type[0]);
-                var gen = constructorBuilder.GetILGenerator();
-                gen.Emit(OpCodes.Ldarg_0);                // Load "this" onto eval stack
-                gen.Emit(OpCodes.Ldstr, command.Source);  // Load the path to the command as a string onto stack
-                gen.Emit(OpCodes.Call, ci);               // call base constructor (consumes "this" and the string)
-                gen.Emit(OpCodes.Nop);                    // Fill some space - this is how it is generated for equivalent C# code
-                gen.Emit(OpCodes.Nop);
-                gen.Emit(OpCodes.Nop);
-                gen.Emit(OpCodes.Ret);                    // return from constructor
-                typebuilder.CreateType();
-            }
-            assemblyBuilder.Save(dllname + ".dll");
-        }
-
-        public static void OnUnloading()
-        {
-            // FIXME: deallocate the python shell...
-            return;
-        }
 
         public static IRpsConfig GetConfig()
         {

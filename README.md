@@ -39,12 +39,14 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 
 - Download last install stable(msi) from [Release](https://github.com/chuongmep/CADPythonShell/releases/latest)
 - Use command `PythonConsole` to open Console or use command `PythonShellSetting` to open form setting
+- See guide install detail at [How-to-Install-CadPythonShell](https://github.com/chuongmep/CadPythonShell/wiki/How-to-Install-CadPythonShell)
 
 Note : Support for 4 last version(2018-2022) Autocad or Civil 3D. Older versions can be used but will not guarantee the expected performance.
 
+
 ## How to use
 
-- Open Python Console from Command Line or button APS in Ribbon.
+- Open Python Console from Command Line or button CPS in Ribbon.
 
 ![](Images/pythoncmd.png)
 

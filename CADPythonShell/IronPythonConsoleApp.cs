@@ -6,6 +6,8 @@ namespace CADPythonShell
 {
     public class IronPythonConsoleApp
     {
+        public const string RibbonTitle = "Python Shell";
+        public const string RibbonId = "PythonShell";
         [CommandMethod("InitPythonConsole")]
         public void Execute()
         {
@@ -16,32 +18,28 @@ namespace CADPythonShell
             RibbonControl ribbon = ComponentManager.Ribbon;
             if (ribbon != null)
             {
-                RibbonTab rtab = ribbon.FindTab("PythonShell");
+                RibbonTab rtab = ribbon.FindTab(RibbonId);
                 if (rtab != null)
                 {
                     ribbon.Tabs.Remove(rtab);
                 }
                 rtab = new RibbonTab();
-                rtab.Title = "Python Shell";
-                rtab.Id = "PythonShell";
-                //Add the Tab
+                rtab.Title = RibbonTitle;
+                rtab.Id = RibbonId;
                 ribbon.Tabs.Add(rtab);
-                addContent(rtab);
+                AddContentToTab(rtab);
             }
         }
-        private void addContent(RibbonTab rtab)
+        private void AddContentToTab(RibbonTab rtab)
         {
             rtab.Panels.Add(AddOnePanel());
         }
         static RibbonPanel AddOnePanel()
         {
-            //https://forums.autodesk.com/t5/net/create-custom-ribbon-tab-and-buttons-for-autocad-mechanical-2011/td-p/2834343
             RibbonPanelSource rps = new RibbonPanelSource();
             rps.Title = "Cad Python Shell";
             RibbonPanel rp = new RibbonPanel();
             rp.Source = rps;
-            //Create a Command Item that the Dialog Launcher can use,
-            // for this test it is just a place holder.
             RibbonButton rci = new RibbonButton();
             rci.Name = "Python Shell Console";
             rps.DialogLauncher = rci;
@@ -53,6 +51,7 @@ namespace CADPythonShell
             rb.Name = "Run CPS";
             rb.ShowText = true;
             rb.Text = "Run CPS";
+            rb.Description = "Start Write Python Console\nCommand: PythonShellConsole";
             var addinAssembly = typeof(IronPythonConsoleApp).Assembly;
             rb.Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Python-16.png");
             rb.LargeImage = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Python-32.png");
@@ -66,6 +65,7 @@ namespace CADPythonShell
             rb2.Name = "Configure CPS";
             rb2.ShowText = true;
             rb2.Text = "Configure CPS";
+            rb2.Description = "Configure Cad Python Shell\nCommand: PythonShellSetting";
             rb2.Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-16.png");
             rb2.LargeImage = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-32.png");
             

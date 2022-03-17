@@ -1,5 +1,4 @@
-﻿using System.Windows.Interop;
-using Autodesk.AutoCAD.Runtime;
+﻿using Autodesk.AutoCAD.Runtime;
 using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 
 namespace CADPythonShell
