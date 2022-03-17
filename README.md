@@ -11,6 +11,8 @@
 ![Visual Studio 2022](https://img.shields.io/badge/Visual_Studio_2022_Preview_2.0-17.1.0-yellow)
 ![.NET Framework](https://img.shields.io/badge/.NET_6(LTS)-yellow)
 
+[![Publish](../../actions/workflows/Workflow.yml/badge.svg)](../../actions)
+
 ## Introduction
 
 This is obviously a fork of [RevitPythonShell](https://github.com/architecture-building-systems/revitpythonshell), bringing an IronPython interpreter to Autodesk Autocad,
@@ -31,13 +33,14 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 - Full access to the .NET framework and the Navis API
 - Configurable "environment" variables that can be used in your scripts
 - Save "external scripts" for reuse and start collecting your awesome hacks!
-- Run scripts at Autocad startup
+- Run scripts at Autocad or Civil startup
 
 ## Installation
 
-- Download file zip from section [Release](https://github.com/chuongmep/CADPythonShell/releases/latest)
-- Extract file to folder `C:\ProgramData\Autodesk\ApplicationPlugins`
+- Download last install stable(msi) from [Release](https://github.com/chuongmep/CADPythonShell/releases/latest)
 - Use command `PythonConsole` to open Console or use command `PythonShellSetting` to open form setting
+
+Note : Support for 4 last version(2018-2022) Autocad or Civil 3D. Older versions can be used but will not guarantee the expected performance.
 
 ## How to use
 
@@ -117,3 +120,4 @@ Thanks to [JetBrains](https://www.jetbrains.com/) for providing licenses for [Ri
   * [Dimitar Venkov](https://github.com/dimven/NavisPythonShell) (original port to Navisworks)
   * [ChuongMep](https://github.com/chuongmep) (original port to Autocad)
   * The rest of the RPS contributors
+  * [Nice 3 Point](https://github.com/Nice3point) for process CI/CD 
