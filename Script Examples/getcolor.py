@@ -23,3 +23,5 @@ blue = rgbcad & 255
 green = (rgbcad >> 8) & 255
 red = (rgbcad >> 16) & 255
 print("Color RGB is", (red,green,blue))
+
+## see more at : https://forum.dynamobim.com/t/aci-color-to-rgb/59856/6
