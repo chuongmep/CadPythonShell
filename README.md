@@ -122,4 +122,5 @@ Thanks to [JetBrains](https://www.jetbrains.com/) for providing licenses for [Ri
   * [Dimitar Venkov](https://github.com/dimven/NavisPythonShell) (original port to Navisworks)
   * [ChuongMep](https://github.com/chuongmep) (original port to Autocad)
   * The rest of the RPS contributors
-  * [Nice 3 Point](https://github.com/Nice3point) for process CI/CD 
+  * [Nice 3 Point](https://github.com/Nice3point) for process CI/CD
+  * [Icon 8](https://icons8.com/) Free Wiki icons in various UI design styles for web, mobile
