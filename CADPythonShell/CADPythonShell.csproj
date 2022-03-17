@@ -1,194 +1,183 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
-    <OutputType>Library</OutputType>
-    <PublishUrl>publish\</PublishUrl>
-    <Install>true</Install>
-    <InstallFrom>Disk</InstallFrom>
-    <UpdateEnabled>false</UpdateEnabled>
-    <UpdateMode>Foreground</UpdateMode>
-    <UpdateInterval>7</UpdateInterval>
-    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
-    <UpdatePeriodically>false</UpdatePeriodically>
-    <UpdateRequired>false</UpdateRequired>
-    <MapFileExtensions>true</MapFileExtensions>
-    <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
-    <IsWebBootstrapper>false</IsWebBootstrapper>
-    <UseApplicationTrust>false</UseApplicationTrust>
-    <BootstrapperEnabled>true</BootstrapperEnabled>
-    <NoStdLib>False</NoStdLib>
-    <IntermediateOutputPath>obj\$(Configuration)\</IntermediateOutputPath>
-    <NoWin32Manifest>False</NoWin32Manifest>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
-    <LangVersion>latest</LangVersion>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
-  </PropertyGroup>
-  <PropertyGroup>
-    <ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-      None
-    </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Platform)' == 'AnyCPU' ">
-    <BaseAddress>4194304</BaseAddress>
-    <RegisterForComInterop>False</RegisterForComInterop>
-    <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
-    <DebugType>None</DebugType>
-  </PropertyGroup>
-  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <DebugSymbols>true</DebugSymbols>
-    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
-  </PropertyGroup>
-  <ItemGroup>
-    <Reference Include="accoremgd">
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\accoremgd.dll</HintPath>
-    </Reference>
-    <Reference Include="acdbmgd">
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\acdbmgd.dll</HintPath>
-    </Reference>
-    <Reference Include="AdWindows">
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2022\AdWindows.dll</HintPath>
-    </Reference>
-    <Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\ICSharpCode.AvalonEdit.dll</HintPath>
-    </Reference>
-    <Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\IronPython.dll</HintPath>
-    </Reference>
-    <Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\IronPython.Modules.dll</HintPath>
-    </Reference>
-    <Reference Include="IronPython.SQLite, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\IronPython.SQLite.dll</HintPath>
-    </Reference>
-    <Reference Include="IronPython.Wpf, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\IronPython.Wpf.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\Microsoft.Dynamic.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\Microsoft.Scripting.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\Microsoft.Scripting.Metadata.dll</HintPath>
-    </Reference>
-    <Reference Update="System.Core">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="System.Windows.Controls.WpfPropertyGrid, Version=2010.11.10.0, Culture=neutral, PublicKeyToken=be4b71144cd8a3e5, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\System.Windows.Controls.WpfPropertyGrid.dll</HintPath>
-    </Reference>
-    <Reference Update="System.Xml.Linq">
-      <RequiredTargetFramework>3.5</RequiredTargetFramework>
-    </Reference>
-    <Reference Include="WPG, Version=2.0.3997.38860, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\RefrencedAssemblies\WPG.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="Images\Number.png" />
-    <Resource Include="Images\Paragraph.png" />
-    <EmbeddedResource Include="Resources\Console-16.png" />
-    <EmbeddedResource Include="Resources\Console-32.png" />
-    <EmbeddedResource Include="Resources\Deployment-16.png" />
-    <EmbeddedResource Include="Resources\Deployment-32.png" />
-    <EmbeddedResource Include="Resources\Python-16.png" />
-    <EmbeddedResource Include="Resources\Python-32.png" />
-    <EmbeddedResource Include="Resources\Settings-16.png" />
-    <EmbeddedResource Include="Resources\Settings-32.png" />
-    <Content Include="startup.py">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="init.py">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <None Update="Icons\Python-16.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Icons\Python-32.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Icons\Settings-16.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <None Update="Icons\Settings-32.ico">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
-    <Resource Include="Images\Copy.png" />
-    <Resource Include="Images\Cut.png" />
-    <Resource Include="Images\Delete.png" />
-    <Resource Include="Images\Open.png" />
-    <Resource Include="Images\Paste.png" />
-    <Resource Include="Images\Redo.png" />
-    <Resource Include="Images\Run.png" />
-    <Resource Include="Images\Save.png" />
-    <Resource Include="Images\Undo.png" />
-    <Resource Include="Images\WordWrap.png" />
-    <EmbeddedResource Include="Resources\CreateWall.png" />
-    <Content Include="Resources\py.ico" />
-    <Content Include="Resources\pycon.ico" />
-    <EmbeddedResource Include="Resources\PythonConsole32x32.png" />
-    <EmbeddedResource Include="Resources\PythonConsole16x16.png" />
-    <EmbeddedResource Include="Resources\PythonScript16x16.png" />
-    <EmbeddedResource Include="Resources\PythonScript32x32.png" />
-    <Content Include="CADPythonShell.xml">
-      <SubType>Designer</SubType>
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <EmbeddedResource Include="Resources\Python.xshd" />
-  </ItemGroup>
-  <ItemGroup>
-    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-      <Install>false</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-      <Visible>False</Visible>
-      <ProductName>.NET Framework 3.5 SP1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
-      <Visible>False</Visible>
-      <ProductName>Windows Installer 3.1</ProductName>
-      <Install>true</Install>
-    </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CADRuntime\CADRuntime.csproj" />
-    <ProjectReference Include="..\PythonConsoleControl\PythonConsoleControl.csproj" />
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.310801">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-  </ItemGroup>
-  <PropertyGroup />
-  <PropertyGroup>
-    <PostBuildEvent>set bundle="C:\ProgramData\Autodesk\ApplicationPlugins\CADPythonShell.bundle\"
-if not exist "%25bundle%25" mkdir "%25bundle%25"
-xcopy "$(TargetDir)*.*" "%25bundle%25" /Y /I /E /R
-xcopy "$(SolutionDir)PackageContents.xml" "%25bundle%25" /Y /R</PostBuildEvent>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<LangVersion>latest</LangVersion>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<Configurations>Debug A22</Configurations>
+		<Configurations>$(Configurations);Release A22</Configurations>
+		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+			None
+		</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('Debug'))">
+		<DebugSymbols>true</DebugSymbols>
+		<DebugType>full</DebugType>
+		<DefineConstants>$(DefineConstants);DEBUG</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('Release'))">
+		<Optimize>true</Optimize>
+		<DebugType>none</DebugType>
+		<DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup Condition="$(Configuration.Contains('A22'))">
+		<DefineConstants>$(DefineConstants);A22</DefineConstants>
+	</PropertyGroup>
+	<PropertyGroup>
+		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="accoremgd">
+		  <HintPath>..\RefrencedAssemblies\accoremgd.dll</HintPath>
+		</Reference>
+		<Reference Include="Acdbmgd">
+		  <HintPath>..\RefrencedAssemblies\acdbmgd.dll</HintPath>
+		</Reference>
+		<Reference Include="AdWindows">
+		  <HintPath>..\RefrencedAssemblies\AdWindows.dll</HintPath>
+		</Reference>
+		<Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\ICSharpCode.AvalonEdit.dll</HintPath>
+		</Reference>
+		<Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\IronPython.dll</HintPath>
+		</Reference>
+		<Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\IronPython.Modules.dll</HintPath>
+		</Reference>
+		<Reference Include="IronPython.SQLite, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\IronPython.SQLite.dll</HintPath>
+		</Reference>
+		<Reference Include="IronPython.Wpf, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\IronPython.Wpf.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\Microsoft.Dynamic.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\Microsoft.Scripting.dll</HintPath>
+		</Reference>
+		<Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\Microsoft.Scripting.Metadata.dll</HintPath>
+		</Reference>
+		<Reference Update="System.Core">
+			<RequiredTargetFramework>3.5</RequiredTargetFramework>
+		</Reference>
+		<Reference Include="System.Windows.Controls.WpfPropertyGrid, Version=2010.11.10.0, Culture=neutral, PublicKeyToken=be4b71144cd8a3e5, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\System.Windows.Controls.WpfPropertyGrid.dll</HintPath>
+		</Reference>
+		<Reference Update="System.Xml.Linq">
+			<RequiredTargetFramework>3.5</RequiredTargetFramework>
+		</Reference>
+		<Reference Include="WPG, Version=2.0.3997.38860, Culture=neutral, processorArchitecture=MSIL">
+			<SpecificVersion>False</SpecificVersion>
+			<HintPath>..\RefrencedAssemblies\WPG.dll</HintPath>
+		</Reference>
+	</ItemGroup>
+	
+	<ItemGroup>
+		<Resource Include="Images\Number.png" />
+		<Resource Include="Images\Paragraph.png" />
+		<EmbeddedResource Include="Resources\Console-16.png" />
+		<EmbeddedResource Include="Resources\Console-32.png" />
+		<EmbeddedResource Include="Resources\Deployment-16.png" />
+		<EmbeddedResource Include="Resources\Deployment-32.png" />
+		<EmbeddedResource Include="Resources\Python-16.png" />
+		<EmbeddedResource Include="Resources\Python-32.png" />
+		<EmbeddedResource Include="Resources\Settings-16.png" />
+		<EmbeddedResource Include="Resources\Settings-32.png" />
+		<Content Include="startup.py">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<Content Include="init.py">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<None Update="Icons\Python-16.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Icons\Python-32.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Icons\Settings-16.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="Icons\Settings-32.ico">
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<None Update="PackageContents.xml">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
+		<Resource Include="Images\Copy.png" />
+		<Resource Include="Images\Cut.png" />
+		<Resource Include="Images\Delete.png" />
+		<Resource Include="Images\Open.png" />
+		<Resource Include="Images\Paste.png" />
+		<Resource Include="Images\Redo.png" />
+		<Resource Include="Images\Run.png" />
+		<Resource Include="Images\Save.png" />
+		<Resource Include="Images\Undo.png" />
+		<Resource Include="Images\WordWrap.png" />
+		<EmbeddedResource Include="Resources\CreateWall.png" />
+		<Content Include="Resources\py.ico" />
+		<Content Include="Resources\pycon.ico" />
+		<EmbeddedResource Include="Resources\PythonConsole32x32.png" />
+		<EmbeddedResource Include="Resources\PythonConsole16x16.png" />
+		<EmbeddedResource Include="Resources\PythonScript16x16.png" />
+		<EmbeddedResource Include="Resources\PythonScript32x32.png" />
+		<Content Include="CADPythonShell.xml">
+			<SubType>Designer</SubType>
+			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</Content>
+		<EmbeddedResource Include="Resources\Python.xshd" />
+	</ItemGroup>
+	<ItemGroup>
+		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+			<Visible>False</Visible>
+			<ProductName>Windows Installer 3.1</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\CADRuntime\CADRuntime.csproj" />
+		<ProjectReference Include="..\PythonConsoleControl\PythonConsoleControl.csproj" />
+	</ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
+	</ItemGroup>
+	<PropertyGroup />
+	<PropertyGroup>
+	  <PlatformTarget>x64</PlatformTarget>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+		<PostBuildEvent>start gpedit</PostBuildEvent>
+	</PropertyGroup>
+
+	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(Configuration.Contains('Debug'))">
+	  <Exec Command="set bundle=&quot;C:\ProgramData\Autodesk\ApplicationPlugins\CADPythonShell.bundle\&quot;&#xD;&#xA;if not exist &quot;%25bundle%25&quot; mkdir &quot;%25bundle%25&quot;&#xD;&#xA;xcopy &quot;$(TargetDir)*.*&quot; &quot;%25bundle%25&quot; /Y /I /E /R /EXCLUDE:$(ProjectDir)exclude.txt&#xD;&#xA;xcopy &quot;$(SolutionDir)PackageContents.xml&quot; &quot;%25bundle%25&quot; /Y /R" />
+	</Target>
 </Project>

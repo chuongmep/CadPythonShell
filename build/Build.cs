@@ -1,0 +1,70 @@
+using System.Text.RegularExpressions;
+using Nuke.Common;
+using Nuke.Common.Git;
+using Nuke.Common.IO;
+using Nuke.Common.ProjectModel;
+using Nuke.Common.Tools.VSWhere;
+
+partial class Build : NukeBuild
+{
+    readonly AbsolutePath ArtifactsDirectory = RootDirectory / ArtifactsFolder;
+    readonly AbsolutePath ChangeLogPath = RootDirectory / "CHANGELOG.md";
+    [GitRepository] readonly GitRepository GitRepository;
+    [Solution] readonly Solution Solution;
+
+    static readonly Lazy<string> MsBuildPath = new(() =>
+    {
+        if (IsServerBuild) return null;
+        var (_, output) = VSWhereTasks.VSWhere(settings => settings
+            .EnableLatest()
+            .AddRequires("Microsoft.Component.MSBuild")
+            .SetProperty("installationPath")
+        );
+
+        if (output.Count > 0) return null;
+        if (!File.Exists(CustomMsBuildPath)) throw new Exception($"Missing file: {CustomMsBuildPath}. Change the path to the build platform or install Visual Studio.");
+        return CustomMsBuildPath;
+    });
+
+    public static int Main() => Execute<Build>(x => x.Cleaning);
+
+    List<string> GetConfigurations(params string[] startPatterns)
+    {
+        var configurations = Solution.Configurations
+            .Select(pair => pair.Key)
+            .Where(s => startPatterns.Any(s.StartsWith))
+            .Select(s =>
+            {
+                var platformIndex = s.LastIndexOf('|');
+                return s.Remove(platformIndex);
+            })
+            .ToList();
+        if (configurations.Count == 0) throw new Exception($"Can't find configurations in the solution by patterns: {string.Join(" | ", startPatterns)}.");
+        configurations.ForEach(x=> Console.WriteLine($"Fined Configuration Name: {x}"));
+        return configurations;
+    }
+
+    
+    IEnumerable<IGrouping<string, DirectoryInfo>> GetBuildDirectories()
+    {
+        var directories = new List<DirectoryInfo>();
+        foreach (var projectName in Projects)
+        {
+            Console.WriteLine($"Get Project Name: {projectName}");
+            var project = BuilderExtensions.GetProject(Solution, projectName);
+            Console.WriteLine($"Bin Directory: {project.GetBinDirectory()}");
+            var directoryInfo = new DirectoryInfo(project.GetBinDirectory()).GetDirectories();
+         
+            directories.AddRange(directoryInfo);
+        }
+
+        if (directories.Count == 0) throw new Exception("There are no packaged assemblies in the project. Try to build the project again.");
+
+        var versionRegex = new Regex(@"^.*A\d+ ?");
+        var addInsDirectory = directories
+            //.Where(dir => dir.Name.StartsWith(AddInBinPrefix))
+            .Where(dir => dir.Name.Contains(BuildConfiguration))
+            .GroupBy(dir => versionRegex.Replace(dir.Name, string.Empty));
+        return addInsDirectory;
+    }
+}

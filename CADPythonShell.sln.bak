@@ -1,0 +1,94 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32210.308
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PythonConsoleControl", "PythonConsoleControl\PythonConsoleControl.csproj", "{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2BC2717A-3441-4FA5-801E-380AD1AC36B9}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		PackageContents.xml = PackageContents.xml
+		README.md = README.md
+		RPS LICENSE.txt = RPS LICENSE.txt
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CADPythonShell", "CADPythonShell\CADPythonShell.csproj", "{7E37F14E-D840-42F8-8CA6-90FFC5497972}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CADRuntime", "CADRuntime\CADRuntime.csproj", "{C8446636-C663-409F-82D0-72C0D55BBA1C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "build\Build.csproj", "{4729BE21-C6FF-4115-A516-65F5A312574C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Installer", "Installer\Installer.csproj", "{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug A21|Any CPU = Debug A21|Any CPU
+		Debug A22|Any CPU = Debug A22|Any CPU
+		Installer|Any CPU = Installer|Any CPU
+		Release A21|Any CPU = Release A21|Any CPU
+		Release A22|Any CPU = Release A22|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Debug A21|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Debug A21|Any CPU.Build.0 = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Debug A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Debug A22|Any CPU.Build.0 = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Installer|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Installer|Any CPU.Build.0 = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Release A21|Any CPU.ActiveCfg = Release|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Release A21|Any CPU.Build.0 = Release|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Release A22|Any CPU.ActiveCfg = Release|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Release A22|Any CPU.Build.0 = Release|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Debug A21|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Debug A21|Any CPU.Build.0 = Debug|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Debug A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Debug A22|Any CPU.Build.0 = Debug|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Installer|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Installer|Any CPU.Build.0 = Debug|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Release A21|Any CPU.ActiveCfg = Release|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Release A21|Any CPU.Build.0 = Release|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Release A22|Any CPU.ActiveCfg = Release A22|Any CPU
+		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Release A22|Any CPU.Build.0 = Release A22|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Debug A21|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Debug A21|Any CPU.Build.0 = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Debug A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Debug A22|Any CPU.Build.0 = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Installer|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Installer|Any CPU.Build.0 = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Release A21|Any CPU.ActiveCfg = Release|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Release A21|Any CPU.Build.0 = Release|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Release A22|Any CPU.ActiveCfg = Release|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Release A22|Any CPU.Build.0 = Release|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Debug A21|Any CPU.ActiveCfg = Debug|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Debug A21|Any CPU.Build.0 = Debug|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Debug A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Debug A22|Any CPU.Build.0 = Debug|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Installer|Any CPU.ActiveCfg = Release|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Installer|Any CPU.Build.0 = Release|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Release A21|Any CPU.ActiveCfg = Release|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Release A21|Any CPU.Build.0 = Release|Any CPU
+		{4729BE21-C6FF-4115-A516-65F5A312574C}.Release A22|Any CPU.ActiveCfg = Release|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Debug A21|Any CPU.ActiveCfg = Debug|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Debug A21|Any CPU.Build.0 = Debug|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Debug A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Debug A22|Any CPU.Build.0 = Debug|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Installer|Any CPU.ActiveCfg = Debug|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Installer|Any CPU.Build.0 = Debug|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Release A21|Any CPU.ActiveCfg = Release|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Release A21|Any CPU.Build.0 = Release|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Release A22|Any CPU.ActiveCfg = Release|Any CPU
+		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Release A22|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {8B297B8C-D49D-42A2-BD5A-6B7C9A3ECAF4}
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
+	EndGlobalSection
+EndGlobal

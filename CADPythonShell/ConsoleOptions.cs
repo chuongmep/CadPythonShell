@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
 using System.ComponentModel;
-using System.Windows.Media;
 using ICSharpCode.AvalonEdit;
 using PythonConsoleControl;
+using FontFamily = System.Windows.Media.FontFamily;
 
 namespace CADPythonShell
 {

@@ -21,7 +21,7 @@ namespace PythonConsoleControl
     public delegate void ConsoleInitializedEventHandler(object sender, EventArgs e);
 
     /// <summary>
-    /// Custom IronPython console. The command dispacher runs on a separate UI thread from the REPL
+    /// Custom IronPython console. The command dispatcher runs on a separate UI thread from the REPL
     /// and also from the WPF control.
     /// </summary>
     public class PythonConsole : IConsole, IDisposable

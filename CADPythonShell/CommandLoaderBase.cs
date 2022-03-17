@@ -12,7 +12,7 @@ namespace CADPythonShell
     
     public abstract class CommandLoaderBase
     {
-        protected string _scriptSource = "";
+        protected string _scriptSource;
 
         CommandLoaderBase(string scriptSource)
         {

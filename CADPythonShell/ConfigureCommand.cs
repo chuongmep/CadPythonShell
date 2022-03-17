@@ -1,4 +1,6 @@
-﻿using Autodesk.AutoCAD.Runtime;
+﻿using System.Windows.Interop;
+using Autodesk.AutoCAD.Runtime;
+using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 
 namespace CADPythonShell
 {
@@ -18,7 +20,10 @@ namespace CADPythonShell
         	}
         	
         	var dialog = new ConfigureCommandsForm();
-            dialog.ShowDialog();
+            dialog.StartPosition = FormStartPosition.CenterScreen;
+            NativeWindow nativeWindow = new NativeWindow();
+            nativeWindow.AssignHandle(Application.MainWindow.Handle);
+            dialog.ShowDialog(nativeWindow);
 
         }
     }
