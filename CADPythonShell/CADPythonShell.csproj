@@ -32,6 +32,10 @@
 		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
 	</PropertyGroup>
 	<ItemGroup>
+	  <None Remove="Images\New.png" />
+	  <None Remove="Images\SaveAs.png" />
+	</ItemGroup>
+	<ItemGroup>
 		<Reference Include="accoremgd">
 		  <HintPath>..\RefrencedAssemblies\accoremgd.dll</HintPath>
 		</Reference>
@@ -90,6 +94,7 @@
 	</ItemGroup>
 	
 	<ItemGroup>
+		<Resource Include="Images\New.png" />
 		<Resource Include="Images\Number.png" />
 		<Resource Include="Images\Paragraph.png" />
 		<EmbeddedResource Include="Resources\Console-16.png" />
@@ -129,6 +134,7 @@
 		<Resource Include="Images\Redo.png" />
 		<Resource Include="Images\Run.png" />
 		<Resource Include="Images\Save.png" />
+		<Resource Include="Images\SaveAs.png" />
 		<Resource Include="Images\Undo.png" />
 		<Resource Include="Images\WordWrap.png" />
 		<EmbeddedResource Include="Resources\CreateWall.png" />

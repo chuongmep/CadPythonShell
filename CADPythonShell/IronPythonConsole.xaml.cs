@@ -62,8 +62,22 @@ namespace CADPythonShell
                 //textEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(Path.GetExtension(currentFileName));
             }
         }
-
+        void newFileClick(object sender, RoutedEventArgs e)
+        {
+            currentFileName = null;
+            textEditor.Text = string.Empty;
+        }
         void saveFileClick(object sender, EventArgs e)
+        {
+           SaveFile();
+        }
+        void saveAsFileClick(object sender, EventArgs e)
+        {
+            currentFileName = null;
+            SaveFile();
+        }
+
+        void SaveFile()
         {
             if (currentFileName == null)
             {
@@ -82,7 +96,6 @@ namespace CADPythonShell
             }
             textEditor.Save(currentFileName);
         }
-
         void runClick(object sender, EventArgs e)
         {
             RunStatements();

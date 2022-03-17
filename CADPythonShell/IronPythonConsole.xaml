@@ -41,6 +41,13 @@
                         </Style.Triggers>
                     </Style>
                 </ToolBar.Resources>
+                <Button Click="newFileClick">
+                    <Image
+                        Height="16"
+                        SnapsToDevicePixels="True"
+                        Source="Images/New.png"
+                        ToolTip="Create A New File Python Script" />
+                </Button>
                 <Button Click="openFileClick">
                     <Image
                         Height="16"
@@ -54,6 +61,13 @@
                         SnapsToDevicePixels="True"
                         Source="Images/Save.png"
                         ToolTip="Save This Script Into File" />
+                </Button>
+                <Button Click="saveAsFileClick">
+                    <Image
+                        Height="16"
+                        SnapsToDevicePixels="True"
+                        Source="Images/SaveAs.png"
+                        ToolTip="Save This Script Into New File" />
                 </Button>
                 <Separator />
                 <Button Command="Cut">
