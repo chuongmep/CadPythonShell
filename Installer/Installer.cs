@@ -51,7 +51,7 @@ WixEntity[] GenerateWixEntities()
     Console.WriteLine("Start Create Installer");
     var versionRegex = new Regex(@"\d+");
     var versionStorages = new List<WixEntity>();
-    if(args.Length==0) Console.WriteLine("Have some Problem with args build installer");
+    if (args.Length == 0) Console.WriteLine("Have some Problem with args build installer");
     foreach (var directory in args)
     {
         Console.WriteLine($"Working with Directory: {directory}");

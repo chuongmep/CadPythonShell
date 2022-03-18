@@ -77,7 +77,7 @@ namespace CADRuntime
         public bool Remove(string key)
         {
             RemoveVariable(key);
-            return _dict.Remove(key);            
+            return _dict.Remove(key);
         }
 
         public bool TryGetValue(string key, out string value)
@@ -112,7 +112,7 @@ namespace CADRuntime
         public void Clear()
         {
             ClearVariables();
-            _dict.Clear();            
+            _dict.Clear();
         }
 
         public bool Contains(KeyValuePair<string, string> item)
@@ -150,5 +150,5 @@ namespace CADRuntime
         {
             return _dict.GetEnumerator();
         }
-    } 
+    }
 }

@@ -1,17 +1,17 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
-using System.ComponentModel;
 using ICSharpCode.AvalonEdit;
 using PythonConsoleControl;
+using System.ComponentModel;
 using FontFamily = System.Windows.Media.FontFamily;
 
 namespace CADPythonShell
 {
     public class ConsoleOptions
     {
-        TextEditor textEditor;
-        PythonConsolePad pad;
-        
+        private TextEditor textEditor;
+        private PythonConsolePad pad;
+
         public ConsoleOptions(PythonConsolePad pad)
         {
             this.textEditor = pad.Control;

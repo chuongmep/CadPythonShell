@@ -1,32 +1,32 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
+using ICSharpCode.AvalonEdit.CodeCompletion;
+using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Editing;
+using ICSharpCode.AvalonEdit.Rendering;
 using System;
+using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Threading;
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Editing;
-using ICSharpCode.AvalonEdit.Rendering;
-using ICSharpCode.AvalonEdit.CodeCompletion;
-using System.Reflection;
 
 namespace PythonConsoleControl
 {
     public delegate void DescriptionUpdateDelegate(string description);
-    
+
     /// <summary>
     /// The code completion window.
     /// </summary>
     public class PythonConsoleCompletionWindow : CompletionWindowBase
     {
-        readonly CompletionList completionList = new CompletionList();
-        ToolTip toolTip = new ToolTip();
-        DispatcherTimer updateDescription;
-        TimeSpan updateDescriptionInterval;
-        PythonTextEditor textEditor;
-        PythonConsoleCompletionDataProvider completionDataProvider;
+        private readonly CompletionList completionList = new CompletionList();
+        private ToolTip toolTip = new ToolTip();
+        private DispatcherTimer updateDescription;
+        private TimeSpan updateDescriptionInterval;
+        private PythonTextEditor textEditor;
+        private PythonConsoleCompletionDataProvider completionDataProvider;
 
         /// <summary>
         /// Gets the completion list used in this completion window.
@@ -72,7 +72,8 @@ namespace PythonConsoleControl
         }
 
         #region ToolTip handling
-        void toolTip_Closed(object sender, RoutedEventArgs e)
+
+        private void toolTip_Closed(object sender, RoutedEventArgs e)
         {
             // Clear content after tooltip is closed.
             // We cannot clear is immediately when setting IsOpen=false
@@ -81,7 +82,7 @@ namespace PythonConsoleControl
                 toolTip.Content = null;
         }
 
-        void completionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void completionList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var item = completionList.SelectedItem;
             if (item == null)
@@ -96,7 +97,7 @@ namespace PythonConsoleControl
             }
         }
 
-        void completionList_UpdateDescription(Object sender, EventArgs e)
+        private void completionList_UpdateDescription(Object sender, EventArgs e)
         {
             updateDescription.Stop();
             textEditor.UpdateCompletionDescription();
@@ -116,7 +117,7 @@ namespace PythonConsoleControl
             string stub = "";
             string item = "";
             bool isInstance = false;
-            textEditor.textEditor.Dispatcher.Invoke(new Action(delegate()
+            textEditor.textEditor.Dispatcher.Invoke(new Action(delegate ()
             {
                 PythonCompletionData data = (completionList.SelectedItem as PythonCompletionData);
                 if (data == null || toolTip == null)
@@ -129,9 +130,10 @@ namespace PythonConsoleControl
             completionDataProvider.GenerateDescription(stub, item, completionList_WriteDescription, isInstance);
         }
 
-        void completionList_WriteDescription(string description)
+        private void completionList_WriteDescription(string description)
         {
-            textEditor.textEditor.Dispatcher.Invoke(new Action(delegate() {
+            textEditor.textEditor.Dispatcher.Invoke(new Action(delegate ()
+            {
                 if (toolTip != null)
                 {
                     if (description != null)
@@ -147,9 +149,9 @@ namespace PythonConsoleControl
             }));
         }
 
-        #endregion
+        #endregion ToolTip handling
 
-        void completionList_InsertionRequested(object sender, EventArgs e)
+        private void completionList_InsertionRequested(object sender, EventArgs e)
         {
             Close();
             // The window must close before Complete() is called.
@@ -159,7 +161,7 @@ namespace PythonConsoleControl
                 item.Complete(this.TextArea, new AnchorSegment(this.TextArea.Document, this.StartOffset, this.EndOffset - this.StartOffset), e);
         }
 
-        void AttachEvents()
+        private void AttachEvents()
         {
             this.TextArea.Caret.PositionChanged += CaretPositionChanged;
             this.TextArea.MouseWheel += textArea_MouseWheel;
@@ -196,20 +198,20 @@ namespace PythonConsoleControl
             }
         }
 
-        void textArea_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        private void textArea_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             e.Handled = RaiseEventPair(this, PreviewTextInputEvent, TextInputEvent,
                                        new TextCompositionEventArgs(e.Device, e.TextComposition));
         }
 
-        void textArea_MouseWheel(object sender, MouseWheelEventArgs e)
+        private void textArea_MouseWheel(object sender, MouseWheelEventArgs e)
         {
             e.Handled = RaiseEventPair(GetScrollEventTarget(),
                                        PreviewMouseWheelEvent, MouseWheelEvent,
                                        new MouseWheelEventArgs(e.MouseDevice, e.Timestamp, e.Delta));
         }
 
-        UIElement GetScrollEventTarget()
+        private UIElement GetScrollEventTarget()
         {
             if (completionList == null)
                 return this;
@@ -236,7 +238,7 @@ namespace PythonConsoleControl
         /// </summary>
         public bool CloseWhenCaretAtBeginning { get; set; }
 
-        void CaretPositionChanged(object sender, EventArgs e)
+        private void CaretPositionChanged(object sender, EventArgs e)
         {
             int offset = this.TextArea.Caret.Offset;
             if (offset == this.StartOffset)

@@ -1,34 +1,34 @@
-using System.Text.RegularExpressions;
 using Nuke.Common;
 using Nuke.Common.Git;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.VSWhere;
+using System.Text.RegularExpressions;
 
-partial class Build : NukeBuild
+internal partial class Build : NukeBuild
 {
-    readonly AbsolutePath ArtifactsDirectory = RootDirectory / ArtifactsFolder;
-    readonly AbsolutePath ChangeLogPath = RootDirectory / "CHANGELOG.md";
-    [GitRepository] readonly GitRepository GitRepository;
-    [Solution] readonly Solution Solution;
+    private readonly AbsolutePath ArtifactsDirectory = RootDirectory / ArtifactsFolder;
+    private readonly AbsolutePath ChangeLogPath = RootDirectory / "CHANGELOG.md";
+    [GitRepository] private readonly GitRepository GitRepository;
+    [Solution] private readonly Solution Solution;
 
-    static readonly Lazy<string> MsBuildPath = new(() =>
-    {
-        if (IsServerBuild) return null;
-        var (_, output) = VSWhereTasks.VSWhere(settings => settings
-            .EnableLatest()
-            .AddRequires("Microsoft.Component.MSBuild")
-            .SetProperty("installationPath")
-        );
+    private static readonly Lazy<string> MsBuildPath = new(() =>
+       {
+           if (IsServerBuild) return null;
+           var (_, output) = VSWhereTasks.VSWhere(settings => settings
+               .EnableLatest()
+               .AddRequires("Microsoft.Component.MSBuild")
+               .SetProperty("installationPath")
+           );
 
-        if (output.Count > 0) return null;
-        if (!File.Exists(CustomMsBuildPath)) throw new Exception($"Missing file: {CustomMsBuildPath}. Change the path to the build platform or install Visual Studio.");
-        return CustomMsBuildPath;
-    });
+           if (output.Count > 0) return null;
+           if (!File.Exists(CustomMsBuildPath)) throw new Exception($"Missing file: {CustomMsBuildPath}. Change the path to the build platform or install Visual Studio.");
+           return CustomMsBuildPath;
+       });
 
     public static int Main() => Execute<Build>(x => x.Cleaning);
 
-    List<string> GetConfigurations(params string[] startPatterns)
+    private List<string> GetConfigurations(params string[] startPatterns)
     {
         var configurations = Solution.Configurations
             .Select(pair => pair.Key)
@@ -40,12 +40,11 @@ partial class Build : NukeBuild
             })
             .ToList();
         if (configurations.Count == 0) throw new Exception($"Can't find configurations in the solution by patterns: {string.Join(" | ", startPatterns)}.");
-        configurations.ForEach(x=> Console.WriteLine($"Fined Configuration Name: {x}"));
+        configurations.ForEach(x => Console.WriteLine($"Fined Configuration Name: {x}"));
         return configurations;
     }
 
-    
-    IEnumerable<IGrouping<string, DirectoryInfo>> GetBuildDirectories()
+    private IEnumerable<IGrouping<string, DirectoryInfo>> GetBuildDirectories()
     {
         var directories = new List<DirectoryInfo>();
         foreach (var projectName in Projects)
@@ -54,7 +53,7 @@ partial class Build : NukeBuild
             var project = BuilderExtensions.GetProject(Solution, projectName);
             Console.WriteLine($"Bin Directory: {project.GetBinDirectory()}");
             var directoryInfo = new DirectoryInfo(project.GetBinDirectory()).GetDirectories();
-         
+
             directories.AddRange(directoryInfo);
         }
 

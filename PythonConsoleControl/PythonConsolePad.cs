@@ -4,12 +4,12 @@ using ICSharpCode.AvalonEdit;
 using System.Windows.Media;
 
 namespace PythonConsoleControl
-{   
-    public class PythonConsolePad 
+{
+    public class PythonConsolePad
     {
-        PythonTextEditor pythonTextEditor;
-        TextEditor textEditor;
-        PythonConsoleHost host;
+        private PythonTextEditor pythonTextEditor;
+        private TextEditor textEditor;
+        private PythonConsoleHost host;
 
         public PythonConsolePad()
         {

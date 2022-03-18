@@ -1,3 +1,4 @@
+using Microsoft.Scripting.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -5,7 +6,6 @@ using System.IO;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
-using Microsoft.Scripting.Hosting;
 
 namespace CADRuntime
 {
@@ -15,7 +15,7 @@ namespace CADRuntime
     /// Only a minimal subset is actually implemented - this is all we really
     /// expect to use.
     /// </summary>
-    public class ScriptOutputStream: Stream
+    public class ScriptOutputStream : Stream
     {
         private readonly ScriptOutput _gui;
         private readonly ScriptEngine _engine;
@@ -40,7 +40,7 @@ namespace CADRuntime
             _bomCharsLeft = 3; //0xef, 0xbb, 0xbf for UTF-8 (see http://en.wikipedia.org/wiki/Byte_order_mark#Representations_of_byte_order_marks_by_encoding)
         }
 
-        void ClosedEventHandler(object sender, EventArgs e)
+        private void ClosedEventHandler(object sender, EventArgs e)
         {
             _engine.Runtime.Shutdown();
             _completedLines.Enqueue(new MemoryStream());
@@ -51,8 +51,8 @@ namespace CADRuntime
         /// FIXME: this doesn't work!
         /// </summary>
         private void ClosingEventHandler(object sender, System.ComponentModel.CancelEventArgs e)
-        {        
-            _engine.Runtime.Shutdown();            
+        {
+            _engine.Runtime.Shutdown();
             _completedLines.Enqueue(new MemoryStream());
         }
 
@@ -61,17 +61,17 @@ namespace CADRuntime
         /// try to emulate a nice control window. This is going to be a big gigantic pile
         /// of ifs, sigh.
         /// </summary>
-        void KeyDownEventHandler(object sender, KeyEventArgs e)
+        private void KeyDownEventHandler(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter || e.KeyCode == Keys.Return)
             {
                 var line = _inputBuffer;
-                var newLine = new byte[] {/*0x0d,*/ 0x0a};
+                var newLine = new byte[] {/*0x0d,*/ 0x0a };
                 line.Write(newLine, 0, newLine.Length); // append new-line
                 line.Seek(0, SeekOrigin.Begin); // rewind the line for later reading...
                 _completedLines.Enqueue(line);
                 _inputBuffer = new MemoryStream();
-            }            
+            }
             else if (e.KeyCode == Keys.Back || e.KeyCode == Keys.Left)
             {
                 // remove last character from input buffer
@@ -83,12 +83,12 @@ namespace CADRuntime
                     _gui.txtStdOut.Text = _gui.txtStdOut.Text.Substring(0, _gui.txtStdOut.Text.Length - 1);
                     _gui.txtStdOut.SelectionStart = _gui.txtStdOut.Text.Length;
                     _gui.txtStdOut.ScrollToCaret();
-                }                
+                }
                 // do not pass backspace / left on to txtStdOut
-                e.Handled = true;                
+                e.Handled = true;
             }
             else if (e.KeyCode == Keys.Right)
-            {                
+            {
                 // do not move right ever...
                 e.Handled = true;
             }
@@ -97,14 +97,14 @@ namespace CADRuntime
         /// <summary>
         /// Stash away any printable characters for later...
         /// </summary>
-        void KeyPressEventHandler(object sender, KeyPressEventArgs e)
+        private void KeyPressEventHandler(object sender, KeyPressEventArgs e)
         {
             if (!char.IsControl(e.KeyChar))
             {
-                var bytes = Encoding.UTF8.GetBytes(new[] {e.KeyChar});
+                var bytes = Encoding.UTF8.GetBytes(new[] { e.KeyChar });
                 _inputBuffer.Write(bytes, 0, bytes.Length);
                 _gui.txtStdOut.Focus();
-            }            
+            }
             else
             {
                 if (e.KeyChar == '\r')
@@ -118,8 +118,6 @@ namespace CADRuntime
                 e.Handled = true;
             }
         }
-
-
 
         /// <summary>
         /// Append the text in the buffer to gui.txtStdOut
@@ -144,7 +142,7 @@ namespace CADRuntime
                 Array.Copy(buffer, offset, actualBuffer, 0, count);
                 var text = Encoding.UTF8.GetString(actualBuffer);
                 Debug.WriteLine(text);
-                _gui.BeginInvoke((Action)delegate()
+                _gui.BeginInvoke((Action)delegate ()
                 {
                     _gui.txtStdOut.AppendText(text);
                     _gui.txtStdOut.SelectionStart = _gui.txtStdOut.Text.Length;
@@ -172,7 +170,7 @@ namespace CADRuntime
         /// Read from the _inputBuffer, block until a new line has been entered...
         /// </summary>
         public override int Read(byte[] buffer, int offset, int count)
-        {                     
+        {
             while (_completedLines.Count < 1)
             {
                 if (_gui.Visible == false)
@@ -187,7 +185,6 @@ namespace CADRuntime
             return line.Read(buffer, offset, count);
         }
 
-       
         public override bool CanRead
         {
             get { return !_gui.IsDisposed; }

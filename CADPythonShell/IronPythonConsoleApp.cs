@@ -8,12 +8,14 @@ namespace CADPythonShell
     {
         public const string RibbonTitle = "Python Shell";
         public const string RibbonId = "PythonShell";
+
         [CommandMethod("InitPythonConsole")]
         public void Execute()
         {
             CreateRibbon();
         }
-        void CreateRibbon()
+
+        private void CreateRibbon()
         {
             RibbonControl ribbon = ComponentManager.Ribbon;
             if (ribbon != null)
@@ -30,11 +32,13 @@ namespace CADPythonShell
                 AddContentToTab(rtab);
             }
         }
+
         private void AddContentToTab(RibbonTab rtab)
         {
             rtab.Panels.Add(AddOnePanel());
         }
-        static RibbonPanel AddOnePanel()
+
+        private static RibbonPanel AddOnePanel()
         {
             RibbonPanelSource rps = new RibbonPanelSource();
             rps.Title = "Cad Python Shell";
@@ -68,7 +72,7 @@ namespace CADPythonShell
             rb2.Description = "Configure Cad Python Shell\nCommand: PythonShellSetting";
             rb2.Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-16.png");
             rb2.LargeImage = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-32.png");
-            
+
             rb2.CommandHandler = new RelayCommand(new ConfigureCommand().Execute);
             //Add the Button to the Tab
             rps.Items.Add(rb2);

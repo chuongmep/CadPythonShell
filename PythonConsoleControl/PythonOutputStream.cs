@@ -7,7 +7,7 @@ namespace PythonConsoleControl
 {
     public class PythonOutputStream : Stream
     {
-        PythonTextEditor textEditor;
+        private PythonTextEditor textEditor;
 
         public PythonOutputStream(PythonTextEditor textEditor)
         {

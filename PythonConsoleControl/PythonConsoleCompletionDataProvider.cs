@@ -1,14 +1,14 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
+using ICSharpCode.AvalonEdit.CodeCompletion;
+using Microsoft.Scripting;
+using Microsoft.Scripting.Hosting.Shell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using ICSharpCode.AvalonEdit.CodeCompletion;
-using Microsoft.Scripting.Hosting.Shell;
-using Microsoft.Scripting;
-using System.Threading;
 using System.Reflection;
+using System.Text;
+using System.Threading;
 
 namespace PythonConsoleControl
 {
@@ -17,11 +17,12 @@ namespace PythonConsoleControl
     /// </summary>
     public class PythonConsoleCompletionDataProvider
     {
-        CommandLine commandLine;
+        private CommandLine commandLine;
         internal volatile bool AutocompletionInProgress = false;
 
-        bool excludeCallables;
-        public bool ExcludeCallables { get { return excludeCallables; } set { excludeCallables = value; } }
+        private bool excludeCallables;
+        public bool ExcludeCallables
+        { get { return excludeCallables; } set { excludeCallables = value; } }
 
         public PythonConsoleCompletionDataProvider(CommandLine commandLine)//IMemberProvider memberProvider)
         {
@@ -52,7 +53,7 @@ namespace PythonConsoleControl
                     //object value = commandLine.ScriptScope.Engine.CreateScriptSourceFromString(name, SourceCodeKind.Expression).Execute(commandLine.ScriptScope);
                     //IList<string> members = commandLine.ScriptScope.Engine.Operations.GetMemberNames(value);
                     Type type = TryGetType(name);
-                    // Use Reflection for everything except in-built Python types and COM pbjects. 
+                    // Use Reflection for everything except in-built Python types and COM pbjects.
                     if (type != null && type.Namespace != "IronPython.Runtime" && (type.Name != "__ComObject"))
                     {
                         PopulateFromCLRType(items, type, name);
@@ -176,13 +177,11 @@ namespace PythonConsoleControl
             }
         }
 
-
-        string GetName(string text)
+        private string GetName(string text)
         {
             text = text.Replace("\t", "   ");
             int startIndex = text.LastIndexOf(' ');
             return text.Substring(startIndex + 1).Trim('.');
         }
-
     }
 }

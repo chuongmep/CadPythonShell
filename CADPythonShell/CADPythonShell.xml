@@ -9,6 +9,6 @@
   <Commands>
     <!-- a list of preconfigured commands -->
   </Commands>
-  <InitScript src="init.py"/>
-  <StartupScript src="startup.py"/>
+  <InitScript src="init.py" />
+  <StartupScript src="startup.py" />
 </CADPythonShell>

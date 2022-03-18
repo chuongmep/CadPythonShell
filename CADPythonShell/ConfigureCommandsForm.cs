@@ -4,7 +4,7 @@ namespace CADPythonShell
 {
     public partial class ConfigureCommandsForm : Form
     {
-        private List<Command> _commands;        
+        private List<Command> _commands;
         private List<string> _searchPaths;
         private List<KeyValuePair<string, string>> _variables;
 
@@ -22,14 +22,14 @@ namespace CADPythonShell
         }
 
         /// <summary>
-        /// Read in the commands from the XML file and display them in the 
+        /// Read in the commands from the XML file and display them in the
         /// list.
         /// </summary>
         private void ConfigureCommandsForm_Load(object sender, EventArgs e)
         {
             _commands = CADPythonShellApplication.GetCommands(
                 CADPythonShellApplication.GetSettings()).ToList();
-            lstCommands.DataSource = _commands;      
+            lstCommands.DataSource = _commands;
 
             _searchPaths = CADPythonShellApplication.GetConfig().GetSearchPaths().ToList();
             lstSearchPaths.DataSource = _searchPaths;
@@ -153,7 +153,6 @@ namespace CADPythonShell
             }
         }
 
-
         private void RefreshBindingContext(ListBox listBox, object dataSource)
         {
             ((CurrencyManager)listBox.BindingContext[dataSource]).Refresh();
@@ -180,7 +179,7 @@ namespace CADPythonShell
             int newPosition = Math.Max(0, oldPosition - 1);
 
             SwapPositions(_commands, oldPosition, newPosition);
-            
+
             RefreshBindingContext(lstCommands, _commands);
 
             lstCommands.SelectedIndex = newPosition;
@@ -204,7 +203,6 @@ namespace CADPythonShell
 
             lstCommands.SelectedIndex = newPosition;
         }
-
 
         /// <summary>
         /// Save changes to CADPythonShell.xml and close Dialog.
@@ -364,6 +362,6 @@ namespace CADPythonShell
             {
                 txtStartupScript.Text = dialog.FileName;
             }
-        } 
+        }
     }
 }

@@ -1,27 +1,26 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
-using System;
-using System.Text;
-using System.Threading;
 using IronPython.Hosting;
 using IronPython.Runtime;
 using Microsoft.Scripting.Hosting;
 using Microsoft.Scripting.Hosting.Providers;
 using Microsoft.Scripting.Hosting.Shell;
+using System;
+using System.Text;
+using System.Threading;
 
 namespace PythonConsoleControl
 {
     public delegate void ConsoleCreatedEventHandler(object sender, EventArgs e);
-    
 
     /// <summary>
     /// Hosts the python console.
     /// </summary>
     public class PythonConsoleHost : ConsoleHost, IDisposable
     {
-        Thread thread;
-        PythonTextEditor textEditor;
-        PythonConsole pythonConsole;       
+        private Thread thread;
+        private PythonTextEditor textEditor;
+        private PythonConsole pythonConsole;
 
         public event ConsoleCreatedEventHandler ConsoleCreated;
 
@@ -68,7 +67,6 @@ namespace PythonConsoleControl
             }
         }
 
-
         protected override CommandLine CreateCommandLine()
         {
             return new PythonCommandLine();
@@ -94,7 +92,7 @@ namespace PythonConsoleControl
         }
 
         public void WhenConsoleCreated(Action<PythonConsoleHost> action)
-        {            
+        {
             if (pythonConsole != null)
             {
                 pythonConsole.WhenConsoleInitialized(() => action(this));
@@ -113,7 +111,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Runs the console.
         /// </summary>
-        void RunConsole()
+        private void RunConsole()
         {
             this.Run(new string[] { "-X:FullFrames" });
         }

@@ -7,12 +7,13 @@ namespace CADRuntime
     /// Provides access functions to those parts of the CADPythonShell.xml file
     /// that are also used in RpsAddin deployments.
     /// </summary>
-    public class NpsConfig: IRpsConfig
+    public class NpsConfig : IRpsConfig
     {
         /// <summary>
         /// The full path to the settings file used
         /// </summary>
         private readonly string _settingsPath;
+
         private readonly XDocument _settings;
         private readonly SettingsDictionary _dict;
 
@@ -41,6 +42,6 @@ namespace CADRuntime
         public IDictionary<string, string> GetVariables()
         {
             return _dict;
-        }               
+        }
     }
 }

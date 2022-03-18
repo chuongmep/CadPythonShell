@@ -1,20 +1,20 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Threading;
-using Microsoft.Scripting.Hosting.Shell;
-using System.Windows.Input;
+using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Editing;
 using Microsoft.Scripting;
 using Microsoft.Scripting.Hosting;
+using Microsoft.Scripting.Hosting.Shell;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Windows;
-using System.Windows.Threading;
-using ICSharpCode.AvalonEdit.Editing;
-using ICSharpCode.AvalonEdit.Document;
-using Style = Microsoft.Scripting.Hosting.Shell.Style;
+using System.IO;
 using System.Runtime.Remoting;
+using System.Threading;
+using System.Windows;
+using System.Windows.Input;
+using System.Windows.Threading;
+using Style = Microsoft.Scripting.Hosting.Shell.Style;
 
 namespace PythonConsoleControl
 {
@@ -26,14 +26,16 @@ namespace PythonConsoleControl
     /// </summary>
     public class PythonConsole : IConsole, IDisposable
     {
-        bool allowFullAutocompletion = true;
+        private bool allowFullAutocompletion = true;
+
         public bool AllowFullAutocompletion
         {
             get { return allowFullAutocompletion; }
             set { allowFullAutocompletion = value; }
         }
 
-        bool disableAutocompletionForCallables = true;
+        private bool disableAutocompletionForCallables = true;
+
         public bool DisableAutocompletionForCallables
         {
             get { return disableAutocompletionForCallables; }
@@ -44,33 +46,35 @@ namespace PythonConsoleControl
             }
         }
 
-        bool allowCtrlSpaceAutocompletion = false;
+        private bool allowCtrlSpaceAutocompletion = false;
+
         public bool AllowCtrlSpaceAutocompletion
         {
             get { return allowCtrlSpaceAutocompletion; }
             set { allowCtrlSpaceAutocompletion = value; }
         }
 
-        PythonTextEditor textEditor;
-        int lineReceivedEventIndex = 0; // The index into the waitHandles array where the lineReceivedEvent is stored.
-        ManualResetEvent lineReceivedEvent = new ManualResetEvent(false);
-        ManualResetEvent disposedEvent = new ManualResetEvent(false);
-        AutoResetEvent statementsExecutionRequestedEvent = new AutoResetEvent(false);
-        WaitHandle[] waitHandles;
-        int promptLength = 4;
-        List<string> previousLines = new List<string>();
-        CommandLine commandLine;
-        CommandLineHistory commandLineHistory = new CommandLineHistory();
+        private PythonTextEditor textEditor;
+        private int lineReceivedEventIndex = 0; // The index into the waitHandles array where the lineReceivedEvent is stored.
+        private ManualResetEvent lineReceivedEvent = new ManualResetEvent(false);
+        private ManualResetEvent disposedEvent = new ManualResetEvent(false);
+        private AutoResetEvent statementsExecutionRequestedEvent = new AutoResetEvent(false);
+        private WaitHandle[] waitHandles;
+        private int promptLength = 4;
+        private List<string> previousLines = new List<string>();
+        private CommandLine commandLine;
+        private CommandLineHistory commandLineHistory = new CommandLineHistory();
 
-        volatile bool executing = false;
+        private volatile bool executing = false;
 
         // This is the thread upon which all commands execute unless the dipatcher is overridden.
-        Thread dispatcherThread;        
+        private Thread dispatcherThread;
+
         public Dispatcher dispatcher;
 
-        string scriptText = String.Empty;
-        bool consoleInitialized = false;
-        string prompt;
+        private string scriptText = String.Empty;
+        private bool consoleInitialized = false;
+        private string prompt;
 
         public event ConsoleInitializedEventHandler ConsoleInitialized;
 
@@ -97,7 +101,7 @@ namespace PythonConsoleControl
             prompt = ">>> ";
 
             // Set commands:
-            this.textEditor.textArea.Dispatcher.Invoke(new Action(delegate()
+            this.textEditor.textArea.Dispatcher.Invoke(new Action(delegate ()
             {
                 CommandBinding pasteBinding = null;
                 CommandBinding copyBinding = null;
@@ -124,13 +128,12 @@ namespace PythonConsoleControl
                 this.textEditor.textArea.CommandBindings.Add(new CommandBinding(ApplicationCommands.Cut, PythonEditingCommandHandler.OnCut, CanCut));
                 this.textEditor.textArea.CommandBindings.Add(new CommandBinding(ApplicationCommands.Undo, OnUndo, CanUndo));
                 this.textEditor.textArea.CommandBindings.Add(new CommandBinding(ApplicationCommands.Delete, PythonEditingCommandHandler.OnDelete(ApplicationCommands.NotACommand), CanDeleteCommand));
-
-            }));            
+            }));
             // Set dispatcher to run on a UI thread independent of both the Control UI thread and thread running the REPL.
             WhenConsoleInitialized(delegate
             {
                 SetCommandDispatcher(DispatchCommand);
-            });                       
+            });
         }
 
         public Action<Action> GetCommandDispatcher()
@@ -226,6 +229,7 @@ namespace PythonConsoleControl
         }
 
         #region CommandHandling
+
         protected void CanPaste(object target, CanExecuteRoutedEventArgs args)
         {
             if (IsInReadOnlyRegion)
@@ -315,7 +319,7 @@ namespace PythonConsoleControl
                     {
                         this.scriptText = scriptText;
                     }
-                    dispatcher.BeginInvoke(new Action(delegate() { ExecuteStatements(); }));
+                    dispatcher.BeginInvoke(new Action(delegate () { ExecuteStatements(); }));
                 }
             }
         }
@@ -325,7 +329,7 @@ namespace PythonConsoleControl
             if (target != textEditor.textArea) return;
             if (textEditor.SelectionLength == 0 && executing)
             {
-                // Send the 'Ctrl-C' abort 
+                // Send the 'Ctrl-C' abort
                 //if (!IsInReadOnlyRegion)
                 //{
                 MoveToHomePosition();
@@ -338,15 +342,16 @@ namespace PythonConsoleControl
             else PythonEditingCommandHandler.OnCopy(target, args);
         }
 
-        const string LineSelectedType = "MSDEVLineSelect";  // This is the type VS 2003 and 2005 use for flagging a whole line copy
+        private const string LineSelectedType = "MSDEVLineSelect";  // This is the type VS 2003 and 2005 use for flagging a whole line copy
 
         protected void OnUndo(object target, ExecutedRoutedEventArgs args)
         {
         }
-        #endregion
+
+        #endregion CommandHandling
 
         /// <summary>
-        /// Run externally provided statements in the Console Engine. 
+        /// Run externally provided statements in the Console Engine.
         /// </summary>
         /// <param name="statements"></param>
         public void RunStatements(string statements)
@@ -356,13 +361,13 @@ namespace PythonConsoleControl
             {
                 this.scriptText = statements;
             }
-            dispatcher.BeginInvoke(new Action(delegate() { ExecuteStatements(); }));
+            dispatcher.BeginInvoke(new Action(delegate () { ExecuteStatements(); }));
         }
 
         /// <summary>
-        /// Run on the statement execution thread. 
+        /// Run on the statement execution thread.
         /// </summary>
-        void ExecuteStatements()
+        private void ExecuteStatements()
         {
             lock (scriptText)
             {
@@ -387,7 +392,7 @@ namespace PythonConsoleControl
                         {
                             error = "Exception : " + wrapexception.Unwrap().ToString() + "\n";
                         }
-                    }                    
+                    }
                 }
                 catch (ThreadAbortException tae)
                 {
@@ -499,12 +504,12 @@ namespace PythonConsoleControl
             return previousLines.ToArray();
         }
 
-        string GetLastTextEditorLine()
+        private string GetLastTextEditorLine()
         {
             return textEditor.GetLine(textEditor.TotalLines - 1);
         }
 
-        string ReadLineFromTextEditor()
+        private string ReadLineFromTextEditor()
         {
             int result = WaitHandle.WaitAny(waitHandles);
             if (result == lineReceivedEventIndex)
@@ -526,27 +531,32 @@ namespace PythonConsoleControl
         /// <summary>
         /// Processes characters entered into the text editor by the user.
         /// </summary>
-        void textEditor_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void textEditor_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             switch (e.Key)
             {
                 case Key.Delete:
                     if (!CanDelete) e.Handled = true;
                     return;
+
                 case Key.Tab:
                     if (IsInReadOnlyRegion) e.Handled = true;
                     return;
+
                 case Key.Back:
                     if (!CanBackspace) e.Handled = true;
                     return;
+
                 case Key.Home:
                     MoveToHomePosition();
                     e.Handled = true;
                     return;
+
                 case Key.Down:
                     if (!IsInReadOnlyRegion) MoveToNextCommandLine();
                     e.Handled = true;
                     return;
+
                 case Key.Up:
                     if (!IsInReadOnlyRegion) MoveToPreviousCommandLine();
                     e.Handled = true;
@@ -557,7 +567,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Processes characters entering into the text editor by the user.
         /// </summary>
-        void textEditor_TextEntering(object sender, TextCompositionEventArgs e)
+        private void textEditor_TextEntering(object sender, TextCompositionEventArgs e)
         {
             if (e.Text.Length > 0)
             {
@@ -596,7 +606,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Move cursor to the end of the line before retrieving the line.
         /// </summary>
-        void OnEnterKeyPressed()
+        private void OnEnterKeyPressed()
         {
             textEditor.StopCompletion();
             if (textEditor.WriteInProgress) return;
@@ -617,7 +627,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Returns true if the cursor is in a readonly text editor region.
         /// </summary>
-        bool IsInReadOnlyRegion
+        private bool IsInReadOnlyRegion
         {
             get { return IsCurrentLineReadOnly || IsInPrompt; }
         }
@@ -625,7 +635,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Only the last line in the text editor is not read only.
         /// </summary>
-        bool IsCurrentLineReadOnly
+        private bool IsCurrentLineReadOnly
         {
             get { return textEditor.Line < textEditor.TotalLines; }
         }
@@ -633,7 +643,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Determines whether the current cursor position is in a prompt.
         /// </summary>
-        bool IsInPrompt
+        private bool IsInPrompt
         {
             get { return textEditor.Column - promptLength - 1 < 0; }
         }
@@ -641,7 +651,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Returns true if the user can delete at the current cursor position.
         /// </summary>
-        bool CanDelete
+        private bool CanDelete
         {
             get
             {
@@ -653,7 +663,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Returns true if the user can backspace at the current cursor position.
         /// </summary>
-        bool CanBackspace
+        private bool CanBackspace
         {
             get
             {
@@ -666,7 +676,7 @@ namespace PythonConsoleControl
             }
         }
 
-        bool SelectionIsDeletable
+        private bool SelectionIsDeletable
         {
             get
             {
@@ -680,7 +690,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// The home position is at the start of the line after the prompt.
         /// </summary>
-        void MoveToHomePosition()
+        private void MoveToHomePosition()
         {
             textEditor.Line = textEditor.TotalLines;
             textEditor.Column = promptLength + 1;
@@ -689,7 +699,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Shows the previous command line in the command line history.
         /// </summary>
-        void MoveToPreviousCommandLine()
+        private void MoveToPreviousCommandLine()
         {
             if (commandLineHistory.MovePrevious())
             {
@@ -700,7 +710,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Shows the next command line in the command line history.
         /// </summary>
-        void MoveToNextCommandLine()
+        private void MoveToNextCommandLine()
         {
             textEditor.Line = textEditor.TotalLines;
             if (commandLineHistory.MoveNext())
@@ -712,7 +722,7 @@ namespace PythonConsoleControl
         /// <summary>
         /// Replaces the current line text after the prompt with the specified text.
         /// </summary>
-        void ReplaceCurrentLineTextAfterPrompt(string text)
+        private void ReplaceCurrentLineTextAfterPrompt(string text)
         {
             string currentLine = GetCurrentLine();
             textEditor.Replace(promptLength, currentLine.Length, text);

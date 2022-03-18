@@ -1,8 +1,8 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
-using System;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Highlighting;
+using System;
 
 namespace PythonConsoleControl
 {
@@ -11,7 +11,7 @@ namespace PythonConsoleControl
     /// </summary>
     public class PythonConsoleHighlightingColorizer : HighlightingColorizer
     {
-        TextDocument document;
+        private TextDocument document;
 
         /// <summary>
         /// Creates a new HighlightingColorizer instance.
@@ -32,7 +32,8 @@ namespace PythonConsoleControl
             string lineString = document.GetText(line);
             if (highlighter != null)
             {
-                if (lineString.Length < 3 || lineString.Substring(0, 3) == ">>>" || lineString.Substring(0, 3) == "...") {
+                if (lineString.Length < 3 || lineString.Substring(0, 3) == ">>>" || lineString.Substring(0, 3) == "...")
+                {
                     HighlightedLine hl = highlighter.HighlightLine(line.LineNumber);
                     foreach (HighlightedSection section in hl.Sections)
                     {
@@ -40,7 +41,8 @@ namespace PythonConsoleControl
                                        visualLineElement => ApplyColorToElement(visualLineElement, section.Color));
                     }
                 }
-                else { // Could add foreground colour functionality here.
+                else
+                { // Could add foreground colour functionality here.
                 }
             }
         }

@@ -1,10 +1,10 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
-using System;
 using ICSharpCode.AvalonEdit.CodeCompletion;
 using ICSharpCode.AvalonEdit.Document;
 using ICSharpCode.AvalonEdit.Editing;
 using Microsoft.Scripting.Hosting.Shell;
+using System;
 
 namespace PythonConsoleControl
 {
@@ -13,8 +13,8 @@ namespace PythonConsoleControl
     /// </summary>
     public class PythonCompletionData : ICompletionData
     {
-        CommandLine commandLine;
-        
+        private CommandLine commandLine;
+
         public PythonCompletionData(string text, string stub, CommandLine commandLine, bool isInstance)
         {
             this.Text = text;
@@ -42,13 +42,15 @@ namespace PythonConsoleControl
 
         public object Description
         {
-            get {
+            get
+            {
                 // Do nothing: description now updated externally and asynchronously.
                 return "Not available";
             }
         }
 
-        public double Priority { get { return 0; } }
+        public double Priority
+        { get { return 0; } }
 
         public void Complete(TextArea textArea, ISegment completionSegment, EventArgs insertionRequestEventArgs)
         {

@@ -1,10 +1,10 @@
-﻿using System.Windows;
-using System.Windows.Interop;
-using System.Windows.Threading;
-using Autodesk.AutoCAD.ApplicationServices;
+﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.Runtime;
 using CADRuntime;
 using Microsoft.Scripting;
+using System.Windows;
+using System.Windows.Interop;
+using System.Windows.Threading;
 using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 using Exception = System.Exception;
 using Forms = System.Windows.Forms;
@@ -23,16 +23,16 @@ namespace CADPythonShell
             Document doc = Application.DocumentManager.MdiActiveDocument;
             //load the application
             if (!CADPythonShellApplication.applicationLoaded)
-        	{
-        		CADPythonShellApplication.OnLoaded();
-        	}
-        	
+            {
+                CADPythonShellApplication.OnLoaded();
+            }
+
             var gui = new IronPythonConsole();
             gui.consoleControl.WithConsoleHost((host) =>
             {
                 // now that the console is created and initialized, the script scope should
                 // be accessible...
-                new ScriptExecutor(CADPythonShellApplication.GetConfig() )
+                new ScriptExecutor(CADPythonShellApplication.GetConfig())
                     .SetupEnvironment(host.Engine, host.Console.ScriptScope);
 
                 host.Console.ScriptScope.SetVariable("__window__", gui);
@@ -43,19 +43,19 @@ namespace CADPythonShell
                 {
                     try
                     {
-                    	var scriptSource = host.Engine.CreateScriptSourceFromString(initScript, SourceCodeKind.Statements);
-                    	scriptSource.Execute(host.Console.ScriptScope);
+                        var scriptSource = host.Engine.CreateScriptSourceFromString(initScript, SourceCodeKind.Statements);
+                        scriptSource.Execute(host.Console.ScriptScope);
                     }
                     catch (Exception ex)
                     {
-                    	Forms.MessageBox.Show(ex.ToString(), "Something went horribly wrong!");
+                        Forms.MessageBox.Show(ex.ToString(), "Something went horribly wrong!");
                     }
-                }                
+                }
             });
 
             var dispatcher = Dispatcher.FromThread(Thread.CurrentThread);
             gui.consoleControl.WithConsoleHost((host) =>
-            {                
+            {
                 host.Console.SetCommandDispatcher((command) =>
                 {
                     if (command != null)
@@ -70,7 +70,7 @@ namespace CADPythonShell
                             if (operation.Status == DispatcherOperationStatus.Completed)
                                 executing = false;
                         }
-                    }                 
+                    }
                 });
                 host.Editor.SetCompletionDispatcher((command) =>
                 {
@@ -91,7 +91,5 @@ namespace CADPythonShell
             helper.Owner = hander;
             gui.Show();
         }
-
-        
     }
 }

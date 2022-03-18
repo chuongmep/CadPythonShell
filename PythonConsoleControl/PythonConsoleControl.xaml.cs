@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Controls;
-using System.IO;
-using System.Xml;
-using ICSharpCode.AvalonEdit.Highlighting;
+﻿using ICSharpCode.AvalonEdit.Highlighting;
 using ICSharpCode.AvalonEdit.Rendering;
-
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Windows.Controls;
+using System.Xml;
 
 namespace PythonConsoleControl
 {
@@ -14,7 +13,7 @@ namespace PythonConsoleControl
     /// </summary>
     public partial class IronPythonConsoleControl : UserControl
     {
-        PythonConsolePad pad;                
+        private PythonConsolePad pad;
 
         /// <summary>
         /// Perform the action on an already instantiated PythonConsoleHost.

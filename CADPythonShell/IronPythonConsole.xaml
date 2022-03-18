@@ -154,6 +154,5 @@
                 </avalonEdit:TextEditor>
             </Grid>
         </DockPanel>
-
     </Grid>
 </Window>

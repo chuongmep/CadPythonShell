@@ -7,7 +7,7 @@ namespace CADRuntime
         public ScriptOutput()
         {
             InitializeComponent();
-            txtStdOut.Text = "";            
+            txtStdOut.Text = "";
         }
     }
 }

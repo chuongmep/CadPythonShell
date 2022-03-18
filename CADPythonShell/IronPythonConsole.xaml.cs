@@ -1,9 +1,9 @@
-﻿using System.IO;
+﻿using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.Highlighting;
+using System.IO;
 using System.Windows;
 using System.Windows.Input;
 using System.Xml;
-using ICSharpCode.AvalonEdit;
-using ICSharpCode.AvalonEdit.Highlighting;
 using KeyEventArgs = System.Windows.Input.KeyEventArgs;
 using KeyEventHandler = System.Windows.Input.KeyEventHandler;
 using OpenFileDialog = Microsoft.Win32.OpenFileDialog;
@@ -45,13 +45,13 @@ namespace CADPythonShell
             textEditor.PreviewKeyDown += new KeyEventHandler(textEditor_PreviewKeyDown);
             consoleOptionsProvider = new ConsoleOptions(consoleControl.Pad);
         }
-        
-        void MainWindow_Initialized(object sender, EventArgs e)
+
+        private void MainWindow_Initialized(object sender, EventArgs e)
         {
             //propertyGridComboBox.SelectedIndex = 1;
         }
 
-        void openFileClick(object sender, RoutedEventArgs e)
+        private void openFileClick(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.CheckFileExists = true;
@@ -62,22 +62,25 @@ namespace CADPythonShell
                 //textEditor.SyntaxHighlighting = HighlightingManager.Instance.GetDefinitionByExtension(Path.GetExtension(currentFileName));
             }
         }
-        void newFileClick(object sender, RoutedEventArgs e)
+
+        private void newFileClick(object sender, RoutedEventArgs e)
         {
             currentFileName = null;
             textEditor.Text = string.Empty;
         }
-        void saveFileClick(object sender, EventArgs e)
+
+        private void saveFileClick(object sender, EventArgs e)
         {
-           SaveFile();
+            SaveFile();
         }
-        void saveAsFileClick(object sender, EventArgs e)
+
+        private void saveAsFileClick(object sender, EventArgs e)
         {
             currentFileName = null;
             SaveFile();
         }
 
-        void SaveFile()
+        private void SaveFile()
         {
             if (currentFileName == null)
             {
@@ -96,17 +99,18 @@ namespace CADPythonShell
             }
             textEditor.Save(currentFileName);
         }
-        void runClick(object sender, EventArgs e)
+
+        private void runClick(object sender, EventArgs e)
         {
             RunStatements();
         }
 
-        void textEditor_PreviewKeyDown(object sender, KeyEventArgs e)
+        private void textEditor_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.F5) RunStatements();
         }
 
-        void RunStatements()
+        private void RunStatements()
         {
             string statementsToRun = "";
             if (textEditor.TextArea.Selection.Length > 0)

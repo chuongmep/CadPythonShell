@@ -10,8 +10,8 @@ namespace PythonConsoleControl
     /// </summary>
     public class CommandLineHistory
     {
-        List<string> lines = new List<string>();
-        int position;
+        private List<string> lines = new List<string>();
+        private int position;
 
         public CommandLineHistory()
         {

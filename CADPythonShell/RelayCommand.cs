@@ -33,6 +33,7 @@ namespace CADPythonShell
             if (parameter == null || m_canExecute == null) return true;
             else return m_canExecute(parameter);
         }
+
         // Main execute method
         public void Execute(object parameter = null)
         {
@@ -40,7 +41,7 @@ namespace CADPythonShell
             else m_execute(parameter);
         }
 
-        // In WPF CommandManager is a pre-defined class that take charge of observing the user interface 
+        // In WPF CommandManager is a pre-defined class that take charge of observing the user interface
         // and calls the CanExecute method when it deems it necessary
         public event EventHandler CanExecuteChanged
         {
@@ -69,4 +70,3 @@ namespace CADPythonShell
         }
     }
 }
-

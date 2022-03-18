@@ -1,27 +1,26 @@
 ﻿// Copyright (c) 2010 Joe Moorhouse
 
+using ICSharpCode.AvalonEdit;
+using ICSharpCode.AvalonEdit.Document;
+using ICSharpCode.AvalonEdit.Editing;
+using ICSharpCode.AvalonEdit.Highlighting;
 using System;
 using System.IO;
+using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
-using System.Reflection;
-
-using ICSharpCode.AvalonEdit;
-using ICSharpCode.AvalonEdit.Document;
-using ICSharpCode.AvalonEdit.Highlighting;
-using ICSharpCode.AvalonEdit.Editing;
 
 namespace PythonConsoleControl
 {
     /// <summary>
     /// Commands that only involve the text editor are outsourced to here.
     /// </summary>
-    class PythonEditingCommandHandler
+    internal class PythonEditingCommandHandler
     {
-        PythonTextEditor textEditor;
-        TextArea textArea;
-        
+        private PythonTextEditor textEditor;
+        private TextArea textArea;
+
         public PythonEditingCommandHandler(PythonTextEditor textEditor)
         {
             this.textEditor = textEditor;
@@ -153,9 +152,9 @@ namespace PythonConsoleControl
                             bool hasSomethingDeletable = false;
                             foreach (ISegment s in textArea.Selection.Segments)
                             {
-                                method = textAreaType.GetMethod("GetDeletableSegments", BindingFlags.Instance | BindingFlags.NonPublic); 
+                                method = textAreaType.GetMethod("GetDeletableSegments", BindingFlags.Instance | BindingFlags.NonPublic);
                                 //textArea.GetDeletableSegments(s).Length > 0)
-                                if ((int)method.Invoke(textArea, new Object[]{s}) > 0) 
+                                if ((int)method.Invoke(textArea, new Object[] { s }) > 0)
                                 {
                                     hasSomethingDeletable = true;
                                     break;
@@ -170,7 +169,7 @@ namespace PythonConsoleControl
                             }
                         }
                         method = textAreaType.GetMethod("RemoveSelectedText", BindingFlags.Instance | BindingFlags.NonPublic);
-                        method.Invoke(textArea, new Object[]{});
+                        method.Invoke(textArea, new Object[] { });
                         //textArea.RemoveSelectedText();
                     }
                     textArea.Caret.BringCaretToView();
@@ -190,31 +189,35 @@ namespace PythonConsoleControl
             }
         }
 
-        const string LineSelectedType = "MSDEVLineSelect";  // This is the type VS 2003 and 2005 use for flagging a whole line copy
+        private const string LineSelectedType = "MSDEVLineSelect";  // This is the type VS 2003 and 2005 use for flagging a whole line copy
 
-        struct VerySimpleSegment : ISegment
-	    {
-		    public readonly int Offset, Length;
-		
-		    int ISegment.Offset {
-			    get { return Offset; }
-		    }
-		
-		    int ISegment.Length {
-			    get { return Length; }
-		    }
-		
-		    public int EndOffset {
-			    get {
-				    return Offset + Length;
-			    }
-		    }
+        private struct VerySimpleSegment : ISegment
+        {
+            public readonly int Offset, Length;
+
+            int ISegment.Offset
+            {
+                get { return Offset; }
+            }
+
+            int ISegment.Length
+            {
+                get { return Length; }
+            }
+
+            public int EndOffset
+            {
+                get
+                {
+                    return Offset + Length;
+                }
+            }
 
             public VerySimpleSegment(int offset, int length)
-		    {
-			    this.Offset = offset;
-			    this.Length = length;
-		    }
+            {
+                this.Offset = offset;
+                this.Length = length;
+            }
         }
     }
 }

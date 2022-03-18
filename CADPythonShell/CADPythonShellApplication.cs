@@ -1,13 +1,13 @@
-﻿using System.IO;
+﻿using CADRuntime;
+using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
-using CADRuntime;
 using Forms = System.Windows.Forms;
 
 namespace CADPythonShell
 {
-    static class CADPythonShellApplication
+    internal static class CADPythonShellApplication
     {
         private static string settingsFolder;
         public static bool applicationLoaded;
@@ -69,7 +69,6 @@ namespace CADPythonShell
             var source = PngBitmapDecoder.Create(file, BitmapCreateOptions.None, BitmapCacheOption.None);
             return source.Frames[0];
         }
-
 
         public static IRpsConfig GetConfig()
         {
@@ -223,7 +222,6 @@ namespace CADPythonShell
             return GetScriptPath("InitScript");
         }
 
-
         /// <summary>
         /// Returns the path to the StartupScript as configured in the settings file or "" if not
         /// configured. This is used in the ConfigureCommandsForm.
@@ -236,7 +234,7 @@ namespace CADPythonShell
         /// <summary>
         /// Returns the value of the "src" attribute for the tag "tagName" in the settings file
         /// or "" if not configured.
-        /// </summary>        
+        /// </summary>
         private static string GetScriptPath(string tagName)
         {
             var tags = GetSettings().Root.Descendants(tagName) ?? new List<XElement>();
@@ -326,7 +324,6 @@ namespace CADPythonShell
                         new XAttribute("name", command.Name),
                         new XAttribute("src", command.Source),
                         new XAttribute("group", command.Group)));
-
             }
             doc.Root.Add(xmlCommands);
 
@@ -337,7 +334,6 @@ namespace CADPythonShell
                 xmlSearchPaths.Add(new XElement(
                     "SearchPath",
                         new XAttribute("name", path)));
-
             }
             doc.Root.Add(xmlSearchPaths);
 
@@ -349,7 +345,6 @@ namespace CADPythonShell
                     "StringVariable",
                         new XAttribute("name", variable.Key),
                         new XAttribute("value", variable.Value)));
-
             }
             doc.Root.Add(xmlVariables);
 
