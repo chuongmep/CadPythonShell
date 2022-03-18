@@ -99,8 +99,8 @@ Note : you can see more example in folder [Script Examples](https://github.com/c
 
 Learn some python:
 
-  * [The Python Tutorial](https://docs.python.org/2/tutorial/)
-  * [Dive Into Python](http://www.diveintopython.net/)
+  * [Python W3schools](https://www.w3schools.com/python/python_intro.asp)
+  * [Python Basic](https://www.python.org/about/gettingstarted/)
 
 Learn about the Autocad API:
 
