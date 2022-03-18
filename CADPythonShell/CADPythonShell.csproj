@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
 		<TargetFramework>net48</TargetFramework>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<LangVersion>latest</LangVersion>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
@@ -8,7 +10,6 @@
 		<Configurations>Debug A22</Configurations>
 		<Configurations>$(Configurations);Release A22</Configurations>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
-		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 	</PropertyGroup>
 	<PropertyGroup>
 		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -126,6 +127,9 @@
 		<None Update="PackageContents.xml">
 		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
+		<None Update="postbuild.ps1">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+		</None>
 		<Resource Include="Images\Copy.png" />
 		<Resource Include="Images\Cut.png" />
 		<Resource Include="Images\Delete.png" />
@@ -179,11 +183,7 @@
 	  <PlatformTarget>x64</PlatformTarget>
 	  <ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
-	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
-		<PostBuildEvent>start gpedit</PostBuildEvent>
+	<PropertyGroup>
+		<PostBuildEvent>powershell -NoProfile -ExecutionPolicy Unrestricted ./postbuild.ps1 -Configuration '$(Configuration)' -SolutionDir '$(SolutionDir)' -ProjectDir '$(ProjectDir)'</PostBuildEvent>
 	</PropertyGroup>
-
-	<Target Name="PostBuild" AfterTargets="PostBuildEvent" Condition="$(Configuration.Contains('Debug'))">
-	  <Exec Command="set bundle=&quot;C:\ProgramData\Autodesk\ApplicationPlugins\CADPythonShell.bundle\&quot;&#xD;&#xA;if not exist &quot;%25bundle%25&quot; mkdir &quot;%25bundle%25&quot;&#xD;&#xA;xcopy &quot;$(TargetDir)*.*&quot; &quot;%25bundle%25&quot; /Y /I /E /R /EXCLUDE:$(ProjectDir)exclude.txt&#xD;&#xA;xcopy &quot;$(SolutionDir)PackageContents.xml&quot; &quot;%25bundle%25&quot; /Y /R" />
-	</Target>
 </Project>
