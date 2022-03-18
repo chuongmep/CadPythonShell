@@ -31,7 +31,7 @@ var project = new Project
     BannerImage = @"Installer\Resources\Icons\BannerImage.png",
     ControlPanelInfo =
     {
-        Manufacturer = "Autodesk",
+        Manufacturer = "ChuongMep",
         HelpLink = "https://github.com/chuongmep/CadPythonShell/issues",
         Comments = "Project Support Developer Write Python In Autocad And Civil3D",
         ProductIcon = @"Installer\Resources\Icons\ShellIcon.ico"
