@@ -25,6 +25,7 @@ namespace CADPythonShell
                 {
                     ribbon.Tabs.Remove(rtab);
                 }
+
                 rtab = new RibbonTab();
                 rtab.Title = RibbonTitle;
                 rtab.Id = RibbonId;
@@ -35,10 +36,11 @@ namespace CADPythonShell
 
         private void AddContentToTab(RibbonTab rtab)
         {
-            rtab.Panels.Add(AddOnePanel());
+            rtab.Panels.Add(AddPanelOne());
+            rtab.Panels.Add(AddPanelTwo());
         }
 
-        private static RibbonPanel AddOnePanel()
+        private static RibbonPanel AddPanelOne()
         {
             RibbonPanelSource rps = new RibbonPanelSource();
             rps.Title = "Cad Python Shell";
@@ -58,8 +60,10 @@ namespace CADPythonShell
                 ShowText = true,
                 Text = "Run CPS",
                 Description = "Start Write Python Console\nCommand: PythonShellConsole",
-                Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Python-16.png"),
-                LargeImage = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Python-32.png"),
+                Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly,
+                    "CADPythonShell.Resources.Python-16.png"),
+                LargeImage =
+                    CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Python-32.png"),
                 CommandHandler = new RelayCommand(new IronPythonConsoleCommand().Execute)
             };
             rps.Items.Add(btnPythonShell);
@@ -73,12 +77,46 @@ namespace CADPythonShell
                 ShowText = true,
                 Text = "Configure CPS",
                 Description = "Configure Cad Python Shell\nCommand: PythonShellSetting",
-                Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-16.png"),
-                LargeImage = CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-32.png"),
+                Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly,
+                    "CADPythonShell.Resources.Settings-16.png"),
+                LargeImage =
+                    CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Settings-32.png"),
                 CommandHandler = new RelayCommand(new ConfigureCommand().Execute)
             };
             //Add the Button to the Tab
             rps.Items.Add(btnConfig);
+            return rp;
+        }
+
+        private static RibbonPanel AddPanelTwo()
+        {
+            RibbonPanelSource rps = new RibbonPanelSource();
+            rps.Title = "Lookup";
+            RibbonPanel rp = new RibbonPanel();
+            rp.Source = rps;
+            RibbonButton rci = new RibbonButton();
+            rci.Name = "Lookup";
+            rps.DialogLauncher = rci;
+            //create button1
+            var addinAssembly = typeof(IronPythonConsoleApp).Assembly;
+            RibbonButton btnSnoop = new RibbonButton
+            {
+                Orientation = Orientation.Vertical,
+                AllowInStatusBar = true,
+                Size = RibbonItemSize.Large,
+                Name = "Snoop",
+                ShowText = true,
+                Text = "Snoop",
+                Description = "Start snoop object inside Autocad \n Command: Snoop",
+                Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly,
+                    "CADPythonShell.Resources.Find-16.png"),
+                LargeImage =
+                    CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.Find-32.png"),
+                CommandHandler = new RelayCommand(new SnoopCommand().Execute),
+                AllowInToolBar = true,
+                KeyTip = "Snoop",
+            };
+            rps.Items.Add(btnSnoop);
             return rp;
         }
     }

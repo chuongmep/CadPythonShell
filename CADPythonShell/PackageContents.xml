@@ -17,6 +17,7 @@
         <Command Local="PythonConsole" Global="PythonConsole" />
         <Command Local="PythonShellSetting" Global="PythonShellSetting" />
         <Command Local="InitPythonConsole" Global="InitPythonConsole" StartupCommand="True" />
+        <Command Local="Snoop" Global="Snoop" />
       </Commands>
     </ComponentEntry>
   </Components>

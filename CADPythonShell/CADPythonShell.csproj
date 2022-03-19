@@ -35,6 +35,25 @@
 	<ItemGroup>
 	  <None Remove="Images\New.png" />
 	  <None Remove="Images\SaveAs.png" />
+	  <None Remove="Resources\Console-16.png" />
+	  <None Remove="Resources\Console-32.png" />
+	  <None Remove="Resources\CreateWall.png" />
+	  <None Remove="Resources\Deployment-16.png" />
+	  <None Remove="Resources\Deployment-32.png" />
+	  <None Remove="Resources\Find-16.png" />
+	  <None Remove="Resources\Find-32.png" />
+	  <None Remove="Resources\ipy.ico" />
+	  <None Remove="Resources\py.ico" />
+	  <None Remove="Resources\pycon.ico" />
+	  <None Remove="Resources\Python-16.png" />
+	  <None Remove="Resources\Python-32.png" />
+	  <None Remove="Resources\Python.xshd" />
+	  <None Remove="Resources\PythonConsole16x16.png" />
+	  <None Remove="Resources\PythonConsole32x32.png" />
+	  <None Remove="Resources\PythonScript16x16.png" />
+	  <None Remove="Resources\PythonScript32x32.png" />
+	  <None Remove="Resources\Settings-16.png" />
+	  <None Remove="Resources\Settings-32.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<Reference Include="accoremgd">
@@ -98,14 +117,6 @@
 		<Resource Include="Images\New.png" />
 		<Resource Include="Images\Number.png" />
 		<Resource Include="Images\Paragraph.png" />
-		<EmbeddedResource Include="Resources\Console-16.png" />
-		<EmbeddedResource Include="Resources\Console-32.png" />
-		<EmbeddedResource Include="Resources\Deployment-16.png" />
-		<EmbeddedResource Include="Resources\Deployment-32.png" />
-		<EmbeddedResource Include="Resources\Python-16.png" />
-		<EmbeddedResource Include="Resources\Python-32.png" />
-		<EmbeddedResource Include="Resources\Settings-16.png" />
-		<EmbeddedResource Include="Resources\Settings-32.png" />
 		<Content Include="startup.py">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
@@ -141,18 +152,29 @@
 		<Resource Include="Images\SaveAs.png" />
 		<Resource Include="Images\Undo.png" />
 		<Resource Include="Images\WordWrap.png" />
+		<EmbeddedResource Include="Resources\Console-16.png" />
+		<EmbeddedResource Include="Resources\Console-32.png" />
 		<EmbeddedResource Include="Resources\CreateWall.png" />
-		<Content Include="Resources\py.ico" />
-		<Content Include="Resources\pycon.ico" />
-		<EmbeddedResource Include="Resources\PythonConsole32x32.png" />
+		<EmbeddedResource Include="Resources\Deployment-16.png" />
+		<EmbeddedResource Include="Resources\Deployment-32.png" />
+		<EmbeddedResource Include="Resources\Find-16.png" />
+		<EmbeddedResource Include="Resources\Find-32.png" />
+		<EmbeddedResource Include="Resources\ipy.ico" />
+		<EmbeddedResource Include="Resources\py.ico" />
+		<EmbeddedResource Include="Resources\pycon.ico" />
+		<EmbeddedResource Include="Resources\Python-16.png" />
+		<EmbeddedResource Include="Resources\Python-32.png" />
+		<EmbeddedResource Include="Resources\Python.xshd" />
 		<EmbeddedResource Include="Resources\PythonConsole16x16.png" />
+		<EmbeddedResource Include="Resources\PythonConsole32x32.png" />
 		<EmbeddedResource Include="Resources\PythonScript16x16.png" />
 		<EmbeddedResource Include="Resources\PythonScript32x32.png" />
+		<EmbeddedResource Include="Resources\Settings-16.png" />
+		<EmbeddedResource Include="Resources\Settings-32.png" />
 		<Content Include="CADPythonShell.xml">
 			<SubType>Designer</SubType>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
-		<EmbeddedResource Include="Resources\Python.xshd" />
 	</ItemGroup>
 	<ItemGroup>
 		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
@@ -172,6 +194,7 @@
 		</BootstrapperPackage>
 	</ItemGroup>
 	<ItemGroup>
+		<ProjectReference Include="..\AutoCADLookup\CADSnoop.csproj" />
 		<ProjectReference Include="..\CADRuntime\CADRuntime.csproj" />
 		<ProjectReference Include="..\PythonConsoleControl\PythonConsoleControl.csproj" />
 	</ItemGroup>

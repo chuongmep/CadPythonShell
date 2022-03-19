@@ -22,6 +22,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "build\Build.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Installer", "Installer\Installer.csproj", "{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADSnoop", "AutoCADLookup\CADSnoop.csproj", "{275C1B41-9089-4817-B48F-564A72A6D121}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug A22|Any CPU = Debug A22|Any CPU
@@ -30,6 +32,7 @@ Global
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Debug A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Debug A22|Any CPU.Build.0 = Debug|Any CPU
 		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Installer|Any CPU.ActiveCfg = Release|Any CPU
 		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Release A22|Any CPU.ActiveCfg = Release|Any CPU
 		{F1152D68-346B-4F48-8DB7-BE67B5CB1F49}.Release A22|Any CPU.Build.0 = Release|Any CPU
@@ -39,6 +42,7 @@ Global
 		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Release A22|Any CPU.ActiveCfg = Release A22|Any CPU
 		{7E37F14E-D840-42F8-8CA6-90FFC5497972}.Release A22|Any CPU.Build.0 = Release A22|Any CPU
 		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Debug A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Debug A22|Any CPU.Build.0 = Debug|Any CPU
 		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Installer|Any CPU.ActiveCfg = Release|Any CPU
 		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Release A22|Any CPU.ActiveCfg = Release|Any CPU
 		{C8446636-C663-409F-82D0-72C0D55BBA1C}.Release A22|Any CPU.Build.0 = Release|Any CPU
@@ -49,6 +53,12 @@ Global
 		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Installer|Any CPU.ActiveCfg = Release|Any CPU
 		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Installer|Any CPU.Build.0 = Release|Any CPU
 		{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}.Release A22|Any CPU.ActiveCfg = Release|Any CPU
+		{275C1B41-9089-4817-B48F-564A72A6D121}.Debug A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{275C1B41-9089-4817-B48F-564A72A6D121}.Debug A22|Any CPU.Build.0 = Debug|Any CPU
+		{275C1B41-9089-4817-B48F-564A72A6D121}.Installer|Any CPU.ActiveCfg = Debug|Any CPU
+		{275C1B41-9089-4817-B48F-564A72A6D121}.Installer|Any CPU.Build.0 = Debug|Any CPU
+		{275C1B41-9089-4817-B48F-564A72A6D121}.Release A22|Any CPU.ActiveCfg = Debug|Any CPU
+		{275C1B41-9089-4817-B48F-564A72A6D121}.Release A22|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
