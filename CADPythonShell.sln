@@ -10,6 +10,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
 		CHANGELOG.md = CHANGELOG.md
+		CONTRIBUTING.md = CONTRIBUTING.md
 		README.md = README.md
 		RPS LICENSE.txt = RPS LICENSE.txt
 	EndProjectSection
@@ -22,7 +23,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Build", "build\Build.csproj
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Installer", "Installer\Installer.csproj", "{51C417E1-279A-46C2-B3AE-1FDE56FEE5AB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CADSnoop", "AutoCADLookup\CADSnoop.csproj", "{275C1B41-9089-4817-B48F-564A72A6D121}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CADSnoop", "AutoCADLookup\CADSnoop.csproj", "{275C1B41-9089-4817-B48F-564A72A6D121}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
