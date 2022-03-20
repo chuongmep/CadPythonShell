@@ -1,4 +1,6 @@
 # Changelog
+- 2022-03-20 **1.0.4**
+  - Fix problem with snoop object selected Resource [AutoCADLookup](https://github.com/chuongmep/AutoCADLookup)
 - 2022-03-20 **1.0.3**
   - Support Button Support Snoop Object From Resource [AutoCADLookup](https://github.com/chuongmep/AutoCADLookup)
 - 2022-03-18 **1.0.2**
