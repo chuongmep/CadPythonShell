@@ -1,3 +1,4 @@
 [submodule "AutoCADLookup"]
 	path = AutoCADLookup
 	url = https://github.com/chuongmep/AutoCADLookup.git
+	ignore = dirty
