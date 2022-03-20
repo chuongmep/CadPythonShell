@@ -124,3 +124,4 @@ Thanks to [JetBrains](https://www.jetbrains.com/) for providing licenses for [Ri
   * The rest of the RPS contributors
   * [Nice 3 Point](https://github.com/Nice3point) for process CI/CD
   * [Icon 8](https://icons8.com/) Free Wiki icons in various UI design styles for web, mobile
+  * [htlcnn](https://github.com/htlcnn) origin of project AutocadLookup
