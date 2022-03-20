@@ -2,7 +2,7 @@
 
 namespace CADRuntime
 {
-    public interface IRpsConfig
+    public interface ICpsConfig
     {
         /// <summary>
         /// Returns a list of string variables that the Runtime will add to

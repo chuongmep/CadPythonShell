@@ -29,7 +29,7 @@ namespace CADPythonShell
                 //var dllfullpath = Path.Combine(dllfolder, assemblyName + ".dll");
                 //CreateCommandLoaderAssembly(settings, dllfolder, assemblyName);
                 //seems like I need to pre-load my dependencies
-                AppDomain.CurrentDomain.Load(typeof(NpsConfig).Assembly.GetName());
+                AppDomain.CurrentDomain.Load(typeof(CpsConfig).Assembly.GetName());
 
                 ExecuteStartupScript();
                 return;
@@ -70,9 +70,9 @@ namespace CADPythonShell
             return source.Frames[0];
         }
 
-        public static IRpsConfig GetConfig()
+        public static ICpsConfig GetConfig()
         {
-            return new NpsConfig(GetSettingsFile());
+            return new CpsConfig(GetSettingsFile());
         }
 
         /// <summary>

@@ -12,20 +12,20 @@ namespace CADRuntime
         private readonly IDictionary<string, string> _dict;
         private readonly string _settingsPath;
         private XDocument _settings;
-
+        private string nameVariable = "StringVariable";
         public SettingsDictionary(string settingsPath)
         {
             _settingsPath = settingsPath;
             _settings = XDocument.Load(_settingsPath);
 
-            _dict = _settings.Root.Descendants("StringVariable").ToDictionary(
+            _dict = _settings.Root.Descendants(nameVariable).ToDictionary(
                 v => v.Attribute("name").Value,
                 v => v.Attribute("value").Value);
         }
 
         private void SetVariable(string name, string value)
         {
-            var variable = _settings.Root.Descendants("StringVariable").Where(x => x.Attribute("name").Value == name).FirstOrDefault();
+            var variable = _settings.Root.Descendants(nameVariable).Where(x => x.Attribute("name").Value == name).FirstOrDefault();
             if (variable != null)
             {
                 variable.Attribute("value").Value = value.ToString();
@@ -33,14 +33,14 @@ namespace CADRuntime
             else
             {
                 _settings.Root.Descendants("Variables").First().Add(
-                    new XElement("StringVariable", new XAttribute("name", name), new XAttribute("value", value)));
+                    new XElement(nameVariable, new XAttribute("name", name), new XAttribute("value", value)));
             }
             _settings.Save(_settingsPath);
         }
 
         private void RemoveVariable(string name)
         {
-            var variable = _settings.Root.Descendants("StringVariable").Where(x => x.Attribute("name").Value == name).FirstOrDefault();
+            var variable = _settings.Root.Descendants(nameVariable).Where(x => x.Attribute("name").Value == name).FirstOrDefault();
             if (variable != null)
             {
                 variable.Remove();
@@ -50,7 +50,7 @@ namespace CADRuntime
 
         private void ClearVariables()
         {
-            var variables = _settings.Root.Descendants("StringVariable");
+            var variables = _settings.Root.Descendants(nameVariable);
             foreach (var variable in variables)
             {
                 variable.Remove();

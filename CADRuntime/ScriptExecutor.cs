@@ -14,9 +14,9 @@ namespace CADRuntime
     public class ScriptExecutor
     {
         private string _message;
-        private readonly IRpsConfig _config;
+        private readonly ICpsConfig _config;
 
-        public ScriptExecutor(IRpsConfig config)
+        public ScriptExecutor(ICpsConfig config)
         {
             _config = config;
 

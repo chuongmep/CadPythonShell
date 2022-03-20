@@ -5,9 +5,9 @@ namespace CADRuntime
 {
     /// <summary>
     /// Provides access functions to those parts of the CADPythonShell.xml file
-    /// that are also used in RpsAddin deployments.
+    /// that are also used in CPS Plugin deployments.
     /// </summary>
-    public class NpsConfig : IRpsConfig
+    public class CpsConfig : ICpsConfig
     {
         /// <summary>
         /// The full path to the settings file used
@@ -17,7 +17,7 @@ namespace CADRuntime
         private readonly XDocument _settings;
         private readonly SettingsDictionary _dict;
 
-        public NpsConfig(string settingsFilePath)
+        public CpsConfig(string settingsFilePath)
         {
             _settingsPath = settingsFilePath;
             _settings = XDocument.Load(_settingsPath);
