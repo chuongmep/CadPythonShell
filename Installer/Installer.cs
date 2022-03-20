@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using WixSharp;
@@ -52,6 +53,7 @@ WixEntity[] GenerateWixEntities()
     var versionRegex = new Regex(@"\d+");
     var versionStorages = new List<WixEntity>();
     if (args.Length == 0) Console.WriteLine("Have some Problem with args build installer");
+    int countEntity = 0;
     foreach (var directory in args)
     {
         Console.WriteLine($"Working with Directory: {directory}");
@@ -61,9 +63,12 @@ WixEntity[] GenerateWixEntities()
         versionStorages.Add(files);
         var assemblies = Directory.GetFiles(directory, "*", SearchOption.AllDirectories);
         Console.WriteLine($"Adding '{fileVersion}' version files: ");
-        foreach (var assembly in assemblies) Console.WriteLine($"'{assembly}'");
+        foreach (var assembly in assemblies)
+        {
+            Console.WriteLine($"'{assembly}'");
+            countEntity++;
+        }
     }
-
-    Console.WriteLine($"Added {versionStorages.Count} files to msi");
+    Console.WriteLine($"Added {countEntity} files to msi");
     return versionStorages.ToArray();
 }

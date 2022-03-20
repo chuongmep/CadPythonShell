@@ -29,7 +29,7 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 - Interactive IronPython interpreter for exploring the API
   - With syntax highlighting and autocompletion (in the console only)
   - Based on the [IronLab](http://code.google.com/p/ironlab/) project
-- Batteries included! (Python standard library is bundled as a resource in the `RpsRuntime.dll`)
+- Batteries included! (Python standard library is bundled as a resource in the `CADRuntime.dll`)
 - Full access to the .NET framework and the Autocad and Civil3D API
 - Configurable "environment" variables that can be used in your scripts
 - Save "external scripts" for reuse and start collecting your awesome hacks!
