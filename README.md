@@ -44,9 +44,11 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 Note : Support for 4 last version(2019-2022) Autocad or Civil 3D. Older versions can be used but will not guarantee the expected performance.
 
 
-## How to use
+## Basic Usage
 
-- Open Python Console from Command Line or button CPS in Ribbon.
+- <kbd>PythonConsole</kbd> - Open Python Console
+- <kbd>PythonShellSetting</kbd> - Open Setting Config Console
+- <kbd>Snoop</kbd> - Snoop Object In CAd or Civil3d
 
 ![](Images/pythoncmd.png)
 
