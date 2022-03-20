@@ -120,7 +120,7 @@
   <data name="label9.Text" xml:space="preserve">
     <value>The InitScript is a python script run everytime an interactive shell is opened. It is commonly used to performe initialization of helper functions and variables.
 
-The StartupScript is run once when Revit starts up in the IExternalApplication.OnStartup event. Use this to customize the RibbonPanel and set up event handlers for the IdlingEvent and similar nifty things.</value>
+The StartupScript is run once when CAD starts up in the IExternalApplication.OnStartup event. Use this to customize the RibbonPanel and set up event handlers for the IdlingEvent and similar nifty things.</value>
   </data>
   <metadata name="$this.Locked" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
