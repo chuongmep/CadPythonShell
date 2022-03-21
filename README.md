@@ -34,7 +34,8 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 - Configurable "environment" variables that can be used in your scripts
 - Save "external scripts" for reuse and start collecting your awesome hacks!
 - Run scripts at Autocad or Civil startup
-
+- Quick **Snoop** info object Autocad or Civil3D
+- Interactive Snoop from console with IronPython
 ## Installation
 
 - Download last install stable(msi) from [Release](https://github.com/chuongmep/CADPythonShell/releases/latest)
@@ -48,7 +49,9 @@ Note : Support for 4 last version(2019-2022) Autocad or Civil 3D. Older versions
 
 - <kbd>PythonConsole</kbd> - Open Python Console
 - <kbd>PythonShellSetting</kbd> - Open Setting Config Console
-- <kbd>Snoop</kbd> - Snoop Object In CAd or Civil3d
+- <kbd>Snoop</kbd> - Snoop Object In CAD or Civil3D
+- <kbd>sn.Snoop(obj)</kbd> - Snoop Object by Python Console In CAD or Civil3D
+- <kbd>snoop(obj)</kbd> - Snoop Object by Python Console or Execute python code In CAD or Civil3D
 
 ![](Images/pythoncmd.png)
 
