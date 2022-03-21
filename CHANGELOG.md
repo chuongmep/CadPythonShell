@@ -1,4 +1,10 @@
 # Changelog
+- 2022-03-22 **1.0.5**
+  - Support use Snoop Object from shell console or Python Execute, pleae see example code at [snoopobjectdemo.py](https://github.com/chuongmep/CadPythonShell/blob/dev/Script%20Examples/snoopobjectdemo.py)
+  - Snoop by Object id
+  - Snoop by list DBObject
+  - Snoop by dbobject
+  - Snoop by pick DBObject
 - 2022-03-20 **1.0.4**
   - Fix problem with snoop object selected Resource [AutoCADLookup](https://github.com/chuongmep/AutoCADLookup)
 - 2022-03-20 **1.0.3**
