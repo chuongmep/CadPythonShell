@@ -117,6 +117,8 @@ This project is licensed under the terms of the [MIT License](http://opensource.
 
 Thanks to [JetBrains](https://www.jetbrains.com/) for providing licenses for [Rider](https://www.jetbrains.com/rider/) and [dotUltimate](https://www.jetbrains.com/dotnet/) tools, which both make open-source development a real pleasure!
 
+![](Images/jetbrains.png)
+
 ## Credits
 
   * Daren Thomas (original RPS Developer) [RPS](https://github.com/architecture-building-systems/revitpythonshell)
