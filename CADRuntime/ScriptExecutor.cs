@@ -126,7 +126,7 @@ namespace CADRuntime
 
         public void SetupEnvironment(ScriptEngine engine, ScriptScope scope)
         {
-            // these variables refer to the signature of the IExternalCommand.Execute method
+            // these variables refer to the signature of the IExternalCommand.Snoop method
             scope.SetVariable("__message__", _message);
             scope.SetVariable("__result__", 0);
 
@@ -140,6 +140,7 @@ namespace CADRuntime
 
             // reference Autocad or Civil3D Api Document and Application
             engine.Runtime.LoadAssembly(typeof(Autodesk.AutoCAD.ApplicationServices.Document).Assembly);
+            engine.Runtime.LoadAssembly(typeof(CADSnoop.SnoopCommand).Assembly);
             // also, allow access to the RPS internals
             engine.Runtime.LoadAssembly(typeof(ScriptExecutor).Assembly);
         }

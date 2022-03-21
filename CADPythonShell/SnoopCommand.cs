@@ -7,7 +7,7 @@ namespace CADPythonShell
         [CommandMethod("Snoop")]
         public void Execute()
         {
-           new CADSnoop.SnoopCommand().Execute();
+           new CADSnoop.SnoopCommand().Snoop();
         }
     }
 }
