@@ -17,16 +17,21 @@ from Autodesk.AutoCAD.Geometry import *
 doc = Application.DocumentManager.MdiActiveDocument
 ed = doc.Editor
 db = doc.Database
-#Code Here : 
+# Write Code Below
 with doc.LockDocument():
 	with doc.Database as db:
 		with db.TransactionManager.StartTransaction() as t:
 			bt = t.GetObject(db.BlockTableId,OpenMode.ForRead)
 			btr  = t.GetObject(bt[BlockTableRecord.ModelSpace],OpenMode.ForWrite)
-			centerPt = Point3d(0,0,0)
-			radius = 50
-			arc = Arc(centerPt,Vector3d.ZAxis,radius,0,math.pi / 2)
-			btr.AppendEntity(arc)
-			t.AddNewlyCreatedDBObject(arc,True)
+			# Do action here
+			result = ed.GetSelection()
+			if(result.Status==PromptStatus.OK):
+				print("Selected Entity")
+				print(dir(result))
+				#There are selected entities
+                #Put your command using pickfirst set code here
+			else :
+				print("There are no selected entities ")
+				#Put your command code here
+			
 			t.Commit()
-			print("Arc Created")
