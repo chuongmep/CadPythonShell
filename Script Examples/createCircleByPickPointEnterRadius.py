@@ -18,10 +18,6 @@ doc = Application.DocumentManager.MdiActiveDocument
 ed = doc.Editor
 db = doc.Database
 #Code Here : 
-objects = []
-p1 = Point3d(0,0,0)
-p2 = Point3d(2000,2000,0)
-line1 = Line(p1,p2)
 result1 = ed.GetPoint("Please select a point")
 if(result1.Status == PromptStatus.OK):
 	centerPt = result1.Value
