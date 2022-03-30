@@ -7,8 +7,8 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
-		<Configurations>Debug A22</Configurations>
-		<Configurations>$(Configurations);Release A22</Configurations>
+		<Configurations>Debug A23</Configurations>
+		<Configurations>$(Configurations);Release A23</Configurations>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 	</PropertyGroup>
 	<PropertyGroup>
@@ -27,7 +27,7 @@
 		<DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup Condition="$(Configuration.Contains('A22'))">
-		<DefineConstants>$(DefineConstants);A22</DefineConstants>
+		<DefineConstants>$(DefineConstants);A23</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup>
 		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
