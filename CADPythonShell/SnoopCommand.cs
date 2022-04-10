@@ -2,7 +2,7 @@
 
 namespace CADPythonShell
 {
-    public class SnoopCommand
+    public class SnoopCommand : CadCommand
     {
         [CommandMethod("Snoop")]
         public void Execute()

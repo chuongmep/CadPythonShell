@@ -1,5 +1,6 @@
 ﻿using Autodesk.AutoCAD.Runtime;
 using Autodesk.Windows;
+using MgdDbg;
 using Orientation = System.Windows.Controls.Orientation;
 
 namespace CADPythonShell
@@ -13,6 +14,8 @@ namespace CADPythonShell
         public void Execute()
         {
             CreateRibbon();
+            MgdDbg.App MgdDbgSnoop = new App();
+            MgdDbgSnoop.Initialize();
         }
 
         private void CreateRibbon()

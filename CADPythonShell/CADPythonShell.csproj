@@ -196,6 +196,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\AutoCADLookup\CADSnoop.csproj" />
 		<ProjectReference Include="..\CADRuntime\CADRuntime.csproj" />
+		<ProjectReference Include="..\MgdDbg\MgdDbg.csproj" />
 		<ProjectReference Include="..\PythonConsoleControl\PythonConsoleControl.csproj" />
 	</ItemGroup>
 	<ItemGroup>

@@ -2,3 +2,7 @@
 	path = AutoCADLookup
 	url = https://github.com/chuongmep/AutoCADLookup.git
 	ignore = dirty
+[submodule "MgdDbg"]
+	path = MgdDbg
+	url = https://github.com/chuongmep/MgdDbg
+	ignore = dirty
