@@ -11,14 +11,14 @@ using Forms = System.Windows.Forms;
 
 namespace CADPythonShell
 {
-    public class IronPythonConsoleCommand : CadCommand
+    public class IronPythonConsoleCommand : ICadCommand
     {
         /// <summary>
         /// Open a window to let the user enter python code.
         /// </summary>
         /// <returns></returns>
         [CommandMethod("PythonConsole")]
-        public void Execute()
+        public override void Execute()
         {
             Document doc = Application.DocumentManager.MdiActiveDocument;
             //load the application

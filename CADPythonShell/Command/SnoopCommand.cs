@@ -2,10 +2,10 @@
 
 namespace CADPythonShell
 {
-    public class SnoopCommand : CadCommand
+    public class SnoopCommand : ICadCommand
     {
         [CommandMethod("Snoop")]
-        public void Execute()
+        public override void Execute()
         {
            new CADSnoop.SnoopCommand().Snoop();
         }

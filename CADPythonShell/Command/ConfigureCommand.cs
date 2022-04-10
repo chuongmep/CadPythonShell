@@ -7,10 +7,10 @@ namespace CADPythonShell
     /// Open the configuration dialog.
     /// </summary>
 
-    public class ConfigureCommand
+    public class ConfigureCommand : ICadCommand
     {
         [CommandMethod("PythonShellSetting")]
-        public void Execute()
+        public override void Execute()
         {
             //load the application
             if (!CADPythonShellApplication.applicationLoaded)

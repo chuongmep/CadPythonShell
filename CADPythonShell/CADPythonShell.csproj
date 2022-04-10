@@ -175,6 +175,34 @@
 			<SubType>Designer</SubType>
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</Content>
+		<None Remove="Resources\database-16.png" />
+		<EmbeddedResource Include="Resources\database-16.png" />
+		<None Remove="Resources\database-32.png" />
+		<EmbeddedResource Include="Resources\database-32.png" />
+		<None Remove="Resources\editor-16.png" />
+		<EmbeddedResource Include="Resources\editor-16.png" />
+		<None Remove="Resources\editor-32.png" />
+		<EmbeddedResource Include="Resources\editor-32.png" />
+		<None Remove="Resources\test-16.png" />
+		<EmbeddedResource Include="Resources\test-16.png" />
+		<None Remove="Resources\test-32.png" />
+		<EmbeddedResource Include="Resources\test-32.png" />
+		<None Remove="Resources\events-16.png" />
+		<EmbeddedResource Include="Resources\events-16.png" />
+		<None Remove="Resources\events-32.png" />
+		<EmbeddedResource Include="Resources\events-32.png" />
+		<None Remove="Resources\handle-32.png" />
+		<EmbeddedResource Include="Resources\handle-32.png" />
+		<None Remove="Resources\handle-16.png" />
+		<EmbeddedResource Include="Resources\handle-16.png" />
+		<None Remove="Resources\snoopentities-16.png" />
+		<EmbeddedResource Include="Resources\snoopentities-16.png" />
+		<None Remove="Resources\snoopentities-32.png" />
+		<EmbeddedResource Include="Resources\snoopentities-32.png" />
+		<None Remove="Resources\snoopentitiesnes-16.png" />
+		<EmbeddedResource Include="Resources\snoopentitiesnes-16.png" />
+		<None Remove="Resources\snoopentitiesnes-32.png" />
+		<EmbeddedResource Include="Resources\snoopentitiesnes-32.png" />
 	</ItemGroup>
 	<ItemGroup>
 		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">

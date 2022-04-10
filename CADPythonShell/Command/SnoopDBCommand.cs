@@ -1,9 +1,12 @@
-﻿namespace CADPythonShell;
+﻿using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 
-public class SnoopDBCommand : CadCommand
+namespace CADPythonShell;
+
+public class SnoopDBCommand : ICadCommand
 {
-    public void Execute()
+    public override void Execute()
     {
-        
+        string fullCmdLine = $"_{nameof(MgdDbgAction.SnoopDB)}\n";
+        Application.DocumentManager.MdiActiveDocument.SendStringToExecute(fullCmdLine, false, false, true);
     }
 }

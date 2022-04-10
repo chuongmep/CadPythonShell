@@ -1,9 +1,10 @@
 ﻿namespace CADPythonShell;
 
-public class SnoopEntitiesCommand : CadCommand
+public class SnoopEntitiesCommand : ICadCommand
 {
-    public void Execute()
+    public override void Execute()
     {
-        throw new NotImplementedException();
+        string fullCmdLine = $"_{nameof(MgdDbgAction.SnoopEnts)}\n";
+        Autodesk.AutoCAD.ApplicationServices.Core.Application.DocumentManager.MdiActiveDocument.SendStringToExecute(fullCmdLine, false, false, true);
     }
 }
