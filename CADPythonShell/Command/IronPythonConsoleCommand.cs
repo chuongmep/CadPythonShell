@@ -11,7 +11,7 @@ using Forms = System.Windows.Forms;
 
 namespace CADPythonShell
 {
-    public class IronPythonConsoleCommand
+    public class IronPythonConsoleCommand : CadCommand
     {
         /// <summary>
         /// Open a window to let the user enter python code.
