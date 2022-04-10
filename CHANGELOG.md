@@ -1,4 +1,11 @@
 # Changelog
+- 2022-04-11 **1.0.6**
+  - Support Full Snoop Database Cad & Civil3D
+  - Support Full Snoop Editor Cad & Civil3D
+  - Support Full Snoop Events Cad & Civil3D
+  - Support Full Snoop Entities Cad & Civil3D
+  - Support Full Snoop Entities Nested Cad & Civil3D
+  - Support Full Snoop Handle Cad & Civil3D
 - 2022-03-22 **1.0.5**
   - Support use Snoop Object from shell console or Python Execute, pleae see example code at [snoopobjectdemo.py](https://github.com/chuongmep/CadPythonShell/blob/dev/Script%20Examples/snoopobjectdemo.py)
   - Snoop by Object id
