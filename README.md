@@ -34,7 +34,7 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 - Configurable "environment" variables that can be used in your scripts
 - Save "external scripts" for reuse and start collecting your awesome hacks!
 - Run scripts at Autocad or Civil startup
-- Quick **Snoop** info object Autocad or Civil3D
+- Full **Snoop** info object Autocad or Civil3D (Database,Editor,Entity,etc,..)
 - Interactive Snoop from console with IronPython
 ## Installation
 
@@ -48,14 +48,47 @@ Note : Support for 4 last version(2019-2022) Autocad or Civil 3D. Older versions
 ## Basic Usage
 
 - <kbd>PythonConsole</kbd> - Open Python Console
+
+![](Images/PythonShellConsole.png)
+
 - <kbd>PythonShellSetting</kbd> - Open Setting Config Console
-- <kbd>Snoop</kbd> - Snoop Object In CAD or Civil3D
+
+![](Images/ConfigPythonShell.png)
+
+- <kbd>Snoop</kbd> - Quick Snoop Object Sample In CAD or Civil3D
+
+![](Images/Snoop.png)
+
+- <kbd>SnoopDB</kbd> - Snoop Database In CAD or Civil3D
+
+![](Images/SnoopDB.png)
+
+- <kbd>SnoopEd</kbd> - Snoop Editor In CAD or Civil3D
+
+![](Images/SnoopEditor.png)
+
+- <kbd>SnoopEnts</kbd> - Snoop Entities In CAD or Civil3D
+
+![](Images/SnoopEntities.png)
+
+- <kbd>SnoopNEnts</kbd> - Snoop Entities Nested In CAD or Civil3D
+
+- <kbd>SnoopByHandle</kbd> - Snoop By Handle In CAD or Civil3D
+
+![](Images/SnoopByHandle.png)
+
+- <kbd>SnoopEvents</kbd> - Snoop Follow Events In CAD or Civil3D
+
+![](Images/SnoopEvents.png)
+
+#### Use Snoop In Python Shell Console
+
 - <kbd>sn.Snoop(obj)</kbd> - Snoop Object by Python Console In CAD or Civil3D
 - <kbd>snoop(obj)</kbd> - Snoop Object by Python Console or Execute python code In CAD or Civil3D
 
 ![](Images/pythoncmd.png)
 
-- Write Console Sample
+#### Write Console Sample
 
 ``` py
 ed = doc.Editor
@@ -132,3 +165,4 @@ Thanks to [JetBrains](https://www.jetbrains.com/) for providing licenses for [Ri
   * [Nice 3 Point](https://github.com/Nice3point) for process CI/CD
   * [Icon 8](https://icons8.com/) Free Wiki icons in various UI design styles for web, mobile
   * [htlcnn](https://github.com/htlcnn) origin of project AutocadLookup
+  * [Autodesk Developer Network](https://github.com/ADN-DevTech/MgdDbg) project `MgdDbg` support full snoop database in Autocad.
