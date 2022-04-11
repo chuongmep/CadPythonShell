@@ -42,7 +42,7 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 - Use command `PythonConsole` to open Console or use command `PythonShellSetting` to open form setting
 - See guide install detail at [How-to-Install-CadPythonShell](https://github.com/chuongmep/CadPythonShell/wiki/How-to-Install-CadPythonShell)
 
-Note : Support for 4 last version(2019-2022) Autocad or Civil 3D. Older versions can be used but will not guarantee the expected performance.
+Note : Support for 5 last version(2019-2023) Autocad or Civil 3D. Older versions can be used but will not guarantee the expected performance.
 
 
 ## Basic Usage
