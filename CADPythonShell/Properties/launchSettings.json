@@ -2,7 +2,7 @@
   "profiles": {
     "CADPythonShell": {
       "commandName": "Executable",
-      "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2022\\acad.exe"
+      "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2023\\acad.exe"
     }
   }
 }
