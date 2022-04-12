@@ -1,4 +1,6 @@
 # Changelog
+- 2022-04-12 **1.0.7**
+  - Fix bug Snoop **LWPolyLine** special case Handle 859 & 741
 - 2022-04-11 **1.0.6**
   - Support Full Snoop Database Cad & Civil3D
   - Support Full Snoop Editor Cad & Civil3D
