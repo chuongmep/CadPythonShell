@@ -151,9 +151,9 @@ Learn about the Autocad API:
 This project is licensed under the terms of the [MIT License](http://opensource.org/licenses/MIT).
 ## Sponsors
 
-Thanks to [JetBrains](https://www.jetbrains.com/) for providing licenses for [Rider](https://www.jetbrains.com/rider/) and [dotUltimate](https://www.jetbrains.com/dotnet/) tools, which both make open-source development a real pleasure!
-
 ![](Images/jetbrains.png)
+
+Thanks for providing a free All product IDE for this project.
 
 ## Credits
 
