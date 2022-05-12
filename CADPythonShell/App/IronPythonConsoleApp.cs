@@ -14,8 +14,6 @@ namespace CADPythonShell
         public override void Execute()
         {
             CreateRibbon();
-            MgdDbg.App MgdDbgSnoop = new App();
-            MgdDbgSnoop.Initialize();
         }
 
         private void CreateRibbon()
