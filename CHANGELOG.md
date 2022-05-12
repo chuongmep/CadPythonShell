@@ -1,4 +1,6 @@
 # Changelog
+- 2022-05-12 **1.0.8**
+  - Fix bug duplicate snoop [#4](https://github.com/chuongmep/CadPythonShell/issues/4)
 - 2022-04-12 **1.0.7**
   - Fix bug Snoop **LWPolyLine** special case Handle 859 & 741
 - 2022-04-11 **1.0.6**
