@@ -1,10 +1,12 @@
-﻿namespace CADPythonShell;
-
-public class TestFrameworkCommand : ICadCommand
+﻿namespace CADPythonShell
 {
-    public override void Execute()
+    public class TestFrameworkCommand : ICadCommand
     {
-        string fullCmdLine = $"_{nameof(MgdDbgAction.SnoopTests)}\n";
-        Autodesk.AutoCAD.ApplicationServices.Core.Application.DocumentManager.MdiActiveDocument.SendStringToExecute(fullCmdLine, false, false, true);
+        public override void Execute()
+        {
+            string fullCmdLine = $"_{nameof(MgdDbgAction.SnoopTests)}\n";
+            Autodesk.AutoCAD.ApplicationServices.Core.Application.DocumentManager.MdiActiveDocument.SendStringToExecute(fullCmdLine, false, false, true);
+        }
     }
 }
+

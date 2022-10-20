@@ -1,4 +1,10 @@
-﻿namespace CADPythonShell
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
+using System.Linq;
+using System.Windows.Forms;
+
+namespace CADPythonShell
 {
     /// <summary>
     /// Display a listbox with a list of completions for a given string.

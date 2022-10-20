@@ -1,5 +1,6 @@
 ﻿using ICSharpCode.AvalonEdit;
 using ICSharpCode.AvalonEdit.Highlighting;
+using System;
 using System.IO;
 using System.Windows;
 using System.Windows.Input;

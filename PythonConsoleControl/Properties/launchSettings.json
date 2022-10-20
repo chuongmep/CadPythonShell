@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "PythonConsoleControl": {
+      "commandName": "Executable",
+      "executablePath": "C:\\Program Files\\Autodesk\\AutoCAD 2022\\acad.exe",
+      "commandLineArgs": "/b \"D:\\Gitlab\\JrxCommand\\JrxCommand\\bin\\ACAD_Debug\\LoadJrxCommand.scr\""
+    }
+  }
+}

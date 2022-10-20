@@ -1,10 +1,12 @@
-﻿namespace CADPythonShell;
-
-public class SnoopEditorCommand : ICadCommand
+﻿namespace CADPythonShell
 {
-    public override void Execute()
+    public class SnoopEditorCommand : ICadCommand
     {
-        string fullCmdLine = $"_{nameof(MgdDbgAction.SnoopEd)}\n";
-        Autodesk.AutoCAD.ApplicationServices.Core.Application.DocumentManager.MdiActiveDocument.SendStringToExecute(fullCmdLine, false, false, true);
+        public override void Execute()
+        {
+            string fullCmdLine = $"_{nameof(MgdDbgAction.SnoopEd)}\n";
+            Autodesk.AutoCAD.ApplicationServices.Core.Application.DocumentManager.MdiActiveDocument.SendStringToExecute(fullCmdLine, false, false, true);
+        }
     }
 }
+

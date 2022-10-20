@@ -1,21 +1,23 @@
-﻿namespace CADPythonShell;
-
-public abstract class ICadCommand
+﻿namespace CADPythonShell
 {
-    /// <summary>
-    /// Execute something
-    /// </summary>
-    public abstract void Execute();
-
-    public enum MgdDbgAction
+    public abstract class ICadCommand
     {
-        Snoop,
-        SnoopDB,
-        SnoopEnts,
-        SnoopNEnts,
-        SnoopByHandle,
-        SnoopEd,
-        SnoopEvents,
-        SnoopTests,
+        /// <summary>
+        /// Execute something
+        /// </summary>
+        public abstract void Execute();
+
+        public enum MgdDbgAction
+        {
+            Snoop,
+            SnoopDB,
+            SnoopEnts,
+            SnoopNEnts,
+            SnoopByHandle,
+            SnoopEd,
+            SnoopEvents,
+            SnoopTests,
+        }
     }
 }
+

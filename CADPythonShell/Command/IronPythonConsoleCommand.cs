@@ -2,6 +2,8 @@
 using Autodesk.AutoCAD.Runtime;
 using CADRuntime;
 using Microsoft.Scripting;
+using System;
+using System.Threading;
 using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
