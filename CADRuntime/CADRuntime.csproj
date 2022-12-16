@@ -54,6 +54,8 @@
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\PythonScript16x16.png" />
+		<None Remove="Resources\IronPython.3.4.0.zip" />
+		<EmbeddedResource Include="Resources\IronPython.3.4.0.zip" />
 	</ItemGroup>
 	<ItemGroup>
 		<EmbeddedResource Include="Resources\PythonScript32x32.png" />
