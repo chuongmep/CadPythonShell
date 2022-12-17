@@ -26,5 +26,25 @@
                     AppDescription="a module snoop entities of CAD PythonShell"
                     LoadOnAutoCADStartup="True">
     </ComponentEntry>
+	  <ComponentEntry AppName="CADPythonShell"
+	                  ModuleName="./Microsoft.Dynamic.dll"
+	                  AppDescription="sub module python shell"
+	                  LoadOnAutoCADStartup="True">
+	  </ComponentEntry>
+	  <ComponentEntry AppName="CADPythonShell"
+	                  ModuleName="./Microsoft.Scripting.dll"
+	                  AppDescription="sub module python shell"
+	                  LoadOnAutoCADStartup="True">
+	  </ComponentEntry>
+	  <ComponentEntry AppName="CADPythonShell"
+	                  ModuleName="./IronPython.dll"
+	                  AppDescription="sub module python shell"
+	                  LoadOnAutoCADStartup="True">
+	  </ComponentEntry>
+	  <ComponentEntry AppName="CADPythonShell"
+	                  ModuleName="./IronPython.Modules.dll"
+	                  AppDescription="sub module python shell"
+	                  LoadOnAutoCADStartup="True">
+	  </ComponentEntry>
   </Components>
 </ApplicationPackage>
