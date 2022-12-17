@@ -1,10 +1,6 @@
 #Copyright(c) 2021, Hồ Văn Chương
 # @chuongmep, https://chuongmep.com/
 import clr
-import sys
-sys.path.append('C:\Program Files (x86)\IronPython 2.7\Lib')
-import os
-import math
 clr.AddReference('acmgd')
 clr.AddReference('acdbmgd')
 clr.AddReference('accoremgd')
