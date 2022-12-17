@@ -63,7 +63,7 @@ namespace PythonConsoleControl
                         string dirCommand = "dir(" + name + ")";
                         object value = commandLine.ScriptScope.Engine.CreateScriptSourceFromString(dirCommand, SourceCodeKind.Expression).Execute(commandLine.ScriptScope);
                         AutocompletionInProgress = false;
-                        foreach (object member in (value as IronPython.Runtime.List))
+                        foreach (object member in (value as IronPython.Runtime.PythonList))
                         {
                             items.Add(new PythonCompletionData((string)member, name, commandLine, false));
                         }

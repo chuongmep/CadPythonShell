@@ -13,7 +13,7 @@ string installationDir = Path.Combine(rootDirectory, @"ProgramData\\Autodesk\\Ap
 const string projectName = "CADPythonShell";
 const string outputName = "CADPythonShell";
 const string outputDir = "output";
-const string version = "1.1.0";
+const string version = "1.1.1";
 
 var fileName = new StringBuilder().Append(outputName).Append("-").Append(version);
 var project = new Project

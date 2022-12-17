@@ -50,6 +50,10 @@
 	    <Generator>SettingsSingleFileGenerator</Generator>
 	  </None>
 	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="AvalonEdit" Version="6.2.0.78" />
+	  <PackageReference Include="IronPython" Version="3.4.0" />
+	</ItemGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<StartAction>Project</StartAction>
 	</PropertyGroup>
