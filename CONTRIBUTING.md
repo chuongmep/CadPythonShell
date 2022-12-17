@@ -8,6 +8,15 @@
 - In the dev branch, implement and test you changes specific to the feature.
 - Build the project and make sure everything works.
 - Create well-documented commits of your changes.
+- Update Submodule: 
+  -  git submodule update --remote
+- Commit submodules in case change in submodule
+  - cd path/to/submodule
+  - git add <stuff>
+  - git commit -m "comment"
+  - git push
+  - Create a pull request to submodules
+- Update and commit submodule: git submodule update --remote
 - Submit a pull request to the origin:dev branch.
 
 #### Please avoid:
