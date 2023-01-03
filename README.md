@@ -21,6 +21,14 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 
 ![](Images/Ribbon.png)
 
+## IronPython 3
+
+IronPython 3.4 uses Python 3.4 syntax and standard libraries and so your Python code will need to be updated accordingly. There are numerous tools and guides available on the web to help porting from Python 2 to 3.
+
+IronPython 3 targets Python 3, including the re-organized standard library, Unicode strings, and all of the other new features.with user upgrade from **IronPython 2** to **IronPython 3**, please follow [Upgrade from IronPython 2 to IronPython 3](https://github.com/IronLanguages/ironpython3/blob/master/Documentation/upgrading-from-ipy2.md).
+
+Various differences between IronPython and CPython can follow at [Differences IronPython and CPython](https://github.com/IronLanguages/ironpython3/blob/master/Documentation/differences-from-c-python.md).
+
 ## Features
 
 - Interactive IronPython interpreter for exploring the API
@@ -42,17 +50,63 @@ The biggest limitation is that you can't deploy DLLs with custom scripts at this
 Note : Support for 5 last version(2019-2023) Autocad or Civil 3D. Older versions can be used but will not guarantee the expected performance.
 
 
-## Basic Usage
+## Basic Usage CadPythonShell
 
 - <kbd>PythonConsole</kbd> - Open Python Console
 
-![](Images/PythonShellConsole.png)
+![](Images/cadpythonshell3.png)
 
 - <kbd>PythonShellSetting</kbd> - Open Setting Config Console
 
-![](Images/ConfigPythonShell.png)
+![](Images/configure.png)
+
+Use Snoop In Python Shell In Python Script :
 
 - <kbd>Snoop</kbd> - Quick Snoop Object Sample In CAD or Civil3D
+- <kbd>sn.Snoop(obj)</kbd> - Snoop Object by Python Console In CAD or Civil3D
+- <kbd>snoop(obj)</kbd> - Snoop Object by Python Console or Execute python code In CAD or Civil3D
+
+Use Command Line To Open CadPythonShell :
+
+![](Images/pythoncmd.png)
+
+Write Console Sample In Console :
+
+``` py
+ed = doc.Editor
+ed.WriteMessage("Hello")
+```
+![](Images/console.gif)
+
+Create Script Execute `ShowAlertDialog` Demo :
+
+```py
+import clr
+clr.AddReference('acmgd')
+clr.AddReference('acdbmgd')
+clr.AddReference('accoremgd')
+# Import references from AutoCAD
+from Autodesk.AutoCAD.Runtime import *
+from Autodesk.AutoCAD.ApplicationServices import *
+from Autodesk.AutoCAD.EditorInput import *
+from Autodesk.AutoCAD.DatabaseServices import *
+from Autodesk.AutoCAD.Geometry import *
+doc = Application.DocumentManager.MdiActiveDocument
+ed = doc.Editor
+db = doc.Database
+# Write Code Below
+Application.ShowAlertDialog("Hello World!")
+```
+
+![](Images/AlertDialogDemo.png)
+
+Create Script Execute `ShowAlertDialog` Demo :
+
+![](Images/getobject.png)
+
+Note : you can see more example in folder [Script Examples](https://github.com/chuongmep/CadPythonShell/tree/dev/Script%20Examples)
+
+## Basic Usage Snoop
 
 ![](Images/Snoop.png)
 
@@ -77,44 +131,6 @@ Note : Support for 5 last version(2019-2023) Autocad or Civil 3D. Older versions
 - <kbd>SnoopEvents</kbd> - Snoop Follow Events In CAD or Civil3D
 
 ![](Images/SnoopEvents.png)
-
-#### Use Snoop In Python Shell Console
-
-- <kbd>sn.Snoop(obj)</kbd> - Snoop Object by Python Console In CAD or Civil3D
-- <kbd>snoop(obj)</kbd> - Snoop Object by Python Console or Execute python code In CAD or Civil3D
-
-![](Images/pythoncmd.png)
-
-#### Write Console Sample
-
-``` py
-ed = doc.Editor
-ed.WriteMessage("Hello")
-```
-![](Images/console.gif)
-
-- Try create script get Object
-
-```py
-import clr
-clr.AddReference('acmgd')
-clr.AddReference('acdbmgd')
-clr.AddReference('accoremgd')
-# Import references from AutoCAD
-from Autodesk.AutoCAD.Runtime import *
-from Autodesk.AutoCAD.ApplicationServices import *
-from Autodesk.AutoCAD.EditorInput import *
-from Autodesk.AutoCAD.DatabaseServices import *
-from Autodesk.AutoCAD.Geometry import *
-doc = Application.DocumentManager.MdiActiveDocument
-ed = doc.Editor
-db = doc.Database
-# Write Code Below
-Application.ShowAlertDialog("Hello World!")
-```
-![](Images/getobject.png)
-
-Note : you can see more example in folder [Script Examples](https://github.com/chuongmep/CadPythonShell/tree/dev/Script%20Examples)
 
 ## Contribute
 
