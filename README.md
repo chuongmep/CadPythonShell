@@ -66,10 +66,6 @@ Use Snoop In Python Shell In Python Script :
 - <kbd>sn.Snoop(obj)</kbd> - Snoop Object by Python Console In CAD or Civil3D
 - <kbd>snoop(obj)</kbd> - Snoop Object by Python Console or Execute python code In CAD or Civil3D
 
-Use Command Line To Open CadPythonShell :
-
-![](Images/pythoncmd.png)
-
 Write Console Sample In Console :
 
 ``` py
