@@ -73,6 +73,6 @@
 		<Compile Remove="ExternalCommandAssemblyBuilder.cs" />
 	</ItemGroup>
 	<ItemGroup>
-	  <ProjectReference Include="..\AutoCADLookup\CADSnoop.csproj" />
+	  <ProjectReference Include="..\CadLookup\CADSnoop.csproj" />
 	</ItemGroup>
 </Project>
