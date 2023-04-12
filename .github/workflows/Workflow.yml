@@ -16,6 +16,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v1
         with:
-          submodules: true
+          submodules: false
       - name: Run Nuke Build
         run: ./.nuke/build.cmd --GitHubToken ${{ secrets.GITHUB_TOKEN }}
