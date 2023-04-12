@@ -118,26 +118,26 @@ namespace MgdDbg.Snoop.Forms
             this.m_mnuItemCopy = new System.Windows.Forms.MenuItem();
             this.m_mnuItemBrowseReflection = new System.Windows.Forms.MenuItem();
             this.m_lvData = new System.Windows.Forms.ListView();
-            this.m_lvCol_label = new System.Windows.Forms.ColumnHeader();
-            this.m_lvCol_value = new System.Windows.Forms.ColumnHeader();
+            this.m_lvCol_label = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.m_lvCol_value = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.listViewContextMenuStrip = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_bnOK = new System.Windows.Forms.Button();
             this.toolStrip1 = new System.Windows.Forms.ToolStrip();
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.m_printDocument = new System.Drawing.Printing.PrintDocument();
             this.m_printPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
             this.m_printDialog = new System.Windows.Forms.PrintDialog();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.listViewContextMenuStrip.SuspendLayout();
             this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // m_tvObjs
             // 
-            this.m_tvObjs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)));
+            this.m_tvObjs.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.m_tvObjs.ContextMenu = this.m_cntxMenu;
             this.m_tvObjs.HideSelection = false;
             this.m_tvObjs.Location = new System.Drawing.Point(12, 37);
@@ -145,8 +145,8 @@ namespace MgdDbg.Snoop.Forms
             this.m_tvObjs.ShowNodeToolTips = true;
             this.m_tvObjs.Size = new System.Drawing.Size(240, 469);
             this.m_tvObjs.TabIndex = 0;
-            this.m_tvObjs.NodeMouseClick += new TreeNodeMouseClickEventHandler(this.TreeNodeSelected);
-            this.m_tvObjs.AfterSelect += new TreeViewEventHandler(this.TreeNodeSelected);
+            this.m_tvObjs.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.TreeNodeSelected);
+            this.m_tvObjs.NodeMouseClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.TreeNodeSelected);
             // 
             // m_cntxMenu
             // 
@@ -168,9 +168,9 @@ namespace MgdDbg.Snoop.Forms
             // 
             // m_lvData
             // 
-            this.m_lvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-                        | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.m_lvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.m_lvData.AutoArrange = false;
             this.m_lvData.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.m_lvCol_label,
@@ -189,8 +189,8 @@ namespace MgdDbg.Snoop.Forms
             this.m_lvData.TabIndex = 1;
             this.m_lvData.UseCompatibleStateImageBehavior = false;
             this.m_lvData.View = System.Windows.Forms.View.Details;
-            this.m_lvData.DoubleClick += new System.EventHandler(this.DataItemSelected);
             this.m_lvData.Click += new System.EventHandler(this.DataItemSelected);
+            this.m_lvData.DoubleClick += new System.EventHandler(this.DataItemSelected);
             // 
             // m_lvCol_label
             // 
@@ -207,13 +207,13 @@ namespace MgdDbg.Snoop.Forms
             this.listViewContextMenuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.copyToolStripMenuItem});
             this.listViewContextMenuStrip.Name = "listViewContextMenuStrip";
-            this.listViewContextMenuStrip.Size = new System.Drawing.Size(100, 26);
+            this.listViewContextMenuStrip.Size = new System.Drawing.Size(103, 26);
             // 
             // copyToolStripMenuItem
             // 
             this.copyToolStripMenuItem.Image = global::MgdDbg.Properties.Resources.COPY1;
             this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
-            this.copyToolStripMenuItem.Size = new System.Drawing.Size(99, 22);
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
             this.copyToolStripMenuItem.Text = "Copy";
             this.copyToolStripMenuItem.Click += new System.EventHandler(this.CopyToolStripMenuItem_Click);
             // 
@@ -260,6 +260,16 @@ namespace MgdDbg.Snoop.Forms
             this.toolStripButton2.Text = "Print Preview";
             this.toolStripButton2.Click += new System.EventHandler(this.PrintPreviewMenuItem_Click);
             // 
+            // toolStripButton3
+            // 
+            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButton3.Image = global::MgdDbg.Properties.Resources.COPY1;
+            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton3.Name = "toolStripButton3";
+            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
+            this.toolStripButton3.Text = "Copy To Clipboard";
+            this.toolStripButton3.Click += new System.EventHandler(this.ContextMenuClick_Copy);
+            // 
             // m_printDocument
             // 
             this.m_printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.PrintDocument_PrintPage);
@@ -279,16 +289,6 @@ namespace MgdDbg.Snoop.Forms
             // 
             this.m_printDialog.Document = this.m_printDocument;
             this.m_printDialog.UseEXDialog = true;
-            // 
-            // toolStripButton3
-            // 
-            this.toolStripButton3.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButton3.Image = global::MgdDbg.Properties.Resources.COPY1;
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(23, 22);
-            this.toolStripButton3.Text = "Copy To Clipboard";
-            this.toolStripButton3.Click += new System.EventHandler(this.ContextMenuClick_Copy);
             // 
             // Objects
             // 
