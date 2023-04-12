@@ -175,7 +175,7 @@ namespace CADPythonShell.App
                 Size = RibbonItemSize.Large,
                 Name = nameof(MgdDbgAction.SnoopEnts),
                 ShowText = true,
-                Text ="Snoop\nEntities",
+                Text = "Snoop\nEntities",
                 Description = $"Start snoop Snoop Entities inside Autocad \n Command: {nameof(MgdDbgAction.SnoopEnts)}",
                 Image = CADPythonShellApplication.GetEmbeddedPng(addinAssembly,
                     "CADPythonShell.Resources.snoopentities-16.png"),

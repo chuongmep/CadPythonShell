@@ -21,6 +21,7 @@ namespace PythonConsoleControl
         internal volatile bool AutocompletionInProgress = false;
 
         private bool excludeCallables;
+
         public bool ExcludeCallables
         { get { return excludeCallables; } set { excludeCallables = value; } }
 

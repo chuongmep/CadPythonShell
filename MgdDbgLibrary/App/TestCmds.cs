@@ -1,27 +1,25 @@
 //
-// (C) Copyright 2004 by Autodesk, Inc. 
+// (C) Copyright 2004 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
-// object code form for any purpose and without fee is hereby granted, 
-// provided that the above copyright notice appears in all copies and 
+// object code form for any purpose and without fee is hereby granted,
+// provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
-// restricted rights notice below appear in all supporting 
+// restricted rights notice below appear in all supporting
 // documentation.
 //
-// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS. 
+// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC. 
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
 //
-// Use, duplication, or disclosure by the U.S. Government is subject to 
+// Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
@@ -30,6 +28,8 @@ using MgdDbg.CompBuilder;
 using MgdDbg.ObjTests.TestFramework;
 using MgdDbg.Throwaway;
 using MgdDbg.Utils;
+using System;
+using System.Windows.Forms;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 using TestForm = MgdDbg.ObjTests.TestFramework.TestForm;
 
@@ -84,7 +84,7 @@ namespace MgdDbg.App
             }
         }
 
-        //[CommandMethod("MgdDbg", "MgdDbgSnoopEnts", "SnoopEnts", CommandFlags.Modal)]       
+        //[CommandMethod("MgdDbg", "MgdDbgSnoopEnts", "SnoopEnts", CommandFlags.Modal)]
         [CommandMethod("SnoopEnts", CommandFlags.Modal)]
         public void SnoopEntity()
         {
@@ -95,7 +95,7 @@ namespace MgdDbg.App
                 return;
 
             ObjectIdCollection selSet = new ObjectIdCollection(res.Value.GetObjectIds());
-            
+
             using (TransactionHelper trHlp = new TransactionHelper())
             {
                 trHlp.Start();
@@ -108,7 +108,7 @@ namespace MgdDbg.App
             }
         }
 
-        //[CommandMethod("MgdDbg", "MgdDbgSnoopNEnts", "SnoopNEnts", CommandFlags.Modal)]       
+        //[CommandMethod("MgdDbg", "MgdDbgSnoopNEnts", "SnoopNEnts", CommandFlags.Modal)]
         [CommandMethod("SnoopNEnts", CommandFlags.Modal)]
         public void SnoopNestedEntity()
         {
@@ -142,7 +142,7 @@ namespace MgdDbg.App
             }
         }
 
-        //[CommandMethod("MgdDbg", "MgdDbgSnoopByHandle", "SnoopEnts", CommandFlags.Modal)]       
+        //[CommandMethod("MgdDbg", "MgdDbgSnoopByHandle", "SnoopEnts", CommandFlags.Modal)]
         [CommandMethod("SnoopByHandle", CommandFlags.Modal)]
         public void SnoopEntityByHandle()
         {
@@ -179,11 +179,10 @@ namespace MgdDbg.App
                 }
                 catch (Autodesk.AutoCAD.Runtime.Exception x)
                 {
-                    AcadUi.PrintToCmdLine(string.Format("\nERROR: {0}", ((ErrorStatus) x.ErrorStatus).ToString()));
+                    AcadUi.PrintToCmdLine(string.Format("\nERROR: {0}", ((ErrorStatus)x.ErrorStatus).ToString()));
                 }
             }
         }
-
 
         //[CommandMethod("MgdDbg", "MgdDbgSnoopDb", "SnoopDb", CommandFlags.Modal)]
         [CommandMethod("SnoopDB", CommandFlags.Modal)]
@@ -236,7 +235,6 @@ namespace MgdDbg.App
             AcadApp.ShowModalDialog(dbox);
         }
 
-
         //[CommandMethod("MgdDbg", "MgdDbgTestSpeed1", "TestSpeed1", CommandFlags.Modal)]
         [CommandMethod("MgdDbgTestSpeed1", CommandFlags.Modal)]
         public void TestSpeed1()
@@ -247,7 +245,7 @@ namespace MgdDbg.App
 
             using (Transaction tr = db.TransactionManager.StartTransaction())
             {
-                BlockTableRecord btr = (BlockTableRecord) tr.GetObject(db.CurrentSpaceId, OpenMode.ForWrite);
+                BlockTableRecord btr = (BlockTableRecord)tr.GetObject(db.CurrentSpaceId, OpenMode.ForWrite);
 
                 double x = 0.0;
                 double y = 0.0;
@@ -320,7 +318,7 @@ namespace MgdDbg.App
                 Autodesk.AutoCAD.DatabaseServices.TransactionManager tm = prRes.ObjectId.Database.TransactionManager;
                 using (Autodesk.AutoCAD.DatabaseServices.Transaction tr = tm.StartTransaction())
                 {
-                    RasterImage imgObj = (RasterImage) tr.GetObject(prRes.ObjectId, OpenMode.ForRead);
+                    RasterImage imgObj = (RasterImage)tr.GetObject(prRes.ObjectId, OpenMode.ForRead);
 
                     CoordinateSystem3d entEcs = imgObj.Orientation;
 

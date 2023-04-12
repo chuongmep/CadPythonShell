@@ -1,8 +1,8 @@
-﻿using System.IO;
+﻿using CADRuntime;
+using System.IO;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Xml.Linq;
-using CADRuntime;
 using Forms = System.Windows.Forms;
 
 namespace CADPythonShell.App

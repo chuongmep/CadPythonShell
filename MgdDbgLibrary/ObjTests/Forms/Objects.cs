@@ -1,35 +1,33 @@
-// (C) Copyright 2004 by Autodesk, Inc. 
+// (C) Copyright 2004 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
-// object code form for any purpose and without fee is hereby granted, 
-// provided that the above copyright notice appears in all copies and 
+// object code form for any purpose and without fee is hereby granted,
+// provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
-// restricted rights notice below appear in all supporting 
+// restricted rights notice below appear in all supporting
 // documentation.
 //
-// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS. 
+// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC. 
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
 //
-// Use, duplication, or disclosure by the U.S. Government is subject to 
+// Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System.Collections;
-using System.Windows.Forms;
-
 using Autodesk.AutoCAD.DatabaseServices;
 using MgdDbg.CompBuilder;
-using AcadApp = Autodesk.AutoCAD.ApplicationServices;
+using System.Collections;
+using System.Windows.Forms;
 
 namespace MgdDbg.ObjTests.Forms
 {
     /// <summary>
-    /// 
+    ///
     /// </summary>
     public partial class Objects : Form
     {
@@ -38,7 +36,7 @@ namespace MgdDbg.ObjTests.Forms
         private ObjectId m_objectId = ObjectId.Null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public ObjectId
         ObjectId
@@ -50,24 +48,23 @@ namespace MgdDbg.ObjTests.Forms
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="trHlpr"></param>
-        public Objects (TransactionHelper trHlpr)
+        public Objects(TransactionHelper trHlpr)
         {
             InitializeComponent();
 
             m_db = MgdDbg.Utils.Db.GetCurDwg();
             m_trHlpr = trHlpr;
-            
+
             InitializeTreeView();
         }
-
 
         /// <summary>
         /// Initialise tree with all symbol tables and NOD
         /// </summary>
-        private void InitializeTreeView ()
+        private void InitializeTreeView()
         {
             m_treeView.BeginUpdate();
 
@@ -87,38 +84,40 @@ namespace MgdDbg.ObjTests.Forms
             AddDictionaryToTree(m_db.NamedObjectsDictionaryId, rootNode, m_trHlpr.Transaction);
 
             m_treeView.Sorted = true;
-            
+
             m_treeView.EndUpdate();
         }
 
-		/// <summary>
-		/// Add a single Symbol Table to the tree and iterate over all its SymbolTableRecords,
-		/// adding each one of them as a sub-node
-		/// </summary>
-		/// <param name="tblName">Name of the table</param>
-		/// <param name="tblId">ObjectId of the table</param>
-		
+        /// <summary>
+        /// Add a single Symbol Table to the tree and iterate over all its SymbolTableRecords,
+        /// adding each one of them as a sub-node
+        /// </summary>
+        /// <param name="tblName">Name of the table</param>
+        /// <param name="tblId">ObjectId of the table</param>
+
         private void
         AddSymbolTableToTree(string tblName, ObjectId tblId)
         {
             DBObject tmpObj = m_trHlpr.Transaction.GetObject(tblId, OpenMode.ForRead);
             SymbolTable tbl = tmpObj as SymbolTable;
-            if (tbl != null) {
+            if (tbl != null)
+            {
                 TreeNode mainTblNode = new TreeNode(tblName);
                 mainTblNode.Tag = tblId;
                 m_treeView.Nodes.Add(mainTblNode);
 
-                    // iterate over each TblRec in the SymbolTable
-                foreach (ObjectId tblRecId in tbl) {
+                // iterate over each TblRec in the SymbolTable
+                foreach (ObjectId tblRecId in tbl)
+                {
                     TreeNode recNode = new TreeNode(m_trHlpr.SymbolIdToName(tblRecId));
                     recNode.Tag = tblRecId;
                     mainTblNode.Nodes.Add(recNode);
                 }
             }
         }
-        
+
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="dictId"></param>
         /// <param name="parentNode"></param>
@@ -132,27 +131,30 @@ namespace MgdDbg.ObjTests.Forms
             // we'll just return without adding any nested items.
             DBObject tmpObj = tr.GetObject(dictId, OpenMode.ForRead);
             DBDictionary dbDict = tmpObj as DBDictionary;
-            if (dbDict != null) {
-                foreach (DictionaryEntry curEntry in dbDict) {
+            if (dbDict != null)
+            {
+                foreach (DictionaryEntry curEntry in dbDict)
+                {
                     TreeNode newNode = new TreeNode((string)curEntry.Key);
                     newNode.Tag = curEntry.Value;
                     parentNode.Nodes.Add(newNode);
-                        
-                        // if this is a dictionary, it will recursively add
-                        // all of its children to the tree
-                    AddDictionaryToTree((ObjectId)curEntry.Value, newNode, tr);   
+
+                    // if this is a dictionary, it will recursively add
+                    // all of its children to the tree
+                    AddDictionaryToTree((ObjectId)curEntry.Value, newNode, tr);
                 }
             }
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void m_treeView_AfterSelect (object sender, TreeViewEventArgs e)
+        private void m_treeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
-            if (e.Node.Tag != null) {
+            if (e.Node.Tag != null)
+            {
                 m_objectId = (ObjectId)e.Node.Tag;
             }
         }

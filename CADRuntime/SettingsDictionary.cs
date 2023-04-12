@@ -13,6 +13,7 @@ namespace CADRuntime
         private readonly string _settingsPath;
         private XDocument _settings;
         private string nameVariable = "StringVariable";
+
         public SettingsDictionary(string settingsPath)
         {
             _settingsPath = settingsPath;

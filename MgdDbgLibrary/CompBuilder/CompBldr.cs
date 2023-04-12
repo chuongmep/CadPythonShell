@@ -1,111 +1,110 @@
-
 //
-// (C) Copyright 2004 by Autodesk, Inc. 
+// (C) Copyright 2004 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
-// object code form for any purpose and without fee is hereby granted, 
-// provided that the above copyright notice appears in all copies and 
+// object code form for any purpose and without fee is hereby granted,
+// provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
-// restricted rights notice below appear in all supporting 
+// restricted rights notice below appear in all supporting
 // documentation.
 //
-// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS. 
+// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC. 
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
 //
-// Use, duplication, or disclosure by the U.S. Government is subject to 
+// Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System.Collections;
-using System.Diagnostics;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
+using System.Collections;
+using System.Diagnostics;
 
 namespace MgdDbg.CompBuilder
 {
-	/// <summary>
-	/// This class is intended to ease the creation of multiple entities that
-	/// are supposed to represent a "Component".  Basically, anything you would
-	/// normally use a BlockDef for.  It will manage a transaction and some transforms
-	/// to make it easier to batch produce several related entities.
-	/// </summary>
-	
-	public abstract class CompBldr : TransactionHelper
-	{
-	        // member variables
-        protected BlockTableRecord      m_blkRec = null;
-        protected ObjectId              m_blkDefId;
-        protected ObjectIdCollection    m_objIds = new ObjectIdCollection();
-        protected Stack                 m_xformStack = new Stack();
-        protected bool                  m_ignoreXform = false;
+    /// <summary>
+    /// This class is intended to ease the creation of multiple entities that
+    /// are supposed to represent a "Component".  Basically, anything you would
+    /// normally use a BlockDef for.  It will manage a transaction and some transforms
+    /// to make it easier to batch produce several related entities.
+    /// </summary>
 
-		public
-		CompBldr(Database db)
-		:   base(db)
-		{
-                // init stack with identity matrix
+    public abstract class CompBldr : TransactionHelper
+    {
+        // member variables
+        protected BlockTableRecord m_blkRec = null;
+
+        protected ObjectId m_blkDefId;
+        protected ObjectIdCollection m_objIds = new ObjectIdCollection();
+        protected Stack m_xformStack = new Stack();
+        protected bool m_ignoreXform = false;
+
+        public
+        CompBldr(Database db)
+        : base(db)
+        {
+            // init stack with identity matrix
             m_xformStack.Push(Matrix3d.Identity);
-		}
+        }
 
         protected abstract void SetCurrentBlkTblRec();
-        
+
         public ObjectId
         BlockDefId
         {
-            get {
+            get
+            {
                 Debug.Assert(m_blkDefId.IsNull == false);   // shouldn't be calling this if things haven't been started!
                 return m_blkDefId;
             }
         }
-        
+
         public override void
         Start()
         {
-                // call base class to start a transaction
+            // call base class to start a transaction
             base.Start();
-            
-                // call derived class to supply the block that we are drawing into.
+
+            // call derived class to supply the block that we are drawing into.
             SetCurrentBlkTblRec();
             if (m_blkRec == null)
                 throw (new System.Exception("No BlockTableRecord was set up!"));
-                
+
             m_blkDefId = m_blkRec.ObjectId;
         }
 
         public virtual void
         Reset()
         {
-                // reset the stack of xforms
+            // reset the stack of xforms
             m_xformStack.Clear();
 
-                // init stack with identity matrix
+            // init stack with identity matrix
             m_xformStack.Push(Matrix3d.Identity);
 
             m_objIds.Clear();
         }
-
 
         public virtual void
         AddToDb(Entity ent)
         {
             Debug.Assert((m_db != null) && (m_trans != null) && (m_blkRec != null));
 
-                // transform if not the identity matrix
+            // transform if not the identity matrix
             if ((m_ignoreXform == false) && (m_xformStack.Count > 1))
                 ent.TransformBy(CurrentXform());
 
-                // add to the current block tbl record and add to the transaction
+            // add to the current block tbl record and add to the transaction
             m_blkRec.AppendEntity(ent);
 
             m_objIds.Add(ent.ObjectId);   // keep track of everything we added just in case
             m_trans.AddNewlyCreatedDBObject(ent, true);
         }
-
 
         public virtual void
         AddToDbNoXform(Entity ent)
@@ -114,7 +113,6 @@ namespace MgdDbg.CompBuilder
             AddToDb(ent);
             m_ignoreXform = false;
         }
-        
 
         public virtual void
         SetToDefaultProps(Entity ent)
@@ -122,23 +120,20 @@ namespace MgdDbg.CompBuilder
             ent.SetDatabaseDefaults(m_db);
         }
 
- 
         public void
         PushXform(Matrix3d mat)
         {
             Debug.Assert(m_xformStack.Count != 0);
-        
+
             m_xformStack.Push(mat * CurrentXform());
         }
 
- 
         public void
         PopXform()
         {
             Debug.Assert(m_xformStack.Count > 1);  // this means that someone has popped to many times - bad bad bad
             m_xformStack.Pop();
         }
-
 
         public Matrix3d
         CurrentXform()
@@ -149,7 +144,6 @@ namespace MgdDbg.CompBuilder
     }
 }
 
-
 /*
 Acad::ErrorStatus
 AecRcpCompBldr::addPolyline(AcDbPolyline* newPline, const AcGePoint2dArray& pts, bool isClosed)
@@ -159,7 +153,7 @@ AecRcpCompBldr::addPolyline(AcDbPolyline* newPline, const AcGePoint2dArray& pts,
         AEC_ASSERT(0);
         return Acad::eInvalidInput;
     }
-    
+
     Acad::ErrorStatus es;
 
     int len = pts.length();
@@ -172,8 +166,6 @@ AecRcpCompBldr::addPolyline(AcDbPolyline* newPline, const AcGePoint2dArray& pts,
     return addToDb(newPline);
 }
 
-
-
 Acad::ErrorStatus
 AecRcpCompBldr::addPolyline(AcDbPolyline* newPline, const AcGePoint2dArray& pts, const AcGeDoubleArray& bulges, bool isClosed)
 {
@@ -184,7 +176,7 @@ AecRcpCompBldr::addPolyline(AcDbPolyline* newPline, const AcGePoint2dArray& pts,
     }
 
     AEC_ASSERT(pts.length() == bulges.length());
-    
+
     Acad::ErrorStatus es;
 
     int len = pts.length();
@@ -196,8 +188,6 @@ AecRcpCompBldr::addPolyline(AcDbPolyline* newPline, const AcGePoint2dArray& pts,
 
     return addToDb(newPline);
 }
-
-
 
 Acad::ErrorStatus
 AecRcpCompBldr::addHatchToPrevBoundary(AcDbHatch* newHatch, bool makeAssoc)
@@ -247,7 +237,6 @@ AecRcpCompBldr::addHatchToPrevBoundary(AcDbHatch* newHatch, bool makeAssoc)
 
     return es;
 }
-
 
 Acad::ErrorStatus
 AecRcpCompBldr::addHatchToBoundaries(AcDbHatch* newHatch, const AcDbObjectIdArray& boundaryIds,
@@ -305,7 +294,6 @@ AecRcpCompBldr::addHatchToBoundaries(AcDbHatch* newHatch, const AcDbObjectIdArra
     return es;
 }
 
-
 Acad::ErrorStatus
 AecRcpCompBldr::addHatchWithBoundary(AcDbHatch* newHatch, const AcGePoint2dArray& pts, const AcGeDoubleArray& bulges)
 {
@@ -344,7 +332,6 @@ AecRcpCompBldr::addHatchWithBoundary(AcDbHatch* newHatch, const AcGePoint2dArray
     return es;
 }
 
-
 Acad::ErrorStatus
 AecRcpCompBldr::establishAssociativity(AcDbHatch* hatch, const AcDbObjectIdArray& boundaryIds)
 {
@@ -370,7 +357,6 @@ AecRcpCompBldr::establishAssociativity(AcDbHatch* hatch, const AcDbObjectIdArray
     return Acad::eOk;
 }
 
-
 Acad::ErrorStatus
 AecRcpCompBldr::sendToBack(const AcDbObjectId& backEntId, const AcDbObjectIdArray& topEntIds)
 {
@@ -394,7 +380,7 @@ AecRcpCompBldr::sendToBack(const AcDbObjectId& backEntId, const AcDbObjectIdArra
             es = sortTbl->moveAbove(topEntIds, backEntId);
             AEC_ASSERT(es == Acad::eOk);
         }
-        
+
         sortTbl->close();
 
             // if we aren't already putting this sortents table on the block record

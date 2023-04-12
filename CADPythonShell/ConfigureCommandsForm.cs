@@ -1,5 +1,5 @@
-﻿using System.IO;
-using CADPythonShell.App;
+﻿using CADPythonShell.App;
+using System.IO;
 
 namespace CADPythonShell
 {

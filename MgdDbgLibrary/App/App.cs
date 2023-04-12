@@ -1,50 +1,47 @@
-
 //
-// (C) Copyright 2004 by Autodesk, Inc. 
+// (C) Copyright 2004 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
-// object code form for any purpose and without fee is hereby granted, 
-// provided that the above copyright notice appears in all copies and 
+// object code form for any purpose and without fee is hereby granted,
+// provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
-// restricted rights notice below appear in all supporting 
+// restricted rights notice below appear in all supporting
 // documentation.
 //
-// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS. 
+// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC. 
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
 //
-// Use, duplication, or disclosure by the U.S. Government is subject to 
+// Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-
-using System.Collections;
 using Autodesk.AutoCAD.Runtime;
 using MgdDbg.App;
 using MgdDbg.ObjTests;
 using MgdDbg.ObjTests.TestFramework;
+using System.Collections;
 
-[assembly:ExtensionApplication(typeof(App))]
-[assembly:CommandClass(typeof(TestCmds))]
+[assembly: ExtensionApplication(typeof(App))]
+[assembly: CommandClass(typeof(TestCmds))]
 
 namespace MgdDbg.App
 {
-	
-	public class App : IExtensionApplication
-	{
+    public class App : IExtensionApplication
+    {
         private ArrayList m_tests = new ArrayList();
         private AppDocReactor m_appDocReactor = null;
 
-		public void
-		Initialize()
-		{
+        public void
+        Initialize()
+        {
             Utils.AcadUi.PrintToCmdLine("\nLoading MgdDbg...");
-            
-                // register any Snoop Collector Extension  objectsthat we have
+
+            // register any Snoop Collector Extension  objectsthat we have
             Snoop.CollectorExts.Object extObj = new Snoop.CollectorExts.Object();
             Snoop.CollectorExts.RxObject extRxObj = new Snoop.CollectorExts.RxObject();
             Snoop.CollectorExts.DbObject extObjects = new Snoop.CollectorExts.DbObject();
@@ -60,7 +57,7 @@ namespace MgdDbg.App
             Snoop.CollectorExts.Publish extPublish = new Snoop.CollectorExts.Publish();
             Snoop.CollectorExts.Plotting extPlotting = new Snoop.CollectorExts.Plotting();
             Snoop.CollectorExts.EditorInput extEdInput = new Snoop.CollectorExts.EditorInput();
-            
+
             AppContextMenu.AddContextMenu();    // add our commands to the App right-click menu
 
             CreateAndAddTestFuncs();            // populate the TestFramework with our functions
@@ -69,23 +66,23 @@ namespace MgdDbg.App
             m_appDocReactor.EnableEvents();
 
             AddFilterForSnoopClasses();
-		}
-		
-		public void
-		Terminate()
-		{
+        }
+
+        public void
+        Terminate()
+        {
             AppContextMenu.RemoveContextMenu();
             RemoveAndFreeTestFuncs();
 
             m_appDocReactor.DisableEvents();
-		}
+        }
 
         /// <summary>
         /// The TestFramework allows us to plug tests and sample functions into an existing
         /// UI Framework.  For each TestFuncs object we've created to house our individual
         /// tests, we need to add them during App start up, and remove them during App shut down.
         /// </summary>
-        
+
         private void
         CreateAndAddTestFuncs()
         {
@@ -97,7 +94,8 @@ namespace MgdDbg.App
             m_tests.Add(new QueryEntTests());
             m_tests.Add(new CategoryTests());
 
-            foreach (MgdDbgTestFuncs testFunc in m_tests) {
+            foreach (MgdDbgTestFuncs testFunc in m_tests)
+            {
                 MgdDbgTestFuncs.AddTestFuncsToFramework(testFunc);
             }
         }
@@ -106,11 +104,12 @@ namespace MgdDbg.App
         /// Reverse of above.  Nothing to do for each TestFunc object though
         /// because we already know which ones were registered for this app.
         /// </summary>
-        
+
         private void
         RemoveAndFreeTestFuncs()
         {
-            foreach (MgdDbgTestFuncs testFunc in m_tests) {
+            foreach (MgdDbgTestFuncs testFunc in m_tests)
+            {
                 MgdDbgTestFuncs.RemoveTestFuncsFromFramework(testFunc);
             }
         }
@@ -120,22 +119,24 @@ namespace MgdDbg.App
         /// dialog get class information from.  We don't want to display class info for every
         /// assembly in .NET, just the ones we are responsible for.  So, it acts as a filter.
         /// </summary>
-        
+
         private void
         AddFilterForSnoopClasses()
         {
             ArrayList assembliesToLoad = new ArrayList();
-            
+
             assembliesToLoad.Add("mscorlib");       // for the base System.Object
             assembliesToLoad.Add("acmgd");
             assembliesToLoad.Add("acdbmgd");
 
             System.Reflection.AssemblyName[] assemblyNames = System.Reflection.Assembly.GetExecutingAssembly().GetReferencedAssemblies();
-            foreach (System.Reflection.AssemblyName assemblyName in assemblyNames) {
-                if (assembliesToLoad.Contains(assemblyName.Name)) {
+            foreach (System.Reflection.AssemblyName assemblyName in assemblyNames)
+            {
+                if (assembliesToLoad.Contains(assemblyName.Name))
+                {
                     MgdDbg.Snoop.Forms.Editor.assemblyNamesToLoad.Add(assemblyName.FullName);
                 }
             }
         }
-	}
+    }
 }

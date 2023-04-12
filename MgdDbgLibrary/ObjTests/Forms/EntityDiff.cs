@@ -1,34 +1,35 @@
-// (C) Copyright 2004 by Autodesk, Inc. 
+// (C) Copyright 2004 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
-// object code form for any purpose and without fee is hereby granted, 
-// provided that the above copyright notice appears in all copies and 
+// object code form for any purpose and without fee is hereby granted,
+// provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
-// restricted rights notice below appear in all supporting 
+// restricted rights notice below appear in all supporting
 // documentation.
 //
-// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS. 
+// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC. 
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
 //
-// Use, duplication, or disclosure by the U.S. Government is subject to 
+// Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
+using Autodesk.AutoCAD.DatabaseServices;
+using MgdDbg.CompBuilder;
+using MgdDbg.Utils;
 using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
-using Autodesk.AutoCAD.DatabaseServices;
-using MgdDbg.CompBuilder;
-using MgdDbg.Utils;
-using AcDb = Autodesk.AutoCAD.DatabaseServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices;
+
+using AcDb = Autodesk.AutoCAD.DatabaseServices;
 
 namespace MgdDbg.ObjTests.Forms
 {
@@ -39,6 +40,7 @@ namespace MgdDbg.ObjTests.Forms
     {
         // member vars
         protected System.Windows.Forms.ListView m_lvData;
+
         protected System.Windows.Forms.Button m_bnOK;
         protected System.Windows.Forms.ColumnHeader m_lvCol_label;
         protected System.Windows.Forms.ColumnHeader m_lvCol_value1;
@@ -52,13 +54,13 @@ namespace MgdDbg.ObjTests.Forms
         protected System.ComponentModel.Container components = null;
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="objId1"></param>
         /// <param name="objId2"></param>
         /// <param name="tr"></param>
         public
-        EntityDiff (AcDb.ObjectId objId1, AcDb.ObjectId objId2, TransactionHelper tr)
+        EntityDiff(AcDb.ObjectId objId1, AcDb.ObjectId objId2, TransactionHelper tr)
         {
             // Required for Windows Form Designer support
             InitializeComponent();
@@ -71,12 +73,12 @@ namespace MgdDbg.ObjTests.Forms
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="obj1"></param>
         /// <param name="obj2"></param>
         public
-        EntityDiff (Object obj1, Object obj2)
+        EntityDiff(Object obj1, Object obj2)
         {
             // Required for Windows Form Designer support
             InitializeComponent();
@@ -89,10 +91,12 @@ namespace MgdDbg.ObjTests.Forms
         /// Clean up any resources being used.
         /// </summary>
         protected override void
-        Dispose (bool disposing)
+        Dispose(bool disposing)
         {
-            if (disposing) {
-                if (components != null) {
+            if (disposing)
+            {
+                if (components != null)
+                {
                     components.Dispose();
                 }
             }
@@ -100,12 +104,13 @@ namespace MgdDbg.ObjTests.Forms
         }
 
         #region Windows Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
         /// </summary>
         protected void
-        InitializeComponent ()
+        InitializeComponent()
         {
             this.m_lvData = new System.Windows.Forms.ListView();
             this.m_lvCol_label = new System.Windows.Forms.ColumnHeader();
@@ -113,9 +118,9 @@ namespace MgdDbg.ObjTests.Forms
             this.m_lvCol_value2 = new System.Windows.Forms.ColumnHeader();
             this.m_bnOK = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
+            //
             // m_lvData
-            // 
+            //
             this.m_lvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -139,26 +144,26 @@ namespace MgdDbg.ObjTests.Forms
             this.m_lvData.View = System.Windows.Forms.View.Details;
             this.m_lvData.DoubleClick += new System.EventHandler(this.DataItemSelected);
             this.m_lvData.Click += new System.EventHandler(this.DataItemSelected);
-            // 
+            //
             // m_lvCol_label
-            // 
+            //
             this.m_lvCol_label.Text = "Field";
             this.m_lvCol_label.Width = 150;
-            // 
+            //
             // m_lvCol_value1
-            // 
+            //
             this.m_lvCol_value1.Text = "Value 1";
             this.m_lvCol_value1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.m_lvCol_value1.Width = 200;
-            // 
+            //
             // m_lvCol_value2
-            // 
+            //
             this.m_lvCol_value2.Text = "Value 2";
             this.m_lvCol_value2.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.m_lvCol_value2.Width = 200;
-            // 
+            //
             // m_bnOK
-            // 
+            //
             this.m_bnOK.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.m_bnOK.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_bnOK.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -167,9 +172,9 @@ namespace MgdDbg.ObjTests.Forms
             this.m_bnOK.Size = new System.Drawing.Size(75, 23);
             this.m_bnOK.TabIndex = 2;
             this.m_bnOK.Text = "OK";
-            // 
+            //
             // EntityDiff
-            // 
+            //
             this.AcceptButton = this.m_bnOK;
             this.AutoScaleBaseSize = new System.Drawing.Size(5, 13);
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -184,21 +189,21 @@ namespace MgdDbg.ObjTests.Forms
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Diff Objects";
             this.ResumeLayout(false);
-
         }
-        #endregion
+
+        #endregion Windows Form Designer generated code
 
         /// <summary>
         /// Get the common hierarchy of the 2 objects
         /// and then get the properties at each level
         /// </summary>
         private void
-        Initialise ()
+        Initialise()
         {
             ArrayList hierarchy = m_compareObjs.CommonHierarchy;
-            
-            foreach (Object typeObj in hierarchy) {
-             
+
+            foreach (Object typeObj in hierarchy)
+            {
                 Type type = typeObj as Type;
                 Hashtable propsTable = m_compareObjs.GetPropsAtLevel(type);
                 /// display it
@@ -206,19 +211,18 @@ namespace MgdDbg.ObjTests.Forms
             }
         }
 
-
         /// <summary>
         /// Drill down
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         protected void
-        DataItemSelected (object sender, System.EventArgs e)
+        DataItemSelected(object sender, System.EventArgs e)
         {
             Debug.Assert((m_lvData.SelectedItems.Count > 1) == false);
 
-            if (m_lvData.SelectedItems.Count != 0) {
-
+            if (m_lvData.SelectedItems.Count != 0)
+            {
                 ListViewItem item = m_lvData.SelectedItems[0];
                 if (item.SubItems.Count != 3)
                     return;
@@ -239,13 +243,13 @@ namespace MgdDbg.ObjTests.Forms
         /// of the two objects
         /// </summary>
         /// <param name="listViewItem">class separator string</param>
-        /// <param name="propTable"> 
+        /// <param name="propTable">
         /// key   --> property name
-        /// value --> an arraylist of 2 items, each item containing 
+        /// value --> an arraylist of 2 items, each item containing
         /// the value of the current property for the respective object
         /// </param>
         public void
-        DisplayDiff (string listViewItem, Hashtable propTable)
+        DisplayDiff(string listViewItem, Hashtable propTable)
         {
             if (propTable == null)
                 return;
@@ -262,8 +266,8 @@ namespace MgdDbg.ObjTests.Forms
 
             IDictionaryEnumerator iDictEnum = propTable.GetEnumerator();
 
-            while (iDictEnum.MoveNext()) {
-
+            while (iDictEnum.MoveNext())
+            {
                 DictionaryEntry dictEntry = (DictionaryEntry)iDictEnum.Current;
                 string key = dictEntry.Key as string;
                 ArrayList arrList = dictEntry.Value as ArrayList;
@@ -282,15 +286,16 @@ namespace MgdDbg.ObjTests.Forms
                 lvItem.SubItems.Add(lvsItem2);
 
                 Type type = null;
-                if (obj1.GetType() == typeof(System.DBNull)) {
+                if (obj1.GetType() == typeof(System.DBNull))
+                {
                     type = obj2.GetType();
                 }
                 else
                     type = obj1.GetType();
-                
-                /// provide a drill down only on worthwhile data
-                if (IsDrillDown(type)) {
 
+                /// provide a drill down only on worthwhile data
+                if (IsDrillDown(type))
+                {
                     lvsItem1.Tag = obj1;
                     lvsItem2.Tag = obj2;
 
@@ -299,13 +304,16 @@ namespace MgdDbg.ObjTests.Forms
                 }
 
                 /// this may happen when there is a collection object comparison
-                if (obj1.GetType() != obj2.GetType()) {
+                if (obj1.GetType() != obj2.GetType())
+                {
                     /// we know this is diff., so highlight it
                     lvItem.BackColor = Color.Red;
                 }
-                else {
+                else
+                {
                     /// regular occurence of unequal objects
-                    if (!obj1.Equals(obj2)) {
+                    if (!obj1.Equals(obj2))
+                    {
                         /// we know this is diff., so highlight it
                         lvItem.BackColor = Color.Red;
                     }
@@ -318,23 +326,21 @@ namespace MgdDbg.ObjTests.Forms
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="type"></param>
         /// <returns></returns>
         private Boolean
-        IsDrillDown (Type type)
+        IsDrillDown(Type type)
         {
             if (type.IsPrimitive == false &&
                 type.IsEnum == false &&
                 type != typeof(String) &&
-                type != typeof(DBNull)) {
+                type != typeof(DBNull))
+            {
                 return true;
             }
             return false;
         }
     }
 }
-
-
-

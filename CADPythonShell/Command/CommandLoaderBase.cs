@@ -1,6 +1,6 @@
-﻿using System.IO;
-using CADPythonShell.App;
+﻿using CADPythonShell.App;
 using CADRuntime;
+using System.IO;
 
 namespace CADPythonShell.Command
 {

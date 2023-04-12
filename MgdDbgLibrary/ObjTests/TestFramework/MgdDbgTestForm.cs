@@ -1,21 +1,20 @@
-
 //
-// (C) Copyright 2005 by Autodesk, Inc. 
+// (C) Copyright 2005 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
-// object code form for any purpose and without fee is hereby granted, 
-// provided that the above copyright notice appears in all copies and 
+// object code form for any purpose and without fee is hereby granted,
+// provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
-// restricted rights notice below appear in all supporting 
+// restricted rights notice below appear in all supporting
 // documentation.
 //
-// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS. 
+// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC. 
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
 //
-// Use, duplication, or disclosure by the U.S. Government is subject to 
+// Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
@@ -26,20 +25,21 @@ using System.Collections;
 using System.Diagnostics;
 using System.Windows.Forms;
 
-namespace MgdDbg.ObjTests.TestFramework {
-
+namespace MgdDbg.ObjTests.TestFramework
+{
     /// <summary>
     /// This is a generic Test "Shell" that allows you to easily add new test functions and organize
     /// them without much effort.  The Tests are divided into two basic categories, those that are
-    /// organized by class hierarchy (e.g., this test applies to all objects at this level of the 
+    /// organized by class hierarchy (e.g., this test applies to all objects at this level of the
     /// class hierarchy), and Categorized tests (e.g., this test falls into the Category of "Data Extraction").
     /// The test funcs are collected and sorted into buckets that are then displayed in the correct
     /// location in the tree.
     /// </summary>
 
-    public class TestForm : System.Windows.Forms.Form {
-
-        enum ImageIconList {    // indicies of images to use in the tree control
+    public class TestForm : System.Windows.Forms.Form
+    {
+        private enum ImageIconList
+        {    // indicies of images to use in the tree control
             Test = 0,
             Category = 1,
             Class = 2,
@@ -72,10 +72,13 @@ namespace MgdDbg.ObjTests.TestFramework {
         private MgdDbg.Utils.ListViewColumnSorter m_colSorter;
         private TreeView m_treeView;
         private CheckBox m_checkBxBaseTestsInclude;
+
         // tree node to remember last selected node
         private static TreeNode m_memoryNode = null;
+
         // list view item key to remember last selected test
         private static string m_itemKey = string.Empty;
+
         // to remember last option
         private static bool m_includeBaseTests = true;
 
@@ -96,8 +99,10 @@ namespace MgdDbg.ObjTests.TestFramework {
             m_treeView.BeginUpdate();
 
             // sort the TestFuncInfo objects into buckets
-            foreach (MgdDbgTestFuncs testFuncGroup in testFuncs) {
-                foreach (MgdDbgTestFuncInfo testFuncInfo in testFuncGroup.m_testFrameworkFuncs) {
+            foreach (MgdDbgTestFuncs testFuncGroup in testFuncs)
+            {
+                foreach (MgdDbgTestFuncInfo testFuncInfo in testFuncGroup.m_testFrameworkFuncs)
+                {
                     AddFuncToBucket(testFuncInfo);
                 }
             }
@@ -116,11 +121,12 @@ namespace MgdDbg.ObjTests.TestFramework {
         /// Remember the last position selected in the tree
         /// </summary>
 
-        void
+        private void
         RestoreDialogState()
         {
             // if we can remember the last selected node then select it
-            if (m_memoryNode != null) {
+            if (m_memoryNode != null)
+            {
                 TreeNode[] foundNodes = m_treeView.Nodes.Find(m_memoryNode.Name, true);
                 if (foundNodes.Length != 0)
                     m_treeView.SelectedNode = foundNodes[0];
@@ -136,8 +142,10 @@ namespace MgdDbg.ObjTests.TestFramework {
         protected override void
         Dispose(bool disposing)
         {
-            if (disposing) {
-                if (components != null) {
+            if (disposing)
+            {
+                if (components != null)
+                {
                     components.Dispose();
                 }
             }
@@ -145,6 +153,7 @@ namespace MgdDbg.ObjTests.TestFramework {
         }
 
         #region Windows Form Designer generated code
+
         /// <summary>
         /// Required method for Designer support - do not modify
         /// the contents of this method with the code editor.
@@ -169,17 +178,17 @@ namespace MgdDbg.ObjTests.TestFramework {
             this.m_splitContainer.Panel2.SuspendLayout();
             this.m_splitContainer.SuspendLayout();
             this.SuspendLayout();
-            // 
+            //
             // m_imageList
-            // 
+            //
             this.m_imageList.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("m_imageList.ImageStream")));
             this.m_imageList.TransparentColor = System.Drawing.Color.Transparent;
             this.m_imageList.Images.SetKeyName(0, "ImageTreeTest.bmp");
             this.m_imageList.Images.SetKeyName(1, "ImageTreeCategory.bmp");
             this.m_imageList.Images.SetKeyName(2, "ImageTreeClass.bmp");
-            // 
+            //
             // m_txtDesc
-            // 
+            //
             this.m_txtDesc.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_txtDesc.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
@@ -188,9 +197,9 @@ namespace MgdDbg.ObjTests.TestFramework {
             this.m_txtDesc.Name = "m_txtDesc";
             this.m_txtDesc.Size = new System.Drawing.Size(621, 23);
             this.m_txtDesc.TabIndex = 1;
-            // 
+            //
             // m_bnOk
-            // 
+            //
             this.m_bnOk.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.m_bnOk.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.m_bnOk.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -199,9 +208,9 @@ namespace MgdDbg.ObjTests.TestFramework {
             this.m_bnOk.Size = new System.Drawing.Size(75, 23);
             this.m_bnOk.TabIndex = 2;
             this.m_bnOk.Text = "OK";
-            // 
+            //
             // m_bnCancel
-            // 
+            //
             this.m_bnCancel.Anchor = System.Windows.Forms.AnchorStyles.Bottom;
             this.m_bnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.m_bnCancel.FlatStyle = System.Windows.Forms.FlatStyle.System;
@@ -210,28 +219,28 @@ namespace MgdDbg.ObjTests.TestFramework {
             this.m_bnCancel.Size = new System.Drawing.Size(75, 23);
             this.m_bnCancel.TabIndex = 3;
             this.m_bnCancel.Text = "Cancel";
-            // 
+            //
             // m_splitContainer
-            // 
+            //
             this.m_splitContainer.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_splitContainer.Location = new System.Drawing.Point(24, 12);
             this.m_splitContainer.Name = "m_splitContainer";
-            // 
+            //
             // m_splitContainer.Panel1
-            // 
+            //
             this.m_splitContainer.Panel1.Controls.Add(this.m_treeView);
-            // 
+            //
             // m_splitContainer.Panel2
-            // 
+            //
             this.m_splitContainer.Panel2.Controls.Add(this.m_lvData);
             this.m_splitContainer.Size = new System.Drawing.Size(897, 352);
             this.m_splitContainer.SplitterDistance = 257;
             this.m_splitContainer.TabIndex = 4;
-            // 
+            //
             // m_treeView
-            // 
+            //
             this.m_treeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -244,9 +253,9 @@ namespace MgdDbg.ObjTests.TestFramework {
             this.m_treeView.ShowNodeToolTips = true;
             this.m_treeView.Size = new System.Drawing.Size(251, 346);
             this.m_treeView.TabIndex = 0;
-            // 
+            //
             // m_lvData
-            // 
+            //
             this.m_lvData.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
                         | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
@@ -266,31 +275,31 @@ namespace MgdDbg.ObjTests.TestFramework {
             this.m_lvData.View = System.Windows.Forms.View.Details;
             this.m_lvData.SelectedIndexChanged += new System.EventHandler(this.ItemSelected);
             this.m_lvData.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.OnColumnClick);
-            // 
+            //
             // m_testName
-            // 
+            //
             this.m_testName.Text = "Test Name";
             this.m_testName.Width = 180;
-            // 
+            //
             // m_categoryName
-            // 
+            //
             this.m_categoryName.Text = "Category/Class";
             this.m_categoryName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.m_categoryName.Width = 101;
-            // 
+            //
             // m_type
-            // 
+            //
             this.m_type.Text = "Type";
             this.m_type.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.m_type.Width = 96;
-            // 
+            //
             // m_description
-            // 
+            //
             this.m_description.Text = "Description";
             this.m_description.Width = 367;
-            // 
+            //
             // m_checkBxBaseTestsInclude
-            // 
+            //
             this.m_checkBxBaseTestsInclude.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.m_checkBxBaseTestsInclude.AutoSize = true;
@@ -303,9 +312,9 @@ namespace MgdDbg.ObjTests.TestFramework {
             this.m_checkBxBaseTestsInclude.Text = "Show Base Class Tests";
             this.m_checkBxBaseTestsInclude.UseVisualStyleBackColor = true;
             this.m_checkBxBaseTestsInclude.CheckedChanged += new System.EventHandler(this.OnCheckChanged_IncludeBaseClass);
-            // 
+            //
             // TestForm
-            // 
+            //
             this.AcceptButton = this.m_bnOk;
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
@@ -328,11 +337,9 @@ namespace MgdDbg.ObjTests.TestFramework {
             this.m_splitContainer.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
-
-        #endregion
+        #endregion Windows Form Designer generated code
 
         #region Tree
 
@@ -375,15 +382,18 @@ namespace MgdDbg.ObjTests.TestFramework {
             ArrayList tmpBucket = null;
 
             int len = m_funcBuckets.Count;
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; i++)
+            {
                 tmpBucket = (ArrayList)m_funcBuckets[i];
                 tmpTestFuncInfo = (MgdDbgTestFuncInfo)tmpBucket[0];
 
-                if (tmpTestFuncInfo.IsCategoryBased) {
+                if (tmpTestFuncInfo.IsCategoryBased)
+                {
                     // just add the new Category to the tree
                     AddTreeItem(tmpTestFuncInfo.Category, tmpTestFuncInfo.Category, categoryItem, ImageIconList.Category);
                 }
-                else {
+                else
+                {
                     // add an entry for this classType and any intermediate type in the hierarchy
                     AddNodeForClassType(tmpTestFuncInfo.ClassType);
                 }
@@ -439,7 +449,8 @@ namespace MgdDbg.ObjTests.TestFramework {
             // collect all the base classes (including ourselves)
             System.Type rootType = typeof(Autodesk.AutoCAD.Runtime.RXObject);
             ArrayList familyTree = new ArrayList();
-            do {
+            do
+            {
                 familyTree.Add(classType);
                 classType = classType.BaseType;
             } while (classType != rootType);
@@ -450,9 +461,11 @@ namespace MgdDbg.ObjTests.TestFramework {
             System.Type tmpType = null;
 
             int len = familyTree.Count;
-            for (int i = len - 1; i >= 0; i--) {   // no need to compare against Autodesk.Revit.APIObject
+            for (int i = len - 1; i >= 0; i--)
+            {   // no need to compare against Autodesk.Revit.APIObject
                 indexFoundAt = m_placedClasses.IndexOf(familyTree[i]);
-                if (indexFoundAt < 0) {     // we haven't seen this one yet, add it
+                if (indexFoundAt < 0)
+                {     // we haven't seen this one yet, add it
                     tmpType = (System.Type)familyTree[i];
 
                     TreeNode newNode = new TreeNode(tmpType.Name);
@@ -468,7 +481,8 @@ namespace MgdDbg.ObjTests.TestFramework {
 
                     lastParentIndex = m_placedClasses.Count - 1;
                 }
-                else {
+                else
+                {
                     lastParentIndex = indexFoundAt;
                 }
             }
@@ -476,26 +490,27 @@ namespace MgdDbg.ObjTests.TestFramework {
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        void
+        private void
         TreeView_AfterSelect(object sender, TreeViewEventArgs e)
         {
             ProcessAfterSelect(e.Node);
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="treeNode"></param>
 
         void
         ProcessAfterSelect(TreeNode treeNode)
         {
-            if (treeNode != null) {
+            if (treeNode != null)
+            {
                 // remember this node for later
                 m_memoryNode = treeNode;
 
@@ -503,11 +518,13 @@ namespace MgdDbg.ObjTests.TestFramework {
                 m_colSorter.Order = SortOrder.None;
                 m_txtDesc.Text = string.Empty;
 
-                if (treeNode.Tag == null) {
+                if (treeNode.Tag == null)
+                {
                     m_pickedTestFunc = null;
                     m_curFuncBucket.Clear();
                 }
-                else {  // see if it is Category based or Hierarchy based
+                else
+                {  // see if it is Category based or Hierarchy based
                     string categoryStr = treeNode.Tag as string;
                     if (categoryStr == null)    // if tag is a class type
                         GetTests((System.Type)treeNode.Tag, m_checkBxBaseTestsInclude.Checked);
@@ -530,10 +547,14 @@ namespace MgdDbg.ObjTests.TestFramework {
             if (type == null)
                 return;
 
-            foreach (ArrayList tmpBucket in m_funcBuckets) {
-                foreach (MgdDbgTestFuncInfo tempInfo in tmpBucket) {
-                    if (tempInfo.IsCategoryBased == false) {
-                        if (tempInfo.ClassType.FullName == type.FullName) {
+            foreach (ArrayList tmpBucket in m_funcBuckets)
+            {
+                foreach (MgdDbgTestFuncInfo tempInfo in tmpBucket)
+                {
+                    if (tempInfo.IsCategoryBased == false)
+                    {
+                        if (tempInfo.ClassType.FullName == type.FullName)
+                        {
                             // base classes should appear before derived,
                             // so manipulate the order
                             m_curFuncBucket.Insert(0, tempInfo);
@@ -542,7 +563,8 @@ namespace MgdDbg.ObjTests.TestFramework {
                 }
             }
 
-            if (includeBaseType) {
+            if (includeBaseType)
+            {
                 GetTests(type.BaseType, true);
             }
         }
@@ -555,16 +577,19 @@ namespace MgdDbg.ObjTests.TestFramework {
         private void
         GetTests(string categoryStr)
         {
-            foreach (ArrayList tmpBucket in m_funcBuckets) {
-                foreach (MgdDbgTestFuncInfo tempInfo in tmpBucket) {
-                    if (tempInfo.IsCategoryBased && (tempInfo.Category == categoryStr)) {
+            foreach (ArrayList tmpBucket in m_funcBuckets)
+            {
+                foreach (MgdDbgTestFuncInfo tempInfo in tmpBucket)
+                {
+                    if (tempInfo.IsCategoryBased && (tempInfo.Category == categoryStr))
+                    {
                         m_curFuncBucket.Insert(0, tempInfo);
                     }
                 }
             }
         }
 
-        #endregion
+        #endregion Tree
 
         /// <summary>
         /// Sort the in-coming collection of tests in to like-buckets.
@@ -581,18 +606,23 @@ namespace MgdDbg.ObjTests.TestFramework {
             // to, just add ourselves.  If not, then add a new bucket with the passed
             // in testFuncInfo as the first member.
             int len = m_funcBuckets.Count;
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; i++)
+            {
                 tmpBucket = (ArrayList)m_funcBuckets[i];
                 tempFuncInfo = (MgdDbgTestFuncInfo)tmpBucket[0]; // get the first element to compare against
 
-                if (newTestFuncInfo.IsCategoryBased) {
-                    if ((tempFuncInfo.IsCategoryBased) && (tempFuncInfo.Category.CompareTo(newTestFuncInfo.Category) == 0)) {
+                if (newTestFuncInfo.IsCategoryBased)
+                {
+                    if ((tempFuncInfo.IsCategoryBased) && (tempFuncInfo.Category.CompareTo(newTestFuncInfo.Category) == 0))
+                    {
                         tmpBucket.Add(newTestFuncInfo);
                         return;
                     }
                 }
-                else {
-                    if (!(tempFuncInfo.IsCategoryBased) && (tempFuncInfo.ClassType == newTestFuncInfo.ClassType)) {
+                else
+                {
+                    if (!(tempFuncInfo.IsCategoryBased) && (tempFuncInfo.ClassType == newTestFuncInfo.ClassType))
+                    {
                         tmpBucket.Add(newTestFuncInfo);
                         return;
                     }
@@ -618,15 +648,18 @@ namespace MgdDbg.ObjTests.TestFramework {
             m_lvData.Items.Clear();
 
             int len = m_curFuncBucket.Count;
-            for (int i = 0; i < len; i++) {
+            for (int i = 0; i < len; i++)
+            {
                 MgdDbgTestFuncInfo tmpTestFuncInfo = (MgdDbgTestFuncInfo)m_curFuncBucket[i];
                 ListViewItem lvItem = new ListViewItem(tmpTestFuncInfo.Label);
                 lvItem.Name = tmpTestFuncInfo.Label;
 
-                if (tmpTestFuncInfo.IsCategoryBased) {
+                if (tmpTestFuncInfo.IsCategoryBased)
+                {
                     lvItem.SubItems.Add(tmpTestFuncInfo.Category);
                 }
-                else {
+                else
+                {
                     lvItem.SubItems.Add(tmpTestFuncInfo.ClassType.Name);
                 }
                 lvItem.SubItems.Add(tmpTestFuncInfo.GetTestType().ToString());
@@ -637,8 +670,10 @@ namespace MgdDbg.ObjTests.TestFramework {
             m_lvData.EndUpdate();
 
             // if we can remember the last selected test then select it
-            if (m_itemKey.Length != 0) {
-                if (m_lvData.Items[m_itemKey] != null) {
+            if (m_itemKey.Length != 0)
+            {
+                if (m_lvData.Items[m_itemKey] != null)
+                {
                     m_lvData.FocusedItem = m_lvData.Items[m_itemKey];
                     m_lvData.Items[m_itemKey].Selected = true;
                 }
@@ -649,7 +684,7 @@ namespace MgdDbg.ObjTests.TestFramework {
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -659,14 +694,16 @@ namespace MgdDbg.ObjTests.TestFramework {
         {
             Debug.Assert((m_lvData.SelectedItems.Count > 1) == false);
 
-            if (m_lvData.SelectedItems.Count != 0) {
+            if (m_lvData.SelectedItems.Count != 0)
+            {
                 m_pickedTestFunc = (MgdDbgTestFuncInfo)m_lvData.SelectedItems[0].Tag;
                 m_txtDesc.Text = m_pickedTestFunc.Description;
 
                 // remember the key of the last selected test
                 m_itemKey = m_lvData.SelectedItems[0].Name;
             }
-            else {
+            else
+            {
                 m_pickedTestFunc = null;
             }
         }
@@ -681,16 +718,20 @@ namespace MgdDbg.ObjTests.TestFramework {
         OnColumnClick(object sender, ColumnClickEventArgs e)
         {
             // Determine if clicked column is already the column that is being sorted.
-            if (e.Column == m_colSorter.SortColumn) {
+            if (e.Column == m_colSorter.SortColumn)
+            {
                 // Reverse the current sort direction for this column.
-                if (m_colSorter.Order == SortOrder.Ascending) {
+                if (m_colSorter.Order == SortOrder.Ascending)
+                {
                     m_colSorter.Order = SortOrder.Descending;
                 }
-                else {
+                else
+                {
                     m_colSorter.Order = SortOrder.Ascending;
                 }
             }
-            else {
+            else
+            {
                 // Set the column number that is to be sorted; default to ascending.
                 m_colSorter.SortColumn = e.Column;
                 m_colSorter.Order = SortOrder.Ascending;
@@ -700,7 +741,7 @@ namespace MgdDbg.ObjTests.TestFramework {
             m_lvData.Sort();
         }
 
-        #endregion
+        #endregion List
 
         /// <summary>
         /// Run the Test function
@@ -709,7 +750,8 @@ namespace MgdDbg.ObjTests.TestFramework {
         public void
         DoTest()
         {
-            if (m_pickedTestFunc != null) {
+            if (m_pickedTestFunc != null)
+            {
                 m_pickedTestFunc.RunTest();
             }
         }
@@ -719,8 +761,6 @@ namespace MgdDbg.ObjTests.TestFramework {
         {
             ProcessAfterSelect(m_treeView.SelectedNode);
             m_includeBaseTests = m_checkBxBaseTestsInclude.Checked;
-        }       
+        }
     }
 }
-
-

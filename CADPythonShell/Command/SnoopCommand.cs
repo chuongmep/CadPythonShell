@@ -7,7 +7,7 @@ namespace CADPythonShell.Command
         [CommandMethod("Snoop")]
         public override void Execute()
         {
-           new CADSnoop.SnoopCommand().Snoop();
+            new CADSnoop.SnoopCommand().Snoop();
         }
     }
 }

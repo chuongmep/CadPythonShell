@@ -1,29 +1,25 @@
-
 //
-// (C) Copyright 2004 by Autodesk, Inc. 
+// (C) Copyright 2004 by Autodesk, Inc.
 //
 // Permission to use, copy, modify, and distribute this software in
-// object code form for any purpose and without fee is hereby granted, 
-// provided that the above copyright notice appears in all copies and 
+// object code form for any purpose and without fee is hereby granted,
+// provided that the above copyright notice appears in all copies and
 // that both that copyright notice and the limited warranty and
-// restricted rights notice below appear in all supporting 
+// restricted rights notice below appear in all supporting
 // documentation.
 //
-// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS. 
+// AUTODESK PROVIDES THIS PROGRAM "AS IS" AND WITH ALL FAULTS.
 // AUTODESK SPECIFICALLY DISCLAIMS ANY IMPLIED WARRANTY OF
-// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC. 
+// MERCHANTABILITY OR FITNESS FOR A PARTICULAR USE.  AUTODESK, INC.
 // DOES NOT WARRANT THAT THE OPERATION OF THE PROGRAM WILL BE
 // UNINTERRUPTED OR ERROR FREE.
 //
-// Use, duplication, or disclosure by the U.S. Government is subject to 
+// Use, duplication, or disclosure by the U.S. Government is subject to
 // restrictions set forth in FAR 52.227-19 (Commercial Computer
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Collections;
-using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
@@ -31,21 +27,24 @@ using MgdDbg.CompBuilder;
 using MgdDbg.ObjTests.Forms;
 using MgdDbg.ObjTests.TestFramework;
 using MgdDbg.Utils;
-using AcRx = Autodesk.AutoCAD.Runtime;
+using System;
+using System.Collections;
+using System.Windows.Forms;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices;
+using AcRx = Autodesk.AutoCAD.Runtime;
 
 namespace MgdDbg.ObjTests
 {
-	/// <summary>
-	/// Summary description for QueryDbTests.
-	/// </summary>
-	public class DbTests : MgdDbgTestFuncs
-	{
-        private Database    m_db = null;
+    /// <summary>
+    /// Summary description for QueryDbTests.
+    /// </summary>
+    public class DbTests : MgdDbgTestFuncs
+    {
+        private Database m_db = null;
 
-		public
-		DbTests()
-		{           
+        public
+        DbTests()
+        {
             m_testFrameworkFuncs.Add(new MgdDbgTestFuncInfo("Xref graph (with ghosts)", "Display the graph of Xrefs for the current drawing", typeof(Database), new MgdDbgTestFuncInfo.TestFunc(XrefGraphGhosts), MgdDbgTestFuncInfo.TestType.Query));
             m_testFrameworkFuncs.Add(new MgdDbgTestFuncInfo("Xref graph (without ghosts)", "Display the graph of Xrefs for the current drawing", typeof(Database), new MgdDbgTestFuncInfo.TestFunc(XrefGraphNoGhosts), MgdDbgTestFuncInfo.TestType.Query));
             m_testFrameworkFuncs.Add(new MgdDbgTestFuncInfo("Count hard references", "See which objects have a hard reference to a selected object", typeof(Database), new MgdDbgTestFuncInfo.TestFunc(CountHardReferences), MgdDbgTestFuncInfo.TestType.Query));
@@ -86,34 +85,35 @@ namespace MgdDbg.ObjTests
             Snoop.Forms.XrefGraph form = new Snoop.Forms.XrefGraph(xrefGraph);
             form.ShowDialog();
         }
-        
+
         public void
         CountHardReferences()
-        {            
+        {
             Snoop.ObjIdSet objSet = Snoop.Utils.GetSnoopSet();
             if (objSet == null)
                 return;
-            
+
             int[] countArray = new int[objSet.Set.Count];
 
-            if (countArray.Length > 0) {
+            if (countArray.Length > 0)
+            {
                 objSet.Db.CountHardReferences(objSet.Set, countArray);
             }
-            
-            for (int i=0; i<objSet.Set.Count; i++) {
+
+            for (int i = 0; i < objSet.Set.Count; i++)
+            {
                 AcadUi.PrintToCmdLine(string.Format("\n{0,-30}: {1:d}", AcadUi.ObjToTypeAndHandleStr(objSet.Set[i]), countArray[i]));
             }
         }
 
-
         /// <summary>
         /// Note that this is not the same as the Xref command
-        /// The Xref command does some further work to put a 
+        /// The Xref command does some further work to put a
         /// block ref instance in the model space
         /// </summary>
-        
+
         public void
-        AttachXref ()
+        AttachXref()
         {
             m_db = Utils.Db.GetCurDwg();
             if (m_db == null)
@@ -125,14 +125,16 @@ namespace MgdDbg.ObjTests
             string blockName = System.IO.Path.GetFileNameWithoutExtension(fileName);
             if (blockName.Length == 0)
                 return;
-            if (blockName.ToLower() == System.IO.Path.GetFileNameWithoutExtension(Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Name).ToLower()) {               
+            if (blockName.ToLower() == System.IO.Path.GetFileNameWithoutExtension(Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Name).ToLower())
+            {
                 MessageBox.Show("External file name used could lead to a circular reference.", "MgdDbg", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             ObjectId objId = m_db.AttachXref(fileName, blockName);
 
-            using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(m_db))
+            {
                 trHlp.Start();
 
                 BlockTableRecord btr = (BlockTableRecord)trHlp.Transaction.GetObject(objId, OpenMode.ForRead);
@@ -143,7 +145,8 @@ namespace MgdDbg.ObjTests
                 ObjectIdCollection blkRecIds = new ObjectIdCollection();
                 blkRecIds.Add(btr.ObjectId);
 
-                foreach (ObjectId tblRecId in blkTbl) {
+                foreach (ObjectId tblRecId in blkTbl)
+                {
                     BlockTableRecord blkRec = (BlockTableRecord)trHlp.Transaction.GetObject(tblRecId, OpenMode.ForRead);
                     if (blkRec.Database == xrefDb)
                         blkRecIds.Add(tblRecId);
@@ -158,12 +161,12 @@ namespace MgdDbg.ObjTests
 
         /// <summary>
         /// Note that this is not the same as the Xref command
-        /// The Xref command does some further work to put a 
+        /// The Xref command does some further work to put a
         /// block ref instance in the model space
         /// </summary>
-        
+
         public void
-        OverlayXref ()
+        OverlayXref()
         {
             m_db = Utils.Db.GetCurDwg();
             if (m_db == null)
@@ -178,7 +181,8 @@ namespace MgdDbg.ObjTests
                 return;
 
             ObjectId objId = m_db.OverlayXref(fileName, blockName);
-            using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(m_db))
+            {
                 trHlp.Start();
 
                 ObjectIdCollection objIds = new ObjectIdCollection();
@@ -193,10 +197,10 @@ namespace MgdDbg.ObjTests
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void
-        DetachXref ()
+        DetachXref()
         {
             m_db = Utils.Db.GetCurDwg();
             if (m_db == null)
@@ -206,10 +210,12 @@ namespace MgdDbg.ObjTests
             if (Utils.AcadUi.GetSelSetFromUser(out selSet) == false)
                 return;
 
-            using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(m_db))
+            {
                 trHlp.Start();
 
-                foreach (ObjectId bRefId in selSet) {
+                foreach (ObjectId bRefId in selSet)
+                {
                     BlockReference bRef = trHlp.Transaction.GetObject(bRefId, OpenMode.ForRead) as BlockReference;
                     if (bRef == null)
                         continue;
@@ -224,10 +230,10 @@ namespace MgdDbg.ObjTests
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void
-        DeepClone ()
+        DeepClone()
         {
             m_db = Utils.Db.GetCurDwg();
             if (m_db == null)
@@ -239,24 +245,27 @@ namespace MgdDbg.ObjTests
             if (selSet.Count == 0)
                 return;
 
-            
             ObjectId ownerId = new ObjectId();
             IdMapping idMap = new IdMapping();
 
             /// check to make sure the objects all have same owner
             /// if not set up as many objIdCollections
             Hashtable ownerIdMap = new Hashtable();
-            using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(m_db))
+            {
                 trHlp.Start();
 
-                foreach (ObjectId tempId in selSet) {
+                foreach (ObjectId tempId in selSet)
+                {
                     DBObject tempObj = trHlp.Transaction.GetObject(tempId, OpenMode.ForRead);
-                    
-                    if (ownerIdMap.ContainsKey(tempObj.OwnerId)) {
+
+                    if (ownerIdMap.ContainsKey(tempObj.OwnerId))
+                    {
                         ObjectIdCollection objIds = ownerIdMap[tempObj.OwnerId] as ObjectIdCollection;
                         objIds.Add(tempId);
                     }
-                    else {
+                    else
+                    {
                         /// if a new owner if found, stuff it in map
                         ObjectIdCollection objIds = new ObjectIdCollection();
                         objIds.Add(tempId);
@@ -265,24 +274,25 @@ namespace MgdDbg.ObjTests
                 }
                 /// make the model space the owner by default
                 BlockTable blkTbl = (BlockTable)trHlp.Transaction.GetObject(m_db.BlockTableId, OpenMode.ForRead);
-                ownerId = blkTbl["*MODEL_SPACE"]; 
+                ownerId = blkTbl["*MODEL_SPACE"];
 
                 trHlp.Commit();
             }
 
             ICollection keys = ownerIdMap.Keys;
             int keyCount = ownerIdMap.Keys.Count;
-            int i=0;
+            int i = 0;
             bool deferXlation = true;
 
-
-            using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(m_db))
+            {
                 trHlp.Start();
 
                 /// if objects to be cloned have different owners
                 /// DeepCloneObjects should be called with
                 /// deferXlation set to true for all except last time
-                foreach (object key in keys) {
+                foreach (object key in keys)
+                {
                     i++;
                     if (i == keyCount)
                         deferXlation = false;
@@ -301,7 +311,7 @@ namespace MgdDbg.ObjTests
         /// Select an external .dwg file.  Then copy the contents of its MODEL_SPACE into a BlockTableRecord
         /// in the current drawing.  Equivalent to the INSERT command, but doesn't create the final BlockReference
         /// </summary>
-        
+
         public void
         InsertInBlockTable()
         {
@@ -313,12 +323,14 @@ namespace MgdDbg.ObjTests
             if (dwgName.Length == 0)
                 return;
 
-            try {
+            try
+            {
                 Database extDb = new Database(false, true);
                 extDb.ReadDwgFile(dwgName, System.IO.FileShare.Read, true, null);
 
                 ObjectId objId = m_db.Insert("MgdDbg_InsertedBlock", extDb, true);     // TBD: should allow user to name the destination block
-                using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+                using (TransactionHelper trHlp = new TransactionHelper(m_db))
+                {
                     trHlp.Start();
 
                     ObjectIdCollection objIds = new ObjectIdCollection();
@@ -331,7 +343,8 @@ namespace MgdDbg.ObjTests
                     trHlp.Commit();
                 }
             }
-            catch (AcRx.Exception e) {
+            catch (AcRx.Exception e)
+            {
                 AcadUi.PrintToCmdLine(string.Format("\nERROR: {0}", ((AcRx.ErrorStatus)e.ErrorStatus).ToString()));
             }
         }
@@ -339,9 +352,9 @@ namespace MgdDbg.ObjTests
         /// <summary>
         /// Insert contents of external dwg's model space into our model space.
         /// </summary>
-        
+
         public void
-        InsertInModelSpace ()
+        InsertInModelSpace()
         {
             m_db = Utils.Db.GetCurDwg();
             if (m_db == null)
@@ -357,10 +370,12 @@ namespace MgdDbg.ObjTests
             if (extDb == null)
                 return;
 
-            try {
+            try
+            {
                 m_db.Insert(Matrix3d.Identity, extDb, true);
             }
-            catch (AcRx.Exception e) {
+            catch (AcRx.Exception e)
+            {
                 AcadUi.PrintToCmdLine(string.Format("\nERROR: {0}", ((AcRx.ErrorStatus)e.ErrorStatus).ToString()));
             }
         }
@@ -369,7 +384,7 @@ namespace MgdDbg.ObjTests
         /// Copy the contents of a selected block in external drawing and create/replace one
         /// in the current drawing.
         /// </summary>
-        
+
         public void
         InsertBlock()
         {
@@ -390,7 +405,8 @@ namespace MgdDbg.ObjTests
             // TBD: should allow user to select source block and name the destination block
 
             ObjectId objId = m_db.Insert("*Model_Space", "MgdDbg_InsertedBlock2", extDb, true);
-            using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(m_db))
+            {
                 trHlp.Start();
 
                 ObjectIdCollection objIds = new ObjectIdCollection();
@@ -408,7 +424,7 @@ namespace MgdDbg.ObjTests
         /// Test the Purge function.  Collect a set of selectable entities and non-graphic
         /// Objects.  Then call Purge and see which ones we are allowed to erase.
         /// </summary>
-        
+
         public void
         Purge()
         {
@@ -420,28 +436,32 @@ namespace MgdDbg.ObjTests
             if (objSet == null)
                 return;
 
-                // set the purgeableIds to everything selected
+            // set the purgeableIds to everything selected
             ObjectIdCollection purgableIds = new ObjectIdCollection();
             foreach (ObjectId objId in objSet.Set)
                 purgableIds.Add(objId);
 
             ObjectIdCollection nonPurgableIds = new ObjectIdCollection();
 
-            try {
+            try
+            {
                 m_db.Purge(purgableIds);
 
-                    // see which ones were non-purgeable by seeing which ones got taken out of the array
-                foreach (ObjectId objId in objSet.Set) {
+                // see which ones were non-purgeable by seeing which ones got taken out of the array
+                foreach (ObjectId objId in objSet.Set)
+                {
                     if (!purgableIds.Contains(objId))
                         nonPurgableIds.Add(objId);
                 }
 
-                using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+                using (TransactionHelper trHlp = new TransactionHelper(m_db))
+                {
                     trHlp.Start();
 
                     if (purgableIds.Count == 0)
                         Autodesk.AutoCAD.ApplicationServices.Application.ShowAlertDialog("No purgable objects");
-                    else {
+                    else
+                    {
                         Snoop.Forms.DBObjects objs = new Snoop.Forms.DBObjects(purgableIds, trHlp);
                         objs.Text = "Purgable objects";
                         objs.ShowDialog();
@@ -449,7 +469,8 @@ namespace MgdDbg.ObjTests
 
                     if (nonPurgableIds.Count == 0)
                         Autodesk.AutoCAD.ApplicationServices.Application.ShowAlertDialog("No non-purgable objects");
-                    else {
+                    else
+                    {
                         Snoop.Forms.DBObjects objs = new Snoop.Forms.DBObjects(nonPurgableIds, trHlp);
                         objs.Text = "Non-purgable objects";
                         objs.ShowDialog();
@@ -458,7 +479,8 @@ namespace MgdDbg.ObjTests
                     trHlp.Commit();
                 }
             }
-            catch (AcRx.Exception e) {
+            catch (AcRx.Exception e)
+            {
                 AcadUi.PrintToCmdLine(string.Format("\nERROR: {0}", ((AcRx.ErrorStatus)e.ErrorStatus).ToString()));
             }
         }
@@ -466,7 +488,7 @@ namespace MgdDbg.ObjTests
         /// <summary>
         /// Wblock entire database
         /// </summary>
-        
+
         public void
         Wblock()
         {
@@ -474,11 +496,13 @@ namespace MgdDbg.ObjTests
             if (m_db == null)
                 return;
 
-            try {
+            try
+            {
                 Database db = m_db.Wblock();
-                using (TransactionHelper trHlp = new TransactionHelper(db)) {
+                using (TransactionHelper trHlp = new TransactionHelper(db))
+                {
                     trHlp.Start();
-                 
+
                     Snoop.Forms.Database dbForm = new MgdDbg.Snoop.Forms.Database(db, trHlp);
                     dbForm.Text = "Destination Database (In memory only)";
                     dbForm.ShowDialog();
@@ -486,22 +510,23 @@ namespace MgdDbg.ObjTests
                     trHlp.Commit();
                 }
             }
-            catch (AcRx.Exception e) {
+            catch (AcRx.Exception e)
+            {
                 AcadUi.PrintToCmdLine(string.Format("\nERROR: {0}", ((AcRx.ErrorStatus)e.ErrorStatus).ToString()));
             }
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
- 
+
         public void
-        WblockObjects1 ()
+        WblockObjects1()
         {
             m_db = Utils.Db.GetCurDwg();
             if (m_db == null)
                 return;
-            
+
             PromptKeywordOptions prOpts = new PromptKeywordOptions("\nWblock a block or objects");
             prOpts.Keywords.Add("Block", "Block", "Block", true, true);
             prOpts.Keywords.Add("Objects", "Objects", "Objects", true, true);
@@ -513,26 +538,31 @@ namespace MgdDbg.ObjTests
 
             Database db = null;
 
-            using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(m_db))
+            {
                 trHlp.Start();
-        
+
                 ObjectIdCollection objIds;
                 if (!Utils.AcadUi.GetSelSetFromUser(out objIds))
                     return;
 
-                if (prRes.StringResult == "Block") {
-                    if (objIds.Count > 1) {
+                if (prRes.StringResult == "Block")
+                {
+                    if (objIds.Count > 1)
+                    {
                         ed.WriteMessage("\nSelect only one block");
                         return;
                     }
                     DBObject obj = trHlp.Transaction.GetObject(objIds[0], OpenMode.ForRead);
                     BlockReference bRef = obj as BlockReference;
-                    if (bRef != null) {
+                    if (bRef != null)
+                    {
                         db = m_db.Wblock(bRef.BlockTableRecord);
                     }
                 }
 
-                if (prRes.StringResult == "Objects") {
+                if (prRes.StringResult == "Objects")
+                {
                     db = m_db.Wblock(objIds, new Point3d(0, 0, 0));
                 }
 
@@ -542,7 +572,8 @@ namespace MgdDbg.ObjTests
             if (db == null)
                 return;
 
-            using (TransactionHelper trHlp = new TransactionHelper(db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(db))
+            {
                 trHlp.Start();
 
                 Snoop.Forms.Database dbForm = new MgdDbg.Snoop.Forms.Database(db, trHlp);
@@ -553,12 +584,11 @@ namespace MgdDbg.ObjTests
             }
         }
 
-
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void
-        WblockObjects2 ()
+        WblockObjects2()
         {
             m_db = Utils.Db.GetCurDwg();
             if (m_db == null)
@@ -570,7 +600,8 @@ namespace MgdDbg.ObjTests
 
             String message = "\nDuplicate Record Cloning Options:";
             Array enums = Enum.GetValues(typeof(DuplicateRecordCloning));
-            foreach (int option in enums) {
+            foreach (int option in enums)
+            {
                 message += string.Format("\n{0} = {1}", option,
                                         Enum.GetName(typeof(DuplicateRecordCloning), option));
             }
@@ -588,12 +619,14 @@ namespace MgdDbg.ObjTests
 
             DuplicateRecordCloning drc = (DuplicateRecordCloning)prRes.Value;
             if (drc == DuplicateRecordCloning.NotApplicable ||
-                drc == DuplicateRecordCloning.RefMangleName) {
+                drc == DuplicateRecordCloning.RefMangleName)
+            {
                 ed.WriteMessage("Invalid Input");
                 return;
             }
 
-            using (TransactionHelper trHlp = new TransactionHelper(m_db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(m_db))
+            {
                 trHlp.Start();
 
                 m_db.Wblock(db, objIds, new Point3d(0, 0, 0), drc);
@@ -601,7 +634,8 @@ namespace MgdDbg.ObjTests
                 trHlp.Commit();
             }
 
-            using (TransactionHelper trHlp = new TransactionHelper(db)) {
+            using (TransactionHelper trHlp = new TransactionHelper(db))
+            {
                 trHlp.Start();
 
                 Snoop.Forms.Database dbForm = new MgdDbg.Snoop.Forms.Database(db, trHlp);
@@ -610,26 +644,28 @@ namespace MgdDbg.ObjTests
 
                 trHlp.Commit();
             }
-
         }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
         public void
-        WblockCloneObjects ()
+        WblockCloneObjects()
         {
-            try {
+            try
+            {
                 m_db = Utils.Db.GetCurDwg();
                 if (m_db == null)
                     return;
 
-                using (TransactionHelper trHlpr = new TransactionHelper()) {
+                using (TransactionHelper trHlpr = new TransactionHelper())
+                {
                     trHlpr.Start();
 
                     /// get the object to clone
                     Objects objs = new Objects(trHlpr);
-                    if (objs.ShowDialog() != DialogResult.OK) {
+                    if (objs.ShowDialog() != DialogResult.OK)
+                    {
                         trHlpr.Abort();
                         return;
                     }
@@ -642,7 +678,7 @@ namespace MgdDbg.ObjTests
                     AcadApp.Document activeDoc = AcadApp.Application.DocumentManager.MdiActiveDocument;
 
                     /// get cloning options...
-                    /// 
+                    ///
 
                     //String message = "\nDuplicate Record Cloning Options:";
                     //Array enums = Enum.GetValues(typeof(DuplicateRecordCloning));
@@ -656,7 +692,6 @@ namespace MgdDbg.ObjTests
                     //prOpts.LowerLimit = 0;
                     //prOpts.UpperLimit = enums.Length;
 
-                    
                     //Editor ed = activeDoc.Editor;
                     //PromptIntegerResult prRes = ed.GetInteger(prOpts);
                     //if (prRes.Status != PromptStatus.OK)
@@ -678,14 +713,15 @@ namespace MgdDbg.ObjTests
                     /// get the destination db
                     Documents docs = new Documents();
                     docs.Text = "Destination database";
-                    
+
                     if (docs.ShowDialog() != DialogResult.OK)
                         return;
 
                     Database dbSrc = activeDoc.Database;
                     Database dbDest = docs.Document.Database;
 
-                    if (dbDest == dbSrc) {
+                    if (dbDest == dbSrc)
+                    {
                         throw new System.Exception("Please pick a destination database other than the source");
                     }
 
@@ -696,8 +732,8 @@ namespace MgdDbg.ObjTests
                     /// might be nested
                     Stack owningDictNames = new Stack();
 
-                    while (owningDictSrc.OwnerId != ObjectId.Null) {
-
+                    while (owningDictSrc.OwnerId != ObjectId.Null)
+                    {
                         owningDictSrc = trHlpr.Transaction.GetObject(owningDictSrc.OwnerId, OpenMode.ForRead) as DBDictionary;
                         String owningDictName = owningDictSrc.NameAt(owningDictId);
                         owningDictNames.Push(owningDictName);
@@ -708,26 +744,27 @@ namespace MgdDbg.ObjTests
                     /// check if parent dictionary exists in dest.
                     DBDictionary owningDictDest = null;
 
-                    using (Transaction trDest = dbDest.TransactionManager.StartTransaction()) {
-
+                    using (Transaction trDest = dbDest.TransactionManager.StartTransaction())
+                    {
                         AcadApp.Application.DocumentManager.GetDocument(dbDest).LockDocument();
                         DBDictionary parentDictDest = trDest.GetObject(dbDest.NamedObjectsDictionaryId, OpenMode.ForRead) as DBDictionary;
 
                         String owningDictName = owningDictNames.Peek().ToString();
-                        
-                        if (parentDictDest.Contains(owningDictName)) {
 
-                            while (owningDictNames.Count != 0) {
-
+                        if (parentDictDest.Contains(owningDictName))
+                        {
+                            while (owningDictNames.Count != 0)
+                            {
                                 owningDictName = owningDictNames.Pop().ToString();
                                 owningDictDest = trDest.GetObject(parentDictDest.GetAt(owningDictName), OpenMode.ForRead) as DBDictionary;
                                 parentDictDest = owningDictDest;
                             }
                         }
-                        else {
+                        else
+                        {
                             /// dest doesnt have same structure , create it
-                            while (owningDictNames.Count != 0) {
-
+                            while (owningDictNames.Count != 0)
+                            {
                                 owningDictName = owningDictNames.Pop().ToString();
                                 parentDictDest.UpgradeOpen();
                                 owningDictDest = new DBDictionary();
@@ -752,20 +789,19 @@ namespace MgdDbg.ObjTests
                     trHlpr.Commit();
                 }
             }
-
-            catch(AcRx.Exception ex)
+            catch (AcRx.Exception ex)
             {
                 if (ex.ErrorStatus == AcRx.ErrorStatus.FileNotFound)
                     MessageBox.Show("No documents found in current session");
                 else
                     MessageBox.Show(ex.Message);
             }
-
-            catch(System.Exception ex)
+            catch (System.Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-        #endregion
-	}
+
+        #endregion Tests
+    }
 }
