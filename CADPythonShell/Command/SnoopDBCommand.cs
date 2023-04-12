@@ -1,4 +1,4 @@
-﻿using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
+﻿using MgdDbg.Test;
 
 namespace CADPythonShell;
 
@@ -6,7 +6,7 @@ public class SnoopDBCommand : ICadCommand
 {
     public override void Execute()
     {
-        string fullCmdLine = $"_{nameof(MgdDbgAction.SnoopDB)}\n";
-        Application.DocumentManager.MdiActiveDocument.SendStringToExecute(fullCmdLine, false, false, true);
+        TestCmds cmd = new TestCmds();
+        cmd.SnoopDatabase();
     }
 }
