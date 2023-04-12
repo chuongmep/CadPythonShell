@@ -1,4 +1,7 @@
 # Changelog
+- 2023-04-12 **1.1.2**
+    - Fix snoop selected instance
+    - Merge submodule
 - 2022-12-17 **1.1.1**
 	- Fix code Autocomple List ironpython 3.4
 - 2022-12-17 **1.1.0**
