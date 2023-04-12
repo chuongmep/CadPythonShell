@@ -22,22 +22,16 @@
 //
 
 using System;
-using System.Collections.Generic;
 using System.Collections;
-using System.ComponentModel;
 using System.Diagnostics;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-
-using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.DatabaseServices;
+using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices;
 
-namespace MgdDbg.ObjTests.Forms {
+namespace MgdDbg.Prompts {
 
     public partial class SelectionSet : Form {
 

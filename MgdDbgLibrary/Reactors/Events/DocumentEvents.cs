@@ -22,11 +22,6 @@
 //
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-
-using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.ApplicationServices;
 
 namespace MgdDbg.Reactors.Events {

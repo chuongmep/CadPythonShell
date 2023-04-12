@@ -20,15 +20,9 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
 
 using AcApp = Autodesk.AutoCAD.ApplicationServices;
-using MgdDbg.Utils;
 
 namespace MgdDbg.Reactors.Forms {
 

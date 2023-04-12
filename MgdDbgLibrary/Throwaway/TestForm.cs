@@ -21,13 +21,9 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
 
-namespace MgdDbg
+namespace MgdDbg.Throwaway
 {
 	/// <summary>
 	/// Summary description for TestForm.

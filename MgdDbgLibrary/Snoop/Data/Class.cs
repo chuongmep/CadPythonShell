@@ -20,10 +20,6 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Windows.Forms;
-using System.Collections;
-
 namespace MgdDbg.Snoop.Data {
     /// <summary>
     /// Summary description for Class.

@@ -22,10 +22,8 @@
 //
 
 
-using System;
 using System.Diagnostics;
 using System.Collections;
-using Autodesk.AutoCAD.Colors;
 using MgdDbg.Snoop.Collectors;
 
 namespace MgdDbg.Snoop.CollectorExts

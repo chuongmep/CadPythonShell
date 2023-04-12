@@ -21,12 +21,8 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Collections.Generic;
 using System.Collections;
 using System.Diagnostics;
-using System.Text;
-
 using MgdDbg.Snoop.Collectors;
 
 using Autodesk.AutoCAD.Publishing;

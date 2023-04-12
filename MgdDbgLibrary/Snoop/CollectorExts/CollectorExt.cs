@@ -22,9 +22,6 @@
 //
 
 
-using System;
-using System.Diagnostics;
-
 namespace MgdDbg.Snoop.CollectorExts
 {
 	/// <summary>

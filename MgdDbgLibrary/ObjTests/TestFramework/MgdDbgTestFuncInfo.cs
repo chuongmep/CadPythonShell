@@ -22,10 +22,8 @@
 //
 
 using System;
-using System.Collections;
 
-
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests.TestFramework
 {
 	/// <summary>
 	/// This is a simple package of data about a given Test function.  Create new instances

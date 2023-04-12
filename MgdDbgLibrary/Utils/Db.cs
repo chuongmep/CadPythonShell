@@ -27,7 +27,7 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
-
+using MgdDbg.CompBuilder;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
 namespace MgdDbg.Utils

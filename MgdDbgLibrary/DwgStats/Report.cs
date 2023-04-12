@@ -21,12 +21,11 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
 using System.Collections;
 using System.Diagnostics;
 using System.Xml;
-using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
+using MgdDbg.CompBuilder;
 
 namespace MgdDbg.DwgStats
 {

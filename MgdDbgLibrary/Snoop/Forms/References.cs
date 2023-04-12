@@ -21,13 +21,8 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Diagnostics;
-using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
-
+using MgdDbg.CompBuilder;
 using AcDb = Autodesk.AutoCAD.DatabaseServices;
 
 namespace MgdDbg.Snoop.Forms

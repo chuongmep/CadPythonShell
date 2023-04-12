@@ -21,10 +21,6 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 using Autodesk.AutoCAD.Runtime;
 
 namespace MgdDbg.Reactors.Events {

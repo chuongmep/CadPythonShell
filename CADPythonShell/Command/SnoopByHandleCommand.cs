@@ -1,12 +1,12 @@
-﻿using Application = Autodesk.AutoCAD.ApplicationServices.Application;
+﻿using MgdDbg.App;
 
-namespace CADPythonShell;
+namespace CADPythonShell.Command;
 
-public class SnoopByHanderCommand : ICadCommand
+public class SnoopByHandleCommand : ICadCommand
 {
     public override void Execute()
     {
-        string fullCmdLine = $"_{nameof(MgdDbgAction.SnoopByHandle)}\n";
-        Autodesk.AutoCAD.ApplicationServices.Core.Application.DocumentManager.MdiActiveDocument.SendStringToExecute(fullCmdLine, false, false, true);
+        TestCmds testCmds = new TestCmds();
+        testCmds.SnoopEntityByHandle();
     }
 }

@@ -27,7 +27,7 @@ using System.ComponentModel;
 using System.Windows.Forms;
 using System.Diagnostics;
 using Autodesk.AutoCAD.DatabaseServices;
-
+using MgdDbg.CompBuilder;
 using AcDb = Autodesk.AutoCAD.DatabaseServices;
 
 namespace MgdDbg.Snoop.Forms

@@ -1,4 +1,4 @@
-namespace MgdDbg.ObjTests.Forms {
+namespace MgdDbg.Prompts {
     partial class SelectionSet {
         /// <summary>
         /// Required designer variable.

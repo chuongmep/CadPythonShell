@@ -19,10 +19,6 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-
 namespace MgdDbg.Snoop.Data
 {
     public class Exception : Data

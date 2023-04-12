@@ -1,7 +1,8 @@
-﻿using CADRuntime;
-using System.IO;
+﻿using System.IO;
+using CADPythonShell.App;
+using CADRuntime;
 
-namespace CADPythonShell
+namespace CADPythonShell.Command
 {
     /// <summary>
     /// Starts up a ScriptOutput window for a given canned command.

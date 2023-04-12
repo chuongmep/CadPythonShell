@@ -21,9 +21,7 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
 using System.Diagnostics;
-using System.Collections;
 using System.Windows.Forms;
 
 using Autodesk.AutoCAD.DatabaseServices;

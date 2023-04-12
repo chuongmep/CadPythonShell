@@ -27,10 +27,8 @@ using System.Diagnostics;
 using System.Windows.Forms;
 using System.Drawing.Printing;
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.EditorInput;
-
-using MgdDbg.Utils;
+using MgdDbg.CompBuilder;
 
 namespace MgdDbg.Snoop
 {

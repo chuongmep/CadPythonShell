@@ -21,11 +21,10 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
 using System.Diagnostics;
 using Autodesk.AutoCAD.DatabaseServices;
 
-namespace MgdDbg
+namespace MgdDbg.CompBuilder
 {
 	/// <summary>
 	/// Derived component builder to direct the made entities into a 

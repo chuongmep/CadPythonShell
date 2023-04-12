@@ -1,6 +1,6 @@
-﻿using MgdDbg.Test;
+﻿using MgdDbg.App;
 
-namespace CADPythonShell;
+namespace CADPythonShell.Command;
 
 public class TestFrameworkCommand : ICadCommand
 {

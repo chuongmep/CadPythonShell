@@ -22,13 +22,11 @@
 //
 
 using System;
-using System.Drawing;
 using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
 using System.Diagnostics;
+using System.Windows.Forms;
 
-namespace MgdDbg.Test {
+namespace MgdDbg.ObjTests.TestFramework {
 
     /// <summary>
     /// This is a generic Test "Shell" that allows you to easily add new test functions and organize

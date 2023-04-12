@@ -22,14 +22,9 @@
 //
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using System.Diagnostics;
-
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.ApplicationServices;
-
+using MgdDbg.CompBuilder;
 using MgdDbg.Utils;
 
 namespace MgdDbg.Reactors.Events {

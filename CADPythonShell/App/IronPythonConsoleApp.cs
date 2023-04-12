@@ -1,9 +1,9 @@
 ﻿using Autodesk.AutoCAD.Runtime;
 using Autodesk.Windows;
-using MgdDbg;
+using CADPythonShell.Command;
 using Orientation = System.Windows.Controls.Orientation;
 
-namespace CADPythonShell
+namespace CADPythonShell.App
 {
     public class IronPythonConsoleApp : ICadCommand
     {
@@ -164,7 +164,7 @@ namespace CADPythonShell
                     "CADPythonShell.Resources.handle-16.png"),
                 LargeImage =
                     CADPythonShellApplication.GetEmbeddedPng(addinAssembly, "CADPythonShell.Resources.handle-32.png"),
-                CommandHandler = new RelayCommand(new SnoopByHanderCommand().Execute),
+                CommandHandler = new RelayCommand(new SnoopByHandleCommand().Execute),
                 AllowInToolBar = true,
                 KeyTip = "Snoop By Handle",
             };

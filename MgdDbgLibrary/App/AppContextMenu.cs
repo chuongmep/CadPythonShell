@@ -22,11 +22,10 @@
 //
 
 using System;
-using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.Windows;
 
-namespace MgdDbg
+namespace MgdDbg.App
 {
     /// <summary>
     /// Simple derived MenuItem class to keep a command name so that we can have

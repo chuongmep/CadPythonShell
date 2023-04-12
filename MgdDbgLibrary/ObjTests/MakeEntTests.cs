@@ -21,15 +21,14 @@
 //
 
 using System;
-using System.Diagnostics;
-using System.Collections;
-using System.Windows.Forms;
-using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Colors;
+using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
+using MgdDbg.CompBuilder;
+using MgdDbg.ObjTests.TestFramework;
 
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests
 {
 	/// <summary>
     /// The entmake functions in this module are designed to show how to create

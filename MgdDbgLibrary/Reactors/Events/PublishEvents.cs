@@ -21,12 +21,6 @@
 //
 
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-using System.Windows.Forms;
-using Autodesk.AutoCAD.PlottingServices;
-
 using AcPb = Autodesk.AutoCAD.Publishing;
 using AcApp = Autodesk.AutoCAD.ApplicationServices;
 using AcDb = Autodesk.AutoCAD.DatabaseServices;

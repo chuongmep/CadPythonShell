@@ -21,21 +21,16 @@
 
 using System;
 using System.Collections;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
-using System.Windows.Forms;
 using System.Diagnostics;
-
+using System.Drawing;
+using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using MgdDbg.CompBuilder;
+using MgdDbg.Utils;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices;
 
-using MgdDbg.Utils;
-
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests.Forms
 {
     public partial class ObjectDiff : Form
     {

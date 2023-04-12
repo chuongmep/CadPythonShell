@@ -1,4 +1,4 @@
-﻿namespace CADPythonShell;
+﻿namespace CADPythonShell.Command;
 
 public abstract class ICadCommand
 {

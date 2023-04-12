@@ -1,4 +1,4 @@
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests.Forms
 {
     partial class ObjectDiff
     {

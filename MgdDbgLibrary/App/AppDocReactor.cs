@@ -21,15 +21,9 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-
 using AcApp = Autodesk.AutoCAD.ApplicationServices;
-using AcRx = Autodesk.AutoCAD.Runtime;
 
-namespace MgdDbg {
+namespace MgdDbg.App {
     
     class AppDocReactor {
 

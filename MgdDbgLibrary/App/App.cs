@@ -22,18 +22,16 @@
 //
 
 
-using System;
-using System.IO;
 using System.Collections;
-using System.Diagnostics;
-using System.Reflection;
 using Autodesk.AutoCAD.Runtime;
-using Autodesk.AutoCAD.ApplicationServices;
+using MgdDbg.App;
+using MgdDbg.ObjTests;
+using MgdDbg.ObjTests.TestFramework;
 
-[assembly:ExtensionApplication(typeof(MgdDbg.App))]
-[assembly:CommandClass(typeof(MgdDbg.Test.TestCmds))]
+[assembly:ExtensionApplication(typeof(App))]
+[assembly:CommandClass(typeof(TestCmds))]
 
-namespace MgdDbg
+namespace MgdDbg.App
 {
 	
 	public class App : IExtensionApplication
@@ -91,16 +89,16 @@ namespace MgdDbg
         private void
         CreateAndAddTestFuncs()
         {
-            m_tests.Add(new MgdDbg.Test.DbTests());
-            m_tests.Add(new MgdDbg.Test.MakeEntTests());
-            m_tests.Add(new MgdDbg.Test.MakeSymTblRecTests());
-            m_tests.Add(new MgdDbg.Test.ModifyEntTests());
-            m_tests.Add(new MgdDbg.Test.QueryCurveTests());
-            m_tests.Add(new MgdDbg.Test.QueryEntTests());
-            m_tests.Add(new MgdDbg.Test.CategoryTests());
+            m_tests.Add(new DbTests());
+            m_tests.Add(new MakeEntTests());
+            m_tests.Add(new MakeSymTblRecTests());
+            m_tests.Add(new ModifyEntTests());
+            m_tests.Add(new QueryCurveTests());
+            m_tests.Add(new QueryEntTests());
+            m_tests.Add(new CategoryTests());
 
-            foreach (MgdDbg.Test.MgdDbgTestFuncs testFunc in m_tests) {
-                MgdDbg.Test.MgdDbgTestFuncs.AddTestFuncsToFramework(testFunc);
+            foreach (MgdDbgTestFuncs testFunc in m_tests) {
+                MgdDbgTestFuncs.AddTestFuncsToFramework(testFunc);
             }
         }
 
@@ -112,8 +110,8 @@ namespace MgdDbg
         private void
         RemoveAndFreeTestFuncs()
         {
-            foreach (MgdDbg.Test.MgdDbgTestFuncs testFunc in m_tests) {
-                MgdDbg.Test.MgdDbgTestFuncs.RemoveTestFuncsFromFramework(testFunc);
+            foreach (MgdDbgTestFuncs testFunc in m_tests) {
+                MgdDbgTestFuncs.RemoveTestFuncsFromFramework(testFunc);
             }
         }
 

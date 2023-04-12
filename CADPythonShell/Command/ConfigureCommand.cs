@@ -1,7 +1,8 @@
 ﻿using Autodesk.AutoCAD.Runtime;
+using CADPythonShell.App;
 using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 
-namespace CADPythonShell
+namespace CADPythonShell.Command
 {
     /// <summary>
     /// Open the configuration dialog.

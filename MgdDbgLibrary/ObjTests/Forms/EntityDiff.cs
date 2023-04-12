@@ -20,21 +20,17 @@
 //
 
 using System;
+using System.Collections;
 using System.Diagnostics;
 using System.Drawing;
-using System.Collections;
-using System.ComponentModel;
 using System.Windows.Forms;
-using System.Reflection;
-
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Runtime;
+using MgdDbg.CompBuilder;
+using MgdDbg.Utils;
 using AcDb = Autodesk.AutoCAD.DatabaseServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices;
 
-using MgdDbg.Utils;
-
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests.Forms
 {
     /// <summary>
     /// Summary description for ObjectCompare.

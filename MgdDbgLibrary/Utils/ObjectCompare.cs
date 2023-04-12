@@ -20,15 +20,8 @@
 //
 
 using System;
-using System.Diagnostics;
-using System.Drawing;
 using System.Collections;
-using System.ComponentModel;
-using System.Windows.Forms;
 using System.Reflection;
-
-using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Runtime;
 using AcDb = Autodesk.AutoCAD.DatabaseServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices;
 

@@ -21,13 +21,8 @@
 //
 
 
-using System;
 using System.Diagnostics;
 using System.Collections;
-
-using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.ApplicationServices;
-
 using MgdDbg.Snoop.Collectors;
 
 using AcDb = Autodesk.AutoCAD.DatabaseServices;

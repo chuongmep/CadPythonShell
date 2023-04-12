@@ -22,16 +22,18 @@
 
 using System;
 using System.Windows.Forms;
-using System.Collections;
-using Autodesk.AutoCAD.Runtime;
-using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
+using Autodesk.AutoCAD.Runtime;
+using MgdDbg.CompBuilder;
+using MgdDbg.ObjTests.TestFramework;
+using MgdDbg.Throwaway;
 using MgdDbg.Utils;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
+using TestForm = MgdDbg.ObjTests.TestFramework.TestForm;
 
-namespace MgdDbg.Test
+namespace MgdDbg.App
 {
     /// <summary>
     /// Summary description for TestCmds.
@@ -221,7 +223,7 @@ namespace MgdDbg.Test
         [CommandMethod("SnoopTests", CommandFlags.Modal)]
         public void TestDb()
         {
-            MgdDbg.Test.TestForm dbox = new MgdDbg.Test.TestForm(MgdDbgTestFuncs.RegisteredTestFuncs());
+            TestForm dbox = new TestForm(MgdDbgTestFuncs.RegisteredTestFuncs());
             if (AcadApp.ShowModalDialog(dbox) == DialogResult.OK)
                 dbox.DoTest();
         }

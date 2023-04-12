@@ -1,15 +1,16 @@
-﻿using Autodesk.AutoCAD.ApplicationServices;
-using Autodesk.AutoCAD.Runtime;
-using CADRuntime;
-using Microsoft.Scripting;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Interop;
 using System.Windows.Threading;
+using Autodesk.AutoCAD.ApplicationServices;
+using Autodesk.AutoCAD.Runtime;
+using CADPythonShell.App;
+using CADRuntime;
+using Microsoft.Scripting;
 using Application = Autodesk.AutoCAD.ApplicationServices.Core.Application;
 using Exception = System.Exception;
 using Forms = System.Windows.Forms;
 
-namespace CADPythonShell
+namespace CADPythonShell.Command
 {
     public class IronPythonConsoleCommand : ICadCommand
     {

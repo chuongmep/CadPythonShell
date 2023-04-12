@@ -22,9 +22,6 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 

@@ -1,10 +1,11 @@
 ﻿using System.IO;
+using CADPythonShell.App;
 
 namespace CADPythonShell
 {
     public partial class ConfigureCommandsForm : Form
     {
-        private List<Command> _commands;
+        private List<App.Command> _commands;
         private List<string> _searchPaths;
         private List<KeyValuePair<string, string>> _variables;
 
@@ -50,7 +51,7 @@ namespace CADPythonShell
         /// </summary>
         private void lstCommands_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var command = (Command)lstCommands.SelectedItem;
+            var command = (App.Command)lstCommands.SelectedItem;
             txtCommandName.Text = command.Name;
             txtCommandPath.Text = command.Source;
             txtCommandGroup.Text = command.Group;
@@ -61,7 +62,7 @@ namespace CADPythonShell
         /// </summary>
         private void txtCommandName_TextChanged(object sender, EventArgs e)
         {
-            var command = (Command)lstCommands.SelectedItem;
+            var command = (App.Command)lstCommands.SelectedItem;
             command.Name = txtCommandName.Text;
 
             RefreshBindingContext(lstCommands, _commands);
@@ -69,7 +70,7 @@ namespace CADPythonShell
 
         private void txtCommandGroup_TextChanged(object sender, EventArgs e)
         {
-            var command = (Command)lstCommands.SelectedItem;
+            var command = (App.Command)lstCommands.SelectedItem;
             command.Group = txtCommandGroup.Text;
 
             RefreshBindingContext(lstCommands, _commands);
@@ -80,7 +81,7 @@ namespace CADPythonShell
         /// </summary>
         private void txtCommandPath_TextChanged(object sender, EventArgs e)
         {
-            var command = (Command)lstCommands.SelectedItem;
+            var command = (App.Command)lstCommands.SelectedItem;
             command.Source = txtCommandPath.Text;
 
             RefreshBindingContext(lstCommands, _commands);
@@ -120,7 +121,7 @@ namespace CADPythonShell
 
             if (dialog.ShowDialog(this) == DialogResult.OK)
             {
-                var command = new Command();
+                var command = new App.Command();
                 command.Name = "";
                 command.Group = "";
                 command.Source = dialog.FileName;

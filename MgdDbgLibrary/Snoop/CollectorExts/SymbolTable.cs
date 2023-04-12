@@ -21,46 +21,46 @@
 //
 
 
-using System;
 using System.Diagnostics;
 using System.Collections;
 using Autodesk.AutoCAD.DatabaseServices;
 using MgdDbg.Snoop.Collectors;
-
 using AcDb = Autodesk.AutoCAD.DatabaseServices;
 
-namespace MgdDbg.Snoop.CollectorExts {
-
+namespace MgdDbg.Snoop.CollectorExts
+{
     /// <summary>
     /// This is a Snoop Collector Extension object to collect data from SymbolTable objects.
     /// </summary>
-    
-    public class SymbolTable : CollectorExt {
-        
-        public
-        SymbolTable()
+    public class SymbolTable : CollectorExt
+    {
+        public SymbolTable()
         {
         }
 
-        protected override void
-        CollectEvent(object sender, CollectorEventArgs e)
+        protected override void CollectEvent(object sender, CollectorEventArgs e)
         {
-                // cast the sender object to the SnoopCollector we are expecting
+            // cast the sender object to the SnoopCollector we are expecting
             Collector snoopCollector = sender as Collector;
-            if (snoopCollector == null) {
-                Debug.Assert(false);    // why did someone else send us the message?
+            if (snoopCollector == null)
+            {
+                Debug.Assert(false); // why did someone else send us the message?
                 return;
             }
 
-                // branch to all types we are concerned with
+            // branch to all types we are concerned with
             AcDb.SymbolTableRecord tblRec = e.ObjToSnoop as AcDb.SymbolTableRecord;
-            if (tblRec != null) {
+            if (tblRec != null)
+            {
                 Stream(snoopCollector.Data(), tblRec);
                 return;
             }
 
-            AcDb.SymbolTable symTbl = e.ObjToSnoop as AcDb.SymbolTable; // need to use namespace or it thinks we are referring to this class "SymbolTable" instead!
-            if (symTbl != null) {
+            AcDb.SymbolTable
+                symTbl =
+                    e.ObjToSnoop as AcDb.SymbolTable; // need to use namespace or it thinks we are referring to this class "SymbolTable" instead!
+            if (symTbl != null)
+            {
                 Stream(snoopCollector.Data(), symTbl);
                 return;
             }
@@ -68,62 +68,67 @@ namespace MgdDbg.Snoop.CollectorExts {
 
         #region SymbolTableRecords
 
-        private void
-        Stream(ArrayList data, AcDb.SymbolTableRecord tblRec)
+        private void Stream(ArrayList data, AcDb.SymbolTableRecord tblRec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(AcDb.SymbolTableRecord)));
 
             data.Add(new Snoop.Data.String("Name", tblRec.Name));
             data.Add(new Snoop.Data.Bool("Is dependent", tblRec.IsDependent));
             data.Add(new Snoop.Data.Bool("Is resolved", tblRec.IsResolved));
-            
-                // branch to all known major sub-classes
+
+            // branch to all known major sub-classes
             AbstractViewTableRecord viewRec = tblRec as AbstractViewTableRecord;
-            if (viewRec != null) {
+            if (viewRec != null)
+            {
                 Stream(data, viewRec);
                 return;
             }
 
             BlockTableRecord blkRec = tblRec as BlockTableRecord;
-            if (blkRec != null) {
+            if (blkRec != null)
+            {
                 Stream(data, blkRec);
                 return;
             }
-            
+
             DimStyleTableRecord dimRec = tblRec as DimStyleTableRecord;
-            if (dimRec != null) {
+            if (dimRec != null)
+            {
                 Stream(data, dimRec);
                 return;
             }
 
             LayerTableRecord layRec = tblRec as LayerTableRecord;
-            if (layRec != null) {
+            if (layRec != null)
+            {
                 Stream(data, layRec);
                 return;
             }
-            
+
             LinetypeTableRecord ltypeRec = tblRec as LinetypeTableRecord;
-            if (ltypeRec != null) {
+            if (ltypeRec != null)
+            {
                 Stream(data, ltypeRec);
                 return;
             }
-            
+
             TextStyleTableRecord textRec = tblRec as TextStyleTableRecord;
-            if (textRec != null) {
+            if (textRec != null)
+            {
                 Stream(data, textRec);
                 return;
             }
-            
+
             UcsTableRecord ucsRec = tblRec as UcsTableRecord;
-            if (ucsRec != null) {
+            if (ucsRec != null)
+            {
                 Stream(data, ucsRec);
                 return;
             }
-
         }
-        
+
         private void
-        Stream(ArrayList data, AbstractViewTableRecord rec)
+            Stream(ArrayList data, AbstractViewTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(AbstractViewTableRecord)));
 
@@ -141,7 +146,7 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Bool("Back clip enabled", rec.BackClipEnabled));
             data.Add(new Snoop.Data.Distance("Elevation", rec.Elevation));
             data.Add(new Snoop.Data.Bool("Perspective enabled", rec.PerspectiveEnabled));
-           // data.Add(new Snoop.Data.String("Render mode", rec.RenderMode.ToString()));
+            // data.Add(new Snoop.Data.String("Render mode", rec.RenderMode.ToString()));
             data.Add(new Snoop.Data.Object("UCS", rec.Ucs));
             data.Add(new Snoop.Data.ObjectId("UCS name", rec.UcsName));
             data.Add(new Snoop.Data.String("UCS orthographic", rec.UcsOrthographic.ToString()));
@@ -157,20 +162,22 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.ObjectId("Visual style ID", rec.VisualStyleId));
 
             ViewportTableRecord viewportRec = rec as ViewportTableRecord;
-            if (viewportRec != null) {
+            if (viewportRec != null)
+            {
                 Stream(data, viewportRec);
                 return;
             }
-            
+
             ViewTableRecord viewRec = rec as ViewTableRecord;
-            if (viewRec != null) {
+            if (viewRec != null)
+            {
                 Stream(data, viewRec);
                 return;
             }
         }
-        
+
         private void
-        Stream(ArrayList data, ViewportTableRecord rec)
+            Stream(ArrayList data, ViewportTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(ViewportTableRecord)));
 
@@ -194,9 +201,8 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Bool("UCS follow mode", rec.UcsFollowMode));
             data.Add(new Snoop.Data.Bool("UCS saved with viewport", rec.UcsSavedWithViewport));
         }
-        
-        private void
-        Stream(ArrayList data, ViewTableRecord rec)
+
+        private void Stream(ArrayList data, ViewTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(ViewTableRecord)));
 
@@ -210,8 +216,7 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Bitmap("Thumbnail", rec.Thumbnail));
         }
 
-        private void
-        Stream(ArrayList data, BlockTableRecord rec)
+        private void Stream(ArrayList data, BlockTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(BlockTableRecord)));
 
@@ -235,26 +240,30 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.ObjectId("Draw order table ID", rec.DrawOrderTableId));
             data.Add(new Snoop.Data.ObjectId("BlockBegin ID", rec.BlockBeginId));
             data.Add(new Snoop.Data.ObjectId("BlockEnd ID", rec.BlockEndId));
-            data.Add(new Snoop.Data.ObjectIdCollection("Entities within block", MgdDbg.Utils.SymTbl.CollectBlockEnts(rec)));
-            data.Add(new Snoop.Data.ObjectIdCollection("Block reference IDs (directOnly = true)", rec.GetBlockReferenceIds(true, false)));
-            data.Add(new Snoop.Data.ObjectIdCollection("Block reference IDs (directOnly = false)", rec.GetBlockReferenceIds(false, false)));
-            data.Add(new Snoop.Data.ObjectIdCollection("Block reference IDs (Erased)", rec.GetErasedBlockReferenceIds()));
+            data.Add(new Snoop.Data.ObjectIdCollection("Entities within block",
+                MgdDbg.Utils.SymTbl.CollectBlockEnts(rec)));
+            data.Add(new Snoop.Data.ObjectIdCollection("Block reference IDs (directOnly = true)",
+                rec.GetBlockReferenceIds(true, false)));
+            data.Add(new Snoop.Data.ObjectIdCollection("Block reference IDs (directOnly = false)",
+                rec.GetBlockReferenceIds(false, false)));
+            data.Add(
+                new Snoop.Data.ObjectIdCollection("Block reference IDs (Erased)", rec.GetErasedBlockReferenceIds()));
             data.Add(new Snoop.Data.String("Xref status", rec.XrefStatus.ToString()));
             data.Add(new Snoop.Data.Database("Xref database", rec.GetXrefDatabase(true)));
         }
-        
+
         private void
-        Stream(ArrayList data, DimStyleTableRecord rec)
+            Stream(ArrayList data, DimStyleTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(DimStyleTableRecord)));
-          
+
             data.Add(new Snoop.Data.ObjectId("First arrow", rec.GetArrowId(DimArrowFlag.FirstArrow)));
             data.Add(new Snoop.Data.ObjectId("Second arrow", rec.GetArrowId(DimArrowFlag.SecondArrow)));
             data.Add(new Snoop.Data.Bool("Is modified for recompute", rec.IsModifiedForRecompute));
 
             data.Add(new Snoop.Data.CategorySeparator("DIMVARS"));
 
-                // dimvars
+            // dimvars
             data.Add(new Snoop.Data.Int("Dimadec", rec.Dimadec));
             data.Add(new Snoop.Data.Bool("Dimalt", rec.Dimalt));
             data.Add(new Snoop.Data.Int("Dimaltd", rec.Dimaltd));
@@ -329,9 +338,9 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Bool("Dimupt", rec.Dimupt));
             data.Add(new Snoop.Data.Int("Dimzin", rec.Dimzin));
         }
-        
+
         private void
-        Stream(ArrayList data, LayerTableRecord rec)
+            Stream(ArrayList data, LayerTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(LayerTableRecord)));
 
@@ -350,9 +359,9 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Bool("Is plottable", rec.IsPlottable));
             data.Add(new Snoop.Data.Bool("Is used", rec.IsUsed));
         }
-        
+
         private void
-        Stream(ArrayList data, LinetypeTableRecord rec)
+            Stream(ArrayList data, LinetypeTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(LinetypeTableRecord)));
 
@@ -364,7 +373,8 @@ namespace MgdDbg.Snoop.CollectorExts {
 
             int i, len;
             len = rec.NumDashes;
-            for (i=0; i<len; i++) {
+            for (i = 0; i < len; i++)
+            {
                 data.Add(new Snoop.Data.CategorySeparator(string.Format("--- DASH [{0}] ---", i)));
                 data.Add(new Snoop.Data.Distance("Length", rec.DashLengthAt(i)));
                 data.Add(new Snoop.Data.ObjectId("Shape style", rec.ShapeStyleAt(i)));
@@ -374,10 +384,12 @@ namespace MgdDbg.Snoop.CollectorExts {
                 data.Add(new Snoop.Data.Bool("Shape is UCS oriented at", rec.ShapeIsUcsOrientedAt(i)));
                 data.Add(new Snoop.Data.Angle("Shape rotation at", rec.ShapeRotationAt(i)));
 
-                try {
+                try
+                {
                     data.Add(new Snoop.Data.String("Text at", rec.TextAt(i)));
                 }
-                catch (Autodesk.AutoCAD.Runtime.Exception e) {
+                catch (Autodesk.AutoCAD.Runtime.Exception e)
+                {
                     if (e.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.NotApplicable)
                         data.Add(new Snoop.Data.Exception("Text at", e));
                     else
@@ -385,14 +397,15 @@ namespace MgdDbg.Snoop.CollectorExts {
                 }
             }
         }
-        
+
         private void
-        Stream(ArrayList data, RegAppTableRecord rec) {
+            Stream(ArrayList data, RegAppTableRecord rec)
+        {
             data.Add(new Snoop.Data.ClassSeparator(typeof(RegAppTableRecord)));
-       }
-       
+        }
+
         private void
-        Stream(ArrayList data, TextStyleTableRecord rec)
+            Stream(ArrayList data, TextStyleTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(TextStyleTableRecord)));
 
@@ -407,9 +420,9 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Distance("Text size", rec.TextSize));
             data.Add(new Snoop.Data.Distance("X scale", rec.XScale));
         }
-        
+
         private void
-        Stream(ArrayList data, UcsTableRecord rec)
+            Stream(ArrayList data, UcsTableRecord rec)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(UcsTableRecord)));
 
@@ -417,23 +430,23 @@ namespace MgdDbg.Snoop.CollectorExts {
             data.Add(new Snoop.Data.Vector3d("X axis", rec.XAxis));
             data.Add(new Snoop.Data.Vector3d("Y axis", rec.YAxis));
         }
+
         #endregion
 
         #region SymbolTable
 
         private void
-        Stream(ArrayList data, AcDb.SymbolTable symTbl)
+            Stream(ArrayList data, AcDb.SymbolTable symTbl)
         {
             data.Add(new Snoop.Data.ClassSeparator(typeof(AcDb.SymbolTable)));
 
-                // There is no data unique to different types of SymbolTables, so we will just take
-                // a short-cut here and print out the class name.  The virtuals it defines are already
-                // taken care of by the UI (that is how we got the tree structure).
-                // branch to all known major sub-classes
+            // There is no data unique to different types of SymbolTables, so we will just take
+            // a short-cut here and print out the class name.  The virtuals it defines are already
+            // taken care of by the UI (that is how we got the tree structure).
+            // branch to all known major sub-classes
             data.Add(new Snoop.Data.ClassSeparator(symTbl.GetType()));
         }
 
         #endregion
-
     }
 }

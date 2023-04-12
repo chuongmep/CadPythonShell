@@ -22,22 +22,19 @@
 //
 
 using System;
-using System.Diagnostics;
 using System.Collections;
 using System.Windows.Forms;
-
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
-using Autodesk.AutoCAD.Colors;
 using Autodesk.AutoCAD.EditorInput;
-
+using Autodesk.AutoCAD.Geometry;
+using MgdDbg.CompBuilder;
+using MgdDbg.ObjTests.Forms;
+using MgdDbg.ObjTests.TestFramework;
+using MgdDbg.Utils;
 using AcRx = Autodesk.AutoCAD.Runtime;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices;
 
-using MgdDbg.Utils;
-using MgdDbg.ObjTests.Forms;
-
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests
 {
 	/// <summary>
 	/// Summary description for QueryDbTests.

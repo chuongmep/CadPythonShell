@@ -22,9 +22,6 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using AcPl = Autodesk.AutoCAD.PlottingServices;
 using AcApp = Autodesk.AutoCAD.ApplicationServices;
 

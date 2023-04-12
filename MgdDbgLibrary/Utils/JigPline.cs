@@ -19,9 +19,6 @@
 // Software - Restricted Rights) and DFAR 252.227-7013(c)(1)(ii)
 // (Rights in Technical Data and Computer Software), as applicable.
 //
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 using AcDb = Autodesk.AutoCAD.DatabaseServices;
 using AcEd = Autodesk.AutoCAD.EditorInput;

@@ -20,9 +20,7 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
 using System.Collections;
-using System.Windows.Forms;
 
 namespace MgdDbg.Snoop.Data
 {

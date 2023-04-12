@@ -21,12 +21,8 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
 using System.Diagnostics;
-using System.Collections;
-using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
 
 namespace MgdDbg.Utils
 {

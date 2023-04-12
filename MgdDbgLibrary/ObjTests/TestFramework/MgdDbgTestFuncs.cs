@@ -21,11 +21,9 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
 using System.Collections;
 
-
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests.TestFramework
 {
 	/// <summary>
 	/// Summary description for MgdDbgTestFuncs.

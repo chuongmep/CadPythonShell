@@ -1,6 +1,6 @@
 ﻿using Autodesk.AutoCAD.Runtime;
 
-namespace CADPythonShell
+namespace CADPythonShell.Command
 {
     public class SnoopCommand : ICadCommand
     {

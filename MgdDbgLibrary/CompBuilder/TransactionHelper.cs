@@ -23,11 +23,9 @@
 
 using System;
 using System.Diagnostics;
-using System.Collections;
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
 
-namespace MgdDbg
+namespace MgdDbg.CompBuilder
 {
 	/// <summary>
 	/// With the removal of ObjectId.Open/Close, it means that you need to

@@ -22,9 +22,6 @@
 //
 
 using System;
-using System.Collections.Generic;
-using System.Text;
-
 using AcDb = Autodesk.AutoCAD.DatabaseServices;
 
 namespace MgdDbg.Reactors.Events {

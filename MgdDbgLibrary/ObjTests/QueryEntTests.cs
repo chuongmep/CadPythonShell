@@ -22,19 +22,15 @@
 //
 
 using System;
-using System.Diagnostics;
-using System.Collections;
-using System.Windows.Forms;
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
-using Autodesk.AutoCAD.Colors;
-using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.EditorInput;
-
+using Autodesk.AutoCAD.Geometry;
+using MgdDbg.CompBuilder;
+using MgdDbg.ObjTests.TestFramework;
 using AcDb = Autodesk.AutoCAD.DatabaseServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests
 {
 	/// <summary>
 	/// Summary description for QueryEntTests.

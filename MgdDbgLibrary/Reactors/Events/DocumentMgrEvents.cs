@@ -21,11 +21,6 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Text;
-
 using AcApp = Autodesk.AutoCAD.ApplicationServices;
 
 namespace MgdDbg.Reactors.Events {

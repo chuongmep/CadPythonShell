@@ -20,18 +20,16 @@
 // (Rights in Technical Data and Computer Software), as applicable.
 //
 
-using System;
-using System.Diagnostics;
-using System.Collections;
 using System.Windows.Forms;
-
 using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
-using Autodesk.AutoCAD.Colors;
 using Autodesk.AutoCAD.EditorInput;
+using MgdDbg.CompBuilder;
+using MgdDbg.ObjTests.Forms;
+using MgdDbg.ObjTests.TestFramework;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices;
+using SelectionSet = MgdDbg.Prompts.SelectionSet;
 
-namespace MgdDbg.Test
+namespace MgdDbg.ObjTests
 {
     /// <summary>
     /// 
@@ -84,7 +82,7 @@ namespace MgdDbg.Test
         public void
         SelectionSet()
         {
-            ObjTests.Forms.SelectionSet dbox = new ObjTests.Forms.SelectionSet();
+            SelectionSet dbox = new SelectionSet();
             AcadApp.Application.ShowModalDialog(dbox);
         }
 
