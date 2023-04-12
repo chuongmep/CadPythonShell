@@ -1,0 +1,107 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net48</TargetFramework>
+		<ProjectType>Local</ProjectType>
+		<LangVersion>latest</LangVersion>
+		<TargetFramework>net48</TargetFramework>
+		<DefaultClientScript>JScript</DefaultClientScript>
+		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
+		<DefaultTargetSchema>IE50</DefaultTargetSchema>
+		<DelaySign>false</DelaySign>
+		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
+		<OutputType>Library</OutputType>
+		<RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
+		<StartupObject>
+		</StartupObject>
+		<IsWebBootstrapper>false</IsWebBootstrapper>
+		<SccAuxPath>
+		</SccAuxPath>
+		<PublishUrl>publish\</PublishUrl>
+		<Install>true</Install>
+		<InstallFrom>Disk</InstallFrom>
+		<UpdateEnabled>false</UpdateEnabled>
+		<UpdateMode>Foreground</UpdateMode>
+		<UpdateInterval>7</UpdateInterval>
+		<UpdateIntervalUnits>Days</UpdateIntervalUnits>
+		<UpdatePeriodically>false</UpdatePeriodically>
+		<UpdateRequired>false</UpdateRequired>
+		<MapFileExtensions>true</MapFileExtensions>
+		<ApplicationRevision>0</ApplicationRevision>
+		<ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+		<UseApplicationTrust>false</UseApplicationTrust>
+		<BootstrapperEnabled>true</BootstrapperEnabled>
+		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+		<UseWindowsForms>true</UseWindowsForms>
+		<UseWPF>true</UseWPF>
+		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+		<BaseAddress>285212672</BaseAddress>
+		<FileAlignment>4096</FileAlignment>
+		<CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+		<CodeAnalysisIgnoreBuiltInRuleSets>false</CodeAnalysisIgnoreBuiltInRuleSets>
+		<CodeAnalysisIgnoreBuiltInRules>false</CodeAnalysisIgnoreBuiltInRules>
+		<DebugType>full</DebugType>
+	</PropertyGroup>
+	<PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+	  <DebugSymbols>true</DebugSymbols>
+	  <DebugType>full</DebugType>
+	</PropertyGroup>
+	<PropertyGroup>
+		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+      None
+    </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Update="System">
+			<Name>System</Name>
+		</Reference>
+		<Reference Update="System.Core">
+			<RequiredTargetFramework>3.5</RequiredTargetFramework>
+		</Reference>
+		<Reference Update="System.Data">
+			<Name>System.Data</Name>
+		</Reference>
+		<Reference Update="System.Drawing">
+			<Name>System.Drawing</Name>
+		</Reference>
+		<Reference Update="System.Xml">
+			<Name>System.XML</Name>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+			<Install>true</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+			<Visible>False</Visible>
+			<ProductName>.NET Framework 3.5 SP1</ProductName>
+			<Install>false</Install>
+		</BootstrapperPackage>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="Chuongmep.Acad.Api.accoremgd" Version="2023.0.2" />
+	  <PackageReference Include="Chuongmep.Acad.Api.acdbmgd" Version="2023.0.2" />
+	  <PackageReference Include="Chuongmep.Acad.Api.acmgd" Version="2023.0.2" />
+	  <PackageReference Include="Chuongmep.Acad.Api.AdWindows" Version="2023.0.2" />
+	</ItemGroup>
+	<PropertyGroup />
+</Project>

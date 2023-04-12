@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ApplicationPackage SchemaVersion="1.0"
+                    AutodeskProduct="SnoopAutoCAD"
+                    ProductType="Application"
+                    Name="SnoopAutoCAD">
+  <RuntimeRequirements SeriesMin="15.0"
+                       SeriesMax="25.0"
+                       Platform="AutoCAD"
+                       OS="Win32|Win64" />
+  <Components>
+    <ComponentEntry AppName="SnoopAutoCAD"
+                    Version="1.0"
+                    ModuleName="./SnoopAutoCADCSharp.dll"
+                    AppDescription="Description for command module of SnoopAutoCADCSharp"
+                    LoadOnCommandInvocation="True" LoadOnRequest="True">
+      <Commands>
+        <Command Local="SnoopAutoCAD" Global="SnoopAutoCAD" />
+      </Commands>
+    </ComponentEntry>
+  </Components>
+</ApplicationPackage>

@@ -1,0 +1,124 @@
+﻿<Window
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    x:Class="CADSnoop.View.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:viewModel="clr-namespace:CADSnoop.ViewModel"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" 
+    Title="Snoop Database"
+    Width="700"
+    Height="600"
+    MinWidth="800"
+    MinHeight="500"
+    PreviewKeyDown="Window_PreviewKeyDown"
+    ResizeMode="CanResize"
+    Topmost="True"
+    d:DataContext="{d:DesignInstance viewModel:SnoopViewModel}"
+    WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="ListViewItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Visible" />
+            <Setter Property="MinHeight" Value="400" />
+        </Style>
+        <Style TargetType="TreeViewItem">
+            <Setter Property="IsExpanded" Value="True" />
+        </Style>
+
+    </Window.Resources>
+    <Grid Margin="5">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <TreeView
+            x:Name="treeview"
+            Grid.Row="0"
+            Grid.Column="0"
+            ItemsSource="{Binding TreeViewItems}"
+            SelectedItemChanged="Treeview_SelectedItemChanged">
+            <TreeView.ItemTemplate>
+                <HierarchicalDataTemplate ItemsSource="{Binding ChildItems, UpdateSourceTrigger=PropertyChanged}">
+                    <TextBlock Text="{Binding Title}" />
+                </HierarchicalDataTemplate>
+            </TreeView.ItemTemplate>
+        </TreeView>
+
+        <ListView
+            x:Name="listview"
+            Grid.Row="0"
+            Grid.Column="1"
+            ItemsSource="{Binding LisViewItems}">
+            <ListView.Resources>
+                <ContextMenu x:Key="ItemContextMenu">
+                    <MenuItem
+                        Click="ContextMenu_MouseDown"
+                        CommandParameter="{Binding RelativeSource={RelativeSource Self}, Path=Parent}"
+                        Header="Copy" />
+                </ContextMenu>
+            </ListView.Resources>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_DoubleClick" />
+                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn
+                        Width="Auto"
+                        DisplayMemberBinding="{Binding PropName}"
+                        Header="Name" />
+                    <GridViewColumn
+                        Width="Auto"
+                        DisplayMemberBinding="{Binding Type}"
+                        Header="Type" />
+                    <GridViewColumn
+                        Width="Auto"
+                        DisplayMemberBinding="{Binding Value}"
+                        Header="Value" />
+                </GridView>
+            </ListView.View>
+            <ListView.GroupStyle>
+                <GroupStyle>
+                    <GroupStyle.ContainerStyle>
+                        <Style TargetType="{x:Type GroupItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate>
+                                        <Expander IsExpanded="True">
+                                            <Expander.Header>
+                                                <StackPanel Orientation="Horizontal">
+                                                    <TextBlock FontWeight="Bold" Text="{Binding Name}" />
+                                                    <TextBlock Text="  " />
+                                                    <TextBlock
+                                                        FontSize="12"
+                                                        FontStyle="Italic"
+                                                        Text="{Binding ItemCount}" />
+                                                    <TextBlock
+                                                        FontSize="12"
+                                                        FontStyle="Italic"
+                                                        Text=" item(s)" />
+                                                </StackPanel>
+                                            </Expander.Header>
+                                            <ItemsPresenter />
+                                        </Expander>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </GroupStyle.ContainerStyle>
+                </GroupStyle>
+            </ListView.GroupStyle>
+        </ListView>
+        <Button Click="ButtonBase_OnClick" Margin="2,2,2,2" Grid.Column="1" Grid.Row="1" Content="OK"></Button>
+    </Grid>
+</Window>
