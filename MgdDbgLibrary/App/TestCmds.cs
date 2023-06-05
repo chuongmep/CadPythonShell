@@ -30,6 +30,7 @@ using MgdDbg.Throwaway;
 using MgdDbg.Utils;
 using System;
 using System.Windows.Forms;
+using Autodesk.AutoCAD.ApplicationServices;
 using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 using TestForm = MgdDbg.ObjTests.TestFramework.TestForm;
 
@@ -88,31 +89,36 @@ namespace MgdDbg.App
         [CommandMethod("SnoopEnts", CommandFlags.Modal)]
         public void SnoopEntity()
         {
-            Editor ed = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Editor;
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            Editor ed = doc.Editor;
 
             PromptSelectionResult res = ed.GetSelection();
             if (res.Status != PromptStatus.OK)
                 return;
 
             ObjectIdCollection selSet = new ObjectIdCollection(res.Value.GetObjectIds());
-
-            using (TransactionHelper trHlp = new TransactionHelper())
+            using (DocumentLock lockDoc = doc.LockDocument())
             {
-                trHlp.Start();
+                using (TransactionHelper trHlp = new TransactionHelper())
+                {
+                    trHlp.Start();
 
-                Snoop.Forms.DBObjects dbox = new Snoop.Forms.DBObjects(selSet, trHlp);
-                dbox.Text = "Selected Entities";
-                AcadApp.ShowModalDialog(dbox);
+                    Snoop.Forms.DBObjects dbox = new Snoop.Forms.DBObjects(selSet, trHlp);
+                    dbox.Text = "Selected Entities";
+                    AcadApp.ShowModalDialog(dbox);
 
-                trHlp.Commit();
+                    trHlp.Commit();
+                }
             }
+           
         }
 
         //[CommandMethod("MgdDbg", "MgdDbgSnoopNEnts", "SnoopNEnts", CommandFlags.Modal)]
         [CommandMethod("SnoopNEnts", CommandFlags.Modal)]
         public void SnoopNestedEntity()
         {
-            Editor ed = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Editor;
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            Editor ed = doc.Editor;
             ObjectIdCollection selSet = new ObjectIdCollection();
 
             while (true)
@@ -129,17 +135,20 @@ namespace MgdDbg.App
                 else
                     return;
             }
-
-            using (TransactionHelper trHlp = new TransactionHelper())
+            using (DocumentLock lockDoc = doc.LockDocument())
             {
-                trHlp.Start();
+                using (TransactionHelper trHlp = new TransactionHelper())
+                {
+                    trHlp.Start();
 
-                Snoop.Forms.DBObjects dbox = new Snoop.Forms.DBObjects(selSet, trHlp);
-                dbox.Text = "Selected Entities";
-                AcadApp.ShowModalDialog(dbox);
+                    Snoop.Forms.DBObjects dbox = new Snoop.Forms.DBObjects(selSet, trHlp);
+                    dbox.Text = "Selected Entities";
+                    AcadApp.ShowModalDialog(dbox);
 
-                trHlp.Commit();
+                    trHlp.Commit();
+                }
             }
+            
         }
 
         //[CommandMethod("MgdDbg", "MgdDbgSnoopByHandle", "SnoopEnts", CommandFlags.Modal)]
@@ -188,18 +197,23 @@ namespace MgdDbg.App
         [CommandMethod("SnoopDB", CommandFlags.Modal)]
         public void SnoopDatabase()
         {
-            Database db = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument.Database;
+            var doc = Autodesk.AutoCAD.ApplicationServices.Application.DocumentManager.MdiActiveDocument;
+            Database db = doc.Database;
 
-            using (TransactionHelper trHlp = new TransactionHelper(db))
+            using (DocumentLock lockDoc = doc.LockDocument())
             {
-                trHlp.Start();
+                using (TransactionHelper trHlp = new TransactionHelper(db))
+                {
+                    trHlp.Start();
 
-                Snoop.Forms.Database dbox = new Snoop.Forms.Database(db, trHlp);
-                dbox.Text = db.Filename;
-                AcadApp.ShowModalDialog(dbox);
+                    Snoop.Forms.Database dbox = new Snoop.Forms.Database(db, trHlp);
+                    dbox.Text = db.Filename;
+                    AcadApp.ShowModalDialog(dbox);
 
-                trHlp.Commit();
+                    trHlp.Commit();
+                }
             }
+            
         }
 
         //[CommandMethod("MgdDbg", "MgdDbgSnoopEd", "SnoopEd", CommandFlags.Modal)]
