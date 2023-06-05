@@ -1,4 +1,6 @@
 # Changelog
+- 2023-06-05 **1.1.3**
+  - Fix bug snoop selected instance with lock document.
 - 2023-04-12 **1.1.2**
     - Fix snoop selected instance
     - Merge submodule
