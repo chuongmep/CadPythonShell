@@ -9,40 +9,6 @@
 		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="ICSharpCode.AvalonEdit, Version=5.0.3.0, Culture=neutral, PublicKeyToken=9cc39be672370310, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\RefrencedAssemblies\ICSharpCode.AvalonEdit.dll</HintPath>
-		</Reference>
-		<Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\RefrencedAssemblies\IronPython.dll</HintPath>
-		</Reference>
-		<Reference Include="IronPython.Modules, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\RefrencedAssemblies\IronPython.Modules.dll</HintPath>
-		</Reference>
-		<Reference Include="IronPython.SQLite, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\RefrencedAssemblies\IronPython.SQLite.dll</HintPath>
-		</Reference>
-		<Reference Include="IronPython.Wpf, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\RefrencedAssemblies\IronPython.Wpf.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Dynamic, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\RefrencedAssemblies\Microsoft.Dynamic.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Scripting, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\RefrencedAssemblies\Microsoft.Scripting.dll</HintPath>
-		</Reference>
-		<Reference Include="Microsoft.Scripting.Metadata, Version=1.1.0.20, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
-			<SpecificVersion>False</SpecificVersion>
-			<HintPath>..\RefrencedAssemblies\Microsoft.Scripting.Metadata.dll</HintPath>
-		</Reference>
-	</ItemGroup>
-	<ItemGroup>
 		<EmbeddedResource Include="Resources\Python.xshd" />
 	</ItemGroup>
 	<ItemGroup>
@@ -51,8 +17,8 @@
 	  </None>
 	</ItemGroup>
 	<ItemGroup>
-	  <PackageReference Include="AvalonEdit" Version="6.2.0.78" />
-	  <PackageReference Include="IronPython" Version="3.4.0" />
+	  <PackageReference Include="AvalonEdit" Version="6.3.0.90" />
+	  <PackageReference Include="IronPython" Version="3.4.2" />
 	</ItemGroup>
 	<PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
 		<StartAction>Project</StartAction>

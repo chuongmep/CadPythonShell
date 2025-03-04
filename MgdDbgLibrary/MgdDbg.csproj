@@ -1,9 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<ProjectType>Local</ProjectType>
 		<LangVersion>latest</LangVersion>
-		<TargetFramework>net48</TargetFramework>
 		<DefaultClientScript>JScript</DefaultClientScript>
 		<DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
 		<DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -34,7 +33,6 @@
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
-<!--		<ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>-->
 		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
 	<PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -49,60 +47,12 @@
 	  <DebugSymbols>true</DebugSymbols>
 	  <DebugType>full</DebugType>
 	</PropertyGroup>
-	<PropertyGroup>
-		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-      None
-    </ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
-	</PropertyGroup>
+	
 	<ItemGroup>
-		<Reference Update="System">
-			<Name>System</Name>
-		</Reference>
-		<Reference Update="System.Core">
-			<RequiredTargetFramework>3.5</RequiredTargetFramework>
-		</Reference>
-		<Reference Update="System.Data">
-			<Name>System.Data</Name>
-		</Reference>
-		<Reference Update="System.Drawing">
-			<Name>System.Drawing</Name>
-		</Reference>
-		<Reference Update="System.Xml">
-			<Name>System.XML</Name>
-		</Reference>
-	</ItemGroup>
-	<ItemGroup>
-		<BootstrapperPackage Include="Microsoft.Net.Client.3.5">
-			<Visible>False</Visible>
-			<ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
-			<Install>false</Install>
-		</BootstrapperPackage>
-		<BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
-			<Visible>False</Visible>
-			<ProductName>.NET Framework 2.0 %28x86%29</ProductName>
-			<Install>true</Install>
-		</BootstrapperPackage>
-		<BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
-			<Visible>False</Visible>
-			<ProductName>.NET Framework 3.0 %28x86%29</ProductName>
-			<Install>false</Install>
-		</BootstrapperPackage>
-		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
-			<Visible>False</Visible>
-			<ProductName>.NET Framework 3.5</ProductName>
-			<Install>false</Install>
-		</BootstrapperPackage>
-		<BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
-			<Visible>False</Visible>
-			<ProductName>.NET Framework 3.5 SP1</ProductName>
-			<Install>false</Install>
-		</BootstrapperPackage>
-	</ItemGroup>
-	<ItemGroup>
-	  <PackageReference Include="Chuongmep.Acad.Api.accoremgd" Version="2023.0.2" />
-	  <PackageReference Include="Chuongmep.Acad.Api.acdbmgd" Version="2023.0.2" />
-	  <PackageReference Include="Chuongmep.Acad.Api.acmgd" Version="2023.0.2" />
-	  <PackageReference Include="Chuongmep.Acad.Api.AdWindows" Version="2023.0.2" />
+	  <PackageReference Include="Chuongmep.Acad.Api.accoremgd" Version="2025.0.0" />
+	  <PackageReference Include="Chuongmep.Acad.Api.acdbmgd" Version="2025.0.0" />
+	  <PackageReference Include="Chuongmep.Acad.Api.acmgd" Version="2025.0.0" />
+	  <PackageReference Include="Chuongmep.Acad.Api.AdWindows" Version="2025.0.0" />
 	</ItemGroup>
 	<PropertyGroup />
 </Project>
