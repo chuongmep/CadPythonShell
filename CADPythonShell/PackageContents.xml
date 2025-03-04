@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ApplicationPackage SchemaVersion="1.0"
-                    AutodeskProduct="CADPythonShell"
+                    AutodeskProduct="AutoCAD"
                     ProductType="Application"
                     Name="CADPythonShell">
   <RuntimeRequirements SeriesMin="15.0"
-                       SeriesMax="25.0"
+                       SeriesMax="29.0"
                     Platform="AutoCAD|AutoCAD*"
                     OS="Win32|Win64" />
   <Components>

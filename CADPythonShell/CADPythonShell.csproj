@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
 		<AppendRuntimeIdentifierToOutputPath>false</AppendRuntimeIdentifierToOutputPath>
 		<LangVersion>latest</LangVersion>
@@ -8,9 +8,10 @@
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<PlatformTarget>x64</PlatformTarget>
-		<Configurations>Debug A23</Configurations>
-		<Configurations>$(Configurations);Release A23</Configurations>
+		<Configurations>Debug A25</Configurations>
+		<Configurations>$(Configurations);Release A25</Configurations>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
 	<!--<PropertyGroup>
 		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -27,8 +28,8 @@
 		<DebugType>none</DebugType>
 		<DefineConstants>$(DefineConstants);RELEASE</DefineConstants>
 	</PropertyGroup>
-	<PropertyGroup Condition="$(Configuration.Contains('A23'))">
-		<DefineConstants>$(DefineConstants);A23</DefineConstants>
+	<PropertyGroup Condition="$(Configuration.Contains('A25'))">
+		<DefineConstants>$(DefineConstants);A25</DefineConstants>
 	</PropertyGroup>
 	<PropertyGroup>
 		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>

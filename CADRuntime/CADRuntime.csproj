@@ -1,12 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>net48</TargetFramework>
+		<TargetFramework>net8.0-windows</TargetFramework>
 		<LangVersion>latest</LangVersion>
 		<GenerateAssemblyInfo>false</GenerateAssemblyInfo>
 		<UseWindowsForms>true</UseWindowsForms>
 		<UseWPF>true</UseWPF>
 		<GenerateResourceUsePreserializedResources>true</GenerateResourceUsePreserializedResources>
 		<AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+		<CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
 	<PropertyGroup>
 		<ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
@@ -17,12 +18,11 @@
 		<SatelliteResourceLanguages>en-US</SatelliteResourceLanguages>
 	</PropertyGroup>
 	<ItemGroup>
-		<Reference Include="accoremgd">
-		  <HintPath>..\RefrencedAssemblies\accoremgd.dll</HintPath>
-		</Reference>
-		<Reference Include="Acdbmgd">
-		  <HintPath>..\RefrencedAssemblies\acdbmgd.dll</HintPath>
-		</Reference>
+		<PackageReference Include="Chuongmep.Acad.Api.accoremgd" Version="2025.0.0"/>
+		<PackageReference Include="Chuongmep.Acad.Api.acdbmgd" Version="2025.0.0"/>
+<!--		<Reference Include="Acdbmgd">-->
+<!--		  <HintPath>..\RefrencedAssemblies\acdbmgd.dll</HintPath>-->
+<!--		</Reference>-->
 		<Reference Include="IronPython, Version=2.7.0.40, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
 			<SpecificVersion>False</SpecificVersion>
 			<HintPath>..\RefrencedAssemblies\IronPython.dll</HintPath>

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net48</TargetFramework>
+    <TargetFramework>net8.0-windows</TargetFramework>
     <OutputType>Library</OutputType>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWindowsForms>true</UseWindowsForms>
@@ -16,16 +16,8 @@
 		</ResolveAssemblyWarnOrErrorOnTargetArchitectureMismatch>
 	</PropertyGroup>
   <ItemGroup>
-    <Reference Include="accoremgd">
-      <HintPath>..\RefrencedAssemblies\accoremgd.dll</HintPath>
-    </Reference>
-    <Reference Include="Acdbmgd">
-      <HintPath>..\RefrencedAssemblies\acdbmgd.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Chuongmep.Acad.Api.accoremgd" Version="2023.0.2" />
-    <PackageReference Include="Chuongmep.Acad.Api.acdbmgd" Version="2023.0.2" />
+    <PackageReference Include="Chuongmep.Acad.Api.accoremgd" Version="2025.0.0" />
+    <PackageReference Include="Chuongmep.Acad.Api.acdbmgd" Version="2025.0.0" />
   </ItemGroup>
 	<ProjectExtensions>
     <VisualStudio>
